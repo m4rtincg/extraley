@@ -1,0 +1,155 @@
+#cont-listado-clausulas{
+	width: 300px;
+    margin: 0 auto;
+    padding-top: 1px;
+}
+#cont-combo-clausulas{
+	margin-bottom: 15px;
+	font-size: 13px;
+}
+h2{
+	font-size: 21px;
+}
+#listClausulas{
+	font-size: 12.5px;
+	border: 1px solid #dddddd;
+}
+#listClausulas tbody tr{
+	cursor: move;
+}
+#cont-listclausulas{
+	margin-bottom: 22px;
+}
+.img-view {
+    width: 28px;
+    cursor: pointer;
+}
+.img-delete{
+	cursor: pointer;
+	width: 19px;
+    margin-left: 6px;
+}
+.img-edit{
+	width: 18px;
+    margin-left: 6px;
+    cursor: pointer;
+}
+#btn_new_clauses{
+	color: #fff;
+    border: none;
+    background: #9ac53c;
+    border-radius: 4px;
+    padding: 8px 10px;
+    margin-top: 15px;
+}
+div.dataTables_paginate{
+	text-align: center;
+}
+.form-group{
+    position: relative;
+}
+.form-control-padding{
+    padding-left: 32px;
+}
+.form-group i{
+    position: absolute;
+    font-size: 15px;
+    top: 9px;
+    left: 10px;
+    color: #777;
+}
+textarea.form-control{
+	resize: none;
+	height: 80px;
+}
+#listClausulas td,#listClausulas th{
+	vertical-align: middle;
+}
+#listClausulas td p{
+	margin: 0px;
+}
+#listClausulas tr td:nth-child(3),#listClausulas tr td:nth-child(4) {
+    text-align: center;
+}
+#clauses_tipo_tipo{
+	margin-top: 15px; 
+}
+
+@media (min-width: 320px) {
+	#cont-listado-clausulas{
+		width: 310px;
+	}
+}
+@media (min-width: 350px) {
+	#cont-listado-clausulas{
+		width: 340px;
+	}
+}
+@media (min-width: 420px) {
+	#cont-listado-clausulas{
+		width: 400px;
+	}
+}
+
+@media (min-width: 480px) {
+	#cont-listado-clausulas{
+		width: 460px;
+	}
+}
+
+@media (min-width: 768px) {
+	textarea.form-control {
+	    resize: none;
+	    height: 175px;
+	}
+	#cont-listado-clausulas{
+		width: 700px;
+		padding-top: 17px;
+
+	}
+	#cont-combo-clausulas{
+		width: 513px;
+		overflow: hidden;
+	}
+	h2 {
+    	font-size: 28px;
+	}
+	#clauses_tipo{
+		float: left;
+    	width: 285px;
+	}
+	#clauses_tipo_tipo {
+	    float: left;
+	    width: 285px;
+	}
+	#btn_new_clauses{
+		float: left;
+	    display: inline-block;
+	    margin-top: 15px;
+	    margin-left: 25px;
+	}
+	#cont-listclausulas {
+	    margin-top: 25px;
+	}
+	.modal-footer {
+	    padding: 3px 40px 12px 40px;
+	    text-align: right;
+	    border: none;
+	}
+	.modal-body {
+	    position: relative;
+	    padding: 20px 40px 0px 40px;
+	}
+}
+
+@media (min-width: 992px) {
+	#cont-listado-clausulas{
+		width: 800px;
+	}
+}
+
+@media (min-width: 1200px) {
+    #cont-listado-clausulas{
+		width: 1000px;
+	}
+}

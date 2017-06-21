@@ -1,0 +1,206 @@
+@charset "utf-8";
+
+#listContracts i{
+	font-size: 30px;
+    color: #1621b5;
+    cursor: pointer;
+}
+table.dataTable th,table.dataTable td {
+     white-space: nowrap;
+ }
+#listContracts{
+	border: 1px solid #dddddd;
+}
+#cont-listado-contracts{
+    float: none;
+    margin: 0 auto;
+    background: #c9ffd0;
+}
+#cont-listado-contracts{
+	width: 100%;
+    font-size: 11px;
+    padding: 15px 10px 45px 10px;
+    position: relative;
+}
+#cont-listado-contracts .dataTables_paginate {
+    float: none;
+    margin: 0 auto;
+    margin-top: 22px;
+    text-align: center;
+}
+#cont-listado-contracts h2{
+	text-align: center;
+	margin-bottom: 20px;
+	font-size: 20px;
+	font-weight: inherit;
+    font-family: robotomedium;
+	margin-top: 6px;
+}
+.table-responsive{
+	border: none!important;
+}
+#cont-listado-contracts th, #cont-listado-contracts td{
+	vertical-align: middle;
+}
+#listContracts .foro i{
+	font-size: 22px;
+}
+#listContracts .foro.activeq i{
+	color: #5357aa;
+}
+#listContracts .foro.alertq i{
+	color: #cf6060;
+}
+.view-filter{
+	display: none;
+}
+.text-firma-pdf{
+	font-size: 10.5px;
+}
+#listContracts .upload-pdf-firma-cont i{
+	font-size: 20px;
+    color: #290069;
+}
+#listContracts .upload-pdf-firma-cont-del i {
+    font-size: 20px;
+    color: #290069;
+}
+
+#title-filtros{
+	font-family: robotobold;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+#filtros{
+	margin-bottom: 19px;
+    overflow: hidden;
+}
+#filtros .row-fiter{
+	margin-bottom: 5px;
+    overflow: hidden;
+}
+#filtros .filterLabel{
+	float: left;
+    width: 40%;
+    padding: 6px 0px;
+}
+#filtros .filterInput{
+	float: left;
+    width: 60%;
+}
+.filterInput input, .filterInput select{
+	font-size: 13px;
+    height: 28px;
+    padding: 5px 12px;
+}
+
+td div:first-child .btn_eventos{
+	margin-top: 0px;
+}
+.btn_eventos{
+	border-radius: 2px;
+    border: none;
+    color: #fff;
+    width: 68px;
+    padding: 3px 6px;
+    margin-top: 4px;
+}
+.btn-aprobar{
+    background: #0063ff;
+}
+.btn-rechazar{
+	background: #df2626;
+}
+.btn-enviar{
+	background: #1fa400;
+}
+.btn-editar{
+	background: #65086a;
+}
+
+
+@media (min-width: 420px) {
+    #cont-listado-contracts{
+		
+		font-size: 12px;
+	}
+}
+
+@media (min-width: 480px) {
+    #cont-listado-contracts{
+		font-size: 12.2px;
+	}
+	#cont-listado-contracts h2{
+		font-size: 20.5px;
+	}
+
+	#filtros .row-fiter {
+	    float: left;
+	    width: 50%;
+	}
+	#filtros .filterLabel{
+		width: 100%;
+	}
+	#filtros .filterInput {
+	    width: 86%;
+	}
+	#filtros {
+    	margin-bottom: 22px;
+    }
+}
+
+@media (min-width: 768px) {
+   	#cont-listado-contracts{
+		font-size: 12.4px;
+		padding: 25px 20px 45px 20px;
+	}
+	#cont-listado-contracts h2{
+		font-size: 21px;
+	}
+
+	#filtros .filterLabel{
+		width: 130px;
+	}
+	#filtros .filterInput {
+	    width: 50%;
+	}
+	#title-filtros {
+	    font-size: 18px;
+	    margin-bottom: 7px;
+	}
+}
+
+@media (min-width: 992px) {
+    #cont-listado-contracts{
+		font-size: 12.5px;
+	}
+	#cont-listado-contracts h2{
+		font-size: 22px;
+	}
+
+	#filtros .row-fiter{
+		width: 40%;
+	}
+	#filtros .filterInput {
+	    width: 55%;
+	}
+}
+
+@media (min-width: 1200px) {
+    #cont-listado-contracts{
+    	font-size: 12.6px;
+    }
+    #cont-listado-contracts h2{
+		font-size: 23px;
+	}
+}
+
+@media (min-width: 1300px) {
+    #cont-listado-contracts{
+	    font-size: 12.8px;
+	    padding: 25px 30px 65px 30px;
+    }
+    #cont-listado-contracts h2{
+		font-size: 24px;
+	}
+}
