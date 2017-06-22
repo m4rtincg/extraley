@@ -29,10 +29,6 @@
                     <input type="text" value="<?= $business->url ?>" class="form-control form-control-padding" name="url" maxlength="400" id="url" required placeholder="Pagina web">
                 </div>
                 <div class="form-group">
-                    <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
-                    <input type="text" value="<?= $business->logo ?>" class="form-control form-control-padding" name="logo" maxlength="400" id="logo" required placeholder="Logo">
-                </div>
-                <div class="form-group">
                         <i class="fa fa-clock-o" aria-hidden="true"></i>    
                         <select class="form-control form-control-padding" id="revision" name="revision">
                             <option value='1' <?= ($business->revision==1)?"selected":""  ?>>Gerente</option>
@@ -42,7 +38,7 @@
                     </div>
                 <div class="form-group">
                     <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
-                    <select class="form-control form-control-padding" name="departamentoBusinessEdit" id="departamento">
+                    <select class="form-control form-control-padding" name="departamento" id="departamento">
                         <?php foreach ($departamento as $key) { ?>
                             <option value="<?= $key->idDepa ?>"><?= $key->departamento ?></option>
                         <?php } ?>z
@@ -50,13 +46,13 @@
                 </div>
                 <div class="form-group">
                     <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
-                    <select class="form-control form-control-padding" name="provinciaBusinessEdit" id="provincia">
+                    <select class="form-control form-control-padding" name="provincia" id="provincia">
                         <option value="">-- Seleccione provincia --</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
-                    <select class="form-control form-control-padding" name="distritoBusinessEdit" id="distrito">
+                    <select class="form-control form-control-padding" name="distrito" id="distrito">
                         <option value="">-- Seleccione distrito --</option>
                     </select>
                 </div>
@@ -68,13 +64,19 @@
                     <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                     <input type="text" value="<?= $business->partida ?>" class="form-control form-control-padding" name="partida" maxlength="11" id="partida" required placeholder="Partida">
                 </div>
+                <div class="form-group text-center">
+                    <input type='file' id="fileimageLogo" />
+                    <label for="fileimageLogo" id="labelimageLogo"><img id="imageLogo" src="<?= base_url() ?>assets/img/business/<?= $business->logo ?>" alt="logo" /></label>
+                </div>
                 
             </div>
             <div class="text-right">
             	<button class="btn_actualizar" type="submit">Actualizar datos</button>
             </div>
 		</form>
-
-		
+        <input  type="hidden" id="imagenactualbd" value="<?= $business->logo ?>">
+		<input type="hidden" id="departamento-actual" value="<?= $business->idDepa ?>">
+        <input type="hidden" id="provincia-actual" value="<?= $business->idProv ?>">
+        <input type="hidden" id="distrito-actual" value="<?= $business->idDist ?>">
 	</div>
 </div>

@@ -157,5 +157,27 @@
             return $query->row();
         }
 
+        public function updateBusiness2($id,$name,$address,$phone,$email,$url,$logo,$revision,$distrito,$actividad,$partida){
+            $this->db->trans_start();
+            $data = array(
+               'name_razonSocial' => $name,
+               'address' => $address,
+               'phone' => $phone,
+               'email' => $email,
+               'url' => $url,
+               'logo' => $logo,
+               'revision' => $revision,
+               'distrito'=> $distrito,
+               'actividad'=> $actividad,
+               'partida'=> $partida
+            );
+            $this->db->where('id_business', $id);
+            $this->db->update('business', $data);
+
+            $this->db->trans_complete();
+
+            return $this->db->trans_status();
+        }
+
     }
 ?>

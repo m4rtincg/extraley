@@ -363,6 +363,9 @@ label.error i{
     #menu .navbar-nav>li>a:hover #cont-sesion{
         color: #5b5b5b;
     }
+    #menu .navbar-nav>li>a:hover #cont-nav-right{
+        color: #5b5b5b;
+    }
     #nav-rigth{
         list-style: none;
         padding: 0px;
@@ -443,7 +446,7 @@ label.error i{
         margin-top: 10px;
     }
     #session-nombre-datos{
-        font-weight: bold;
+        font-family: robotobold;
         font-size: 13px;
     }
     #session-numero-datos{
