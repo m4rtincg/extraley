@@ -194,6 +194,18 @@ class Empresas extends CI_Controller {
      	}
 	}
 
+	public function selectAllBusinessRevision(){
+		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
+			$this->load->model("business_model");
+			$user = $_POST['id'];
+			$rows = $this->business_model->getAllBusinessRevision();
+			$rows2 = $this->business_model->getAllPermisosByUser($user);
+			echo json_encode(array("status"=>true,"datos"=>$rows,"empresas"=>$rows2));
+		}else{
+        	header('Location: '.base_url());
+     	}
+	}
+
 	public function getProvincias(){
 		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
 			$this->load->model("distrito_model");

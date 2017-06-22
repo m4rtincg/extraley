@@ -19,7 +19,26 @@ class Usuarios extends CI_Controller {
      	}
 	}
 
-		public function addusers(){
+	public function view($id){
+		if($this->session->userdata('session')){
+			$this->load->model("business_model");
+			$this->load->model("user_model");
+
+			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
+			$dataHeader['modulo'] = 'pageprivilegios';
+			$dataFooter['modulo'] = 'pageprivilegios';
+			$data['id'] = $id;
+
+			$this->load->view('template/header',$dataHeader);
+			$this->load->view('privilegios',$data);
+			$this->load->view('template/footer',$dataFooter);
+        }else{
+        	header('Location: '.base_url());
+     	}
+	}
+
+
+	public function addusers(){
 		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')!=1){
 			$dni = trim($_POST['dniUserAdd']);
 			$apellidos = trim($_POST['apellidosUserAdd']);
@@ -128,6 +147,40 @@ class Usuarios extends CI_Controller {
 			}else{
 				echo json_encode(array("status"=>false,"msg"=>"No se encontro ese usuario"));
 			}
+		}else{
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+     	}
+	}
+
+	public function asignarprivilegios(){
+		if($this->session->userdata('session')){
+			$usuario = $_POST['usuario'];
+			$empresa = $_POST['empresa'];
+			$this->load->model("business_model");
+			$rows = $this->business_model->addPermisos($empresa,$usuario);
+			if($rows){
+				echo json_encode(array("status"=>true));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se pudo asignar"));
+			}
+
+		}else{
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+     	}
+	}
+
+	public function cancelarasignarprivilegios(){
+		if($this->session->userdata('session')){
+			$usuario = $_POST['usuario'];
+			$empresa = $_POST['empresa'];
+			$this->load->model("business_model");
+			$rows = $this->business_model->deletePermisos($empresa,$usuario);
+			if($rows){
+				echo json_encode(array("status"=>true));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se pudo cancelar la asignación"));
+			}
+
 		}else{
         	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
