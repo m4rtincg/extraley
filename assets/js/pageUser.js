@@ -161,7 +161,7 @@ function actualizarTabla(){
 	  	if(data.status){
 	  		var html='<table id="listUser" class="table table-striped table-hover" cellspacing="0"><thead><tr>'
 					+'<th>DNI</th><th>Apellidos</th><th>Nombres</th><th class="text-center">Teléfono</th><th class="text-center">'
-					+'Estado</th><th class="text-center">Acción</th></tr></thead><tbody>';
+					+'Estado</th><th class="text-center">Asignar empresas</th><th class="text-center">Acción</th></tr></thead><tbody>';
 	  		$.each(data.datos, function(i, item) {
 	  					var check = (item.status==1)?"checked":"";
 	  			html+= '<tr>'+
@@ -180,6 +180,7 @@ function actualizarTabla(){
 					'</div>'+
 					'</div>'+
 					'</td>'+
+					'<td class="text-center"><a target="_blank" href="'+window.base_url+'usuarios/view/'+item.id_user+'">Asignar</a<</td>'+
 					'<td class="text-center">'+
 					'<img data-id="'+item.id_user+'" class="img-view" onClick="imgView(this)" src="'+window.base_url+'assets/img/view.png">'+
 					'<img data-id="'+item.id_user+'" class="img-edit" onClick="imgEdit(this)" src="'+window.base_url+'assets/img/edit.svg">'+

@@ -10,6 +10,41 @@
             return $query->result();
         }
 
+        public function getAllBusinessRevision()
+        {
+          $this->db->select('*');
+            $this->db->from('business');
+            $this->db->where('id_business !=', "(select admin from config where id=1)", false);
+            $this->db->where('revision !=', 1);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        public function getAllPermisosByUser($user)
+        {
+          $this->db->select('id_business');
+            $this->db->from('permisos_user');
+            $this->db->where('id_user', $user);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        public function addPermisos($business,$user){
+          $data = array(
+               'id_business' => $business,
+               'id_user' => $user
+            );
+          $this->db->insert('permisos_user', $data);
+          return $this->db->insert_id();
+        }
+
+        public function deletePermisos($business,$user){
+          $this->db->where('id_business', $business);
+          $this->db->where('id_user', $user);
+          $this->db->delete('permisos_user'); 
+          return $this->db->affected_rows();
+        }
+
         public function changeStatus($id,$status){
         	$data = array(
                'status' => $status

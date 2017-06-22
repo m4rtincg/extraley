@@ -19,7 +19,25 @@ class Usuarios extends CI_Controller {
      	}
 	}
 
-		public function addusers(){
+	public function view($id){
+		if($this->session->userdata('session')){
+			$this->load->model("business_model");
+			$this->load->model("user_model");
+
+			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
+			$dataHeader['modulo'] = 'pageprivilegios';
+			$dataFooter['modulo'] = 'pageprivilegios';
+
+			$this->load->view('template/header',$dataHeader);
+			$this->load->view('privilegios');
+			$this->load->view('template/footer',$dataFooter);
+        }else{
+        	header('Location: '.base_url());
+     	}
+	}
+
+
+	public function addusers(){
 		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')!=1){
 			$dni = trim($_POST['dniUserAdd']);
 			$apellidos = trim($_POST['apellidosUserAdd']);
