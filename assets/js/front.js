@@ -82,3 +82,9 @@ function redireccion_actualizar(){
 function redireccion_actualizar_empresa(){
 	location.href = window.base_url+'actualizarEmpresa';
 }
+
+function asesorar(titulo,mensaje){
+	$("#modalAsesoria #tituloAsesoria").html(titulo);
+	$("#modalAsesoria #mensajeAsesoria").html(mensaje);
+	$("#modalAsesoria").modal("show");
+}

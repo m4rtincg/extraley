@@ -25,6 +25,30 @@ body{
     z-index: 0;
 }
 
+
+#modalAsesoria .modal-body{
+    padding: 20px;
+}
+#modalAsesoria #tituloAsesoria{
+    font-family: robotobold;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #054e08;
+}
+#modalAsesoria #botonAsesoria{
+    text-align: center;
+    margin-top: 17px;
+}
+#modalAsesoria #botonAsesoria button{
+    border: none;
+    color: #fff;
+    font-size: 11.8px;
+    background: #1d9632;
+    font-family: robotoregular;
+    padding: 4px 15px;
+    text-transform: uppercase;
+}
 table.table thead{
     font-family: robotobold;
     font-weight: inherit;

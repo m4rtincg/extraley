@@ -174,6 +174,19 @@
         </div>
 
         
+        <div id="modalAsesoria" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div id="tituloAsesoria">Fecha de firma de contrato</div>
+                        <div id="mensajeAsesoria">Coloque la fecha en la cual se va a realizar la firma del contrato</div>
+                        <div id="botonAsesoria">
+                            <button data-dismiss="modal">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </section>
     <section id="footer">

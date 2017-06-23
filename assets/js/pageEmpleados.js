@@ -163,6 +163,7 @@ function actualizarTabla(){
 					'<td>'+item.name+'</td>'+
 					'<td>'+item.lastname+'</td>'+
 					'<td>'+item.dni+'</td><td class="text-center">'+item.phone+'</td>'+
+					//'<td></td>'+
 					'<td class="text-center">'+
 					'<div class="cont-onoff">'+
 					'<div class="onoffswitch">'+

@@ -4,7 +4,7 @@ textarea.form-control{
     resize: none;
     height: 85px;
 }
-#cont-fecha-inicio,#cont-fecha-fin{
+#form-contract-detail #cont-fecha-inicio,#form-contract-detail #cont-fecha-fin{
     display: none;
 }
 #cont-form-registrar-cl{
@@ -27,7 +27,7 @@ textarea.form-control{
 #cont-data-trabajador{
     display: none;
 }
-#cont-tipo-contrato-laboral{
+#form-contract-detail #cont-tipo-contrato-laboral{
     display: none;
 }
 .cont-form-btn{
@@ -90,6 +90,22 @@ textarea.form-control{
     border-radius: 0px 0px 6px 6px;
 }
 .form-group{
+    position: relative;
+}
+#form-contract-detail .form-group{
+    width: calc(100% - 30px);
+    display: inline-block;
+}
+.help-form{
+    width: 30px;
+    float: right;
+    font-size: 23px;
+    color: #00a4b9;
+}
+.help-form i{
+    cursor: pointer;
+    top: 1.7px;
+    margin-left: 8.6px;
     position: relative;
 }
 .form-control-padding{

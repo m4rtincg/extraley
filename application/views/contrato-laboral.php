@@ -5,49 +5,71 @@
                 <div class="form-group-title">Datos del contrato</div>
                 <form id="form-contract-detail">
 
-                    <div class="form-group">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <select class="form-control form-control-padding" id="tipoplazo" name="tipoplazo">
-                            <option value=''>-- Seleccione el tipo de plazo -- </option>
-                            <option value='1'>Plazo fijo</option>
-                            <option value='2'>Plazo indeterminado</option>
-                        </select>
+                    <div>
+                        <div class="form-group">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <select class="form-control form-control-padding" id="tipoplazo" name="tipoplazo">
+                                <option value=''>-- Seleccione el tipo de plazo -- </option>
+                                <option value='1'>Plazo fijo</option>
+                                <option value='2'>Plazo indeterminado</option>
+                            </select>
+                        </div>
+                        <div class="help-form"><i id="itipoplazo" onClick="asesorar('Tipo de plazo','Seleccione el tipo de plazo del contrato. Fijo o indeterminado')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
                     
-                    <div class="form-group" id="cont-tipo-contrato-laboral">
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        <select class="form-control form-control-padding" name="type_contract" id="type_contract">
-                            <option value="">-- Seleccione el tipo de contrato -- </option>
-                            <?php foreach ($contract_types as $key) { ?>
-                                <option value="<?= $key->id_contract_type ?>"><?= $key->name_contract_type ?></option>
-                            <?php } ?>
-                        </select>
+                    <div id="cont-tipo-contrato-laboral">
+                        <div class="form-group">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <select class="form-control form-control-padding" name="type_contract" id="type_contract">
+                                <option value="">-- Seleccione el tipo de contrato -- </option>
+                                <?php foreach ($contract_types as $key) { ?>
+                                    <option value="<?= $key->id_contract_type ?>"><?= $key->name_contract_type ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="help-form"><i id="itype_contract" onClick="asesorar('Tipo de contrato','Seleccione el tipo de contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
-                    <div class="form-group" id="cont-fecha">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <input type="text" class="form-control form-control-padding" id="fecha" name="fecha" placeholder="Fecha de firma de contrato">
+                    <div>
+                        <div class="form-group" id="cont-fecha">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" id="fecha" name="fecha" placeholder="Fecha de firma de contrato">
+                        </div>
+                        <div class="help-form"><i id="ifecha" onClick="asesorar('Fecha de firma de contrato','Escribir la fecha en la que se va a firmar el contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
-                    <div class="form-group" id="cont-lugar">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <input type="text" class="form-control form-control-padding" id="lugarfirma" name="lugarfirma" placeholder="Lugar de firma de contrato">
+                    <div>
+                        <div class="form-group" id="cont-lugar">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" id="lugarfirma" name="lugarfirma" placeholder="Lugar de firma de contrato">
+                        </div>
+                        <div class="help-form"><i id="ilugarfirma" onClick="asesorar('Lugar de firma de contrato','Escribir el lugar donde se va a relizar la firma del contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
-                    <div class="form-group" id="cont-fecha-inicio">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                        <input type="text" class="form-control form-control-padding" id="fechainicio" value="" name="fechainicio" placeholder="Fecha inicio">
+                    <div id="cont-fecha-inicio">
+                        <div class="form-group">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" id="fechainicio" value="" name="fechainicio" placeholder="Fecha inicio">
+                        </div>
+                        <div class="help-form"><i id="ifechainicio" onClick="asesorar('Fecha inicio','Escribir la fecha en la que va a iniciar a tener vigencia el contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
-                    <div class="form-group" id="cont-fecha-fin">
-                        <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
-                        <input type="text" class="form-control form-control-padding" id="fechafin" name="fechafin" value="" placeholder="Fecha de vencimiento">
+                    <div id="cont-fecha-fin">
+                        <div class="form-group">
+                            <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" id="fechafin" name="fechafin" value="" placeholder="Fecha de vencimiento">
+                        </div>
+                        <div class="help-form"><i id="ifechafin" onClick="asesorar('Fecha de vencimiento','Escribir la fecha en la que se va acabar el contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
-                    <div class="form-group">
-                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                        <textarea class="form-control form-control-padding" id="commentcontract" name="commentcontract" placeholder="Comentarios"></textarea>
+                    <div>
+                        <div class="form-group">
+                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <textarea class="form-control form-control-padding" id="commentcontract" name="commentcontract" placeholder="Comentarios"></textarea>
+                        </div>
+                        <div class="help-form"><i id="icommentcontract" onClick="asesorar('Comentarios','Puedes escribir algun comentario para el contrato. Esta opción es opcional')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
+
                 </form>
             </div>
 

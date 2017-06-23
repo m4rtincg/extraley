@@ -1,6 +1,45 @@
 var validatorContract;
 var validatorWork;
+
 $(document).ready(function () {
+
+	$("#tipoplazo").focus(function(e){
+		e.preventDefault();
+		$("#itipoplazo").click();
+		$("#tipoplazo").unbind("focus");
+	});
+	$("#type_contract").focus(function(e){
+		e.preventDefault();
+		$("#itype_contract").click();
+		$("#type_contract").unbind("focus");
+	});
+	$("#lugarfirma").focus(function(e){
+		e.preventDefault();
+		$("#ilugarfirma").click();
+		$("#lugarfirma").unbind("focus");
+	});
+	$("#fecha").focus(function(e){
+		e.preventDefault();
+		$("#ifecha").click();
+		$("#fecha").unbind("focus");
+	});
+	$("#fechainicio").focus(function(e){
+		e.preventDefault();
+		$("#ifechainicio").click();
+		$("#fechainicio").unbind("focus");
+	});
+	$("#fechafin").focus(function(e){
+		e.preventDefault();
+		$("#ifechafin").click();
+		$("#fechafin").unbind("focus");
+	});
+	$("#commentcontract").focus(function(e){
+		e.preventDefault();
+		$("#icommentcontract").click();
+		$("#commentcontract").unbind("focus");
+	});
+	
+
 	$( "#searchWork" ).keyup(function( event ) {
 		if($(this).val().length>2){
 			$.post( window.base_url+"home/search_work", {q:$(this).val(), type: 1} ,function( data ) {
