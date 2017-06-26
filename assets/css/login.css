@@ -11,6 +11,9 @@
 body{
     font-family: robotoregular;
 }
+#carousel-login{
+    background: rgba(77, 191, 70, 0.29);
+}
 #footer{
     background: #9ac53c;
     text-align: center;

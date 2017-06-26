@@ -22,16 +22,11 @@
     <section id="contenedor">
 		<div id="carousel-login" class="carousel slide" data-ride="carousel">
 	  		<div class="carousel-inner" role="listbox">
-	    		<div class="item active" style="background-image: url('<?= base_url() ?>assets/img/banner1.jpg')">
-	    		</div>
-	    		<div class="item" style="background-image: url('<?= base_url() ?>assets/img/banner2.jpg')">
-	    		</div>
-                <div class="item" style="background-image: url('<?= base_url() ?>assets/img/banner3.jpg')">
-                </div>
-                <div class="item" style="background-image: url('<?= base_url() ?>assets/img/banner4.jpg')">
-                </div>
-                <div class="item" style="background-image: url('<?= base_url() ?>assets/img/banner5.jpg')">
-                </div>
+                <?php $c = true; foreach ($sliders as $key) { ?>
+                <?php $t=''; if($c){$t="active";$c=false;}else{$t="";} ?>
+                    <div class="item <?= $t ?>" style="background-image: url('<?= base_url() ?>assets/img/slider/<?= $key->name_imagen ?>')">
+                    </div>
+                <?php } ?>
 	  		</div>
 		</div>
 

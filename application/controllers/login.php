@@ -24,6 +24,7 @@ class Login extends CI_Controller {
         }else{
             $this->load->model("config_model");
 			$data['name'] = $this->config_model->getConfig()->nombre_login;
+			$data['sliders'] = $this->config_model->getSliders();
 			$this->load->view('login',$data);
         }
 	}

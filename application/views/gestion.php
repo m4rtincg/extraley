@@ -3,16 +3,16 @@
     <div>
         <a href="<?= base_url() ?>empresas">
             <div class="contdata">
-                <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/gestion-empresas.jpg);">
+                <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/gestion-empresas.gif);">
                 </div>
                 <div class="classconttext">
-                    Gestión de usuarios
+                    Gestión de empresas
                 </div>
             </div>
         </a>
         <a href="<?= base_url() ?>usuarios">
             <div class="contdata">
-                <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/gestion-usuarios.jpg);">
+                <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/gestion-usuarios.png);">
                 </div>
                 <div class="classconttext">
                     Gestión de usuarios
@@ -24,7 +24,7 @@
                 <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/gestion-empleados.jpg);">
                 </div>
                 <div class="classconttext">
-                    Gestión de usuarios
+                    Gestión de empleados
                 </div>
             </div>
         </a>
@@ -33,16 +33,16 @@
                 <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/gestion-clausulas.jpg);">
                 </div>
                 <div class="classconttext">
-                    Gestión de usuarios
+                    Gestión de clausulas
                 </div>
             </div>
         </a>
         <a href="<?= base_url() ?>configuracion">
             <div class="contdata">
-                <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/gestion-usuarios.jpg);">
+                <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/configuracion.jpg);">
                 </div>
                 <div class="classconttext">
-                    Gestión de usuarios
+                    Configuración
                 </div>
             </div>
         </a>
