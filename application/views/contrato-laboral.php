@@ -23,13 +23,16 @@
                     
                     <div id="cont-tipo-contrato-laboral">
                         <div class="form-group">
-                            <i class="fa fa-book" aria-hidden="true"></i>
-                            <select class="form-control form-control-padding" name="type_contract" id="type_contract">
-                                <option value="">-- Seleccione el tipo de contrato -- </option>
-                                <?php foreach ($contract_types as $key) { ?>
-                                    <option value="<?= $key->id_contract_type ?>"><?= $key->name_contract_type ?></option>
-                                <?php } ?>
-                            </select>
+                            <label for="tipoplazo">Tipo de contrato:</label>
+                            <div class="form-control-contenedor">
+                                <i class="fa fa-book" aria-hidden="true"></i>
+                                <select class="form-control form-control-padding" name="type_contract" id="type_contract">
+                                    <option value="">-- Seleccione el tipo de contrato -- </option>
+                                    <?php foreach ($contract_types as $key) { ?>
+                                        <option value="<?= $key->id_contract_type ?>"><?= $key->name_contract_type ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
                         </div>
                         <div class="help-form"><i id="itype_contract" onClick="asesorar('Tipo de contrato','Seleccione el tipo de contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>

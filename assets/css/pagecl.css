@@ -104,6 +104,10 @@ textarea.form-control{
     top: 1.7px;
     margin-left: 8.6px;
     position: relative;
+    margin-top: 27px;
+}
+.form-control-contenedor{
+    position: relative;
 }
 .form-control-padding{
     padding-left: 32px;
