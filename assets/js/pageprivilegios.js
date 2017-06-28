@@ -15,7 +15,7 @@ function actualizarTabla(){
 			});
 
 	  		var html='<table id="listBusiness" class="table table-striped table-hover" cellspacing="0"><thead><tr>'
-					+'<th>RUC</th><th>Razón social</th><th>Asignado</th><th class="text-center"></th>'
+					+'<th>RUC</th><th>Razón social</th><th class="text-center">Asignado</th><th class="text-center"></th>'
 					+'</tr></thead><tbody>';
 	  		$.each(data.datos, function(i, item) {
 	  			var check = "";
@@ -31,7 +31,7 @@ function actualizarTabla(){
 			    html+= '<tr>'+
 					'<td>'+item.ruc+'</td>'+
 					'<td>'+item.name_razonSocial+'</td>'+
-					'<td>'+check+'</td><td class="text-center">'+checkbtn+'</td>'+
+					'<td class="text-center">'+check+'</td><td class="text-center">'+checkbtn+'</td>'+
 					'</tr>';	
 			});
 

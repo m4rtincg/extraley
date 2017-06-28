@@ -1,5 +1,5 @@
-<div id="cont-listado-users">
-	<h2>Lista de usuarios <button id="btn_new_business" data-toggle="modal" data-target="#modalUserAdd">Nuevo Usuario</button></h2>
+<div class="cont-listado-contenedor" id="cont-listado-users">
+	<h2>Lista de usuarios <button class="btn_new_admin" id="btn_new_business" data-toggle="modal" data-target="#modalUserAdd">Nuevo Usuario</button></h2>
 	<div id="contTable">
 		
 	</div>

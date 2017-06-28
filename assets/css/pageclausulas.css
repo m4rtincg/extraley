@@ -146,6 +146,11 @@ textarea.form-control{
 	#cont-listado-clausulas{
 		width: 800px;
 	}
+	#cont-listclausulas{
+		width: 960px;
+	    margin: 0 auto;
+	    margin-top: 16px;
+	}
 }
 
 @media (min-width: 1200px) {

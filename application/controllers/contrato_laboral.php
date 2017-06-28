@@ -49,7 +49,7 @@ class Contrato_laboral extends CI_Controller {
 		if($_POST && $this->session->userdata('session')){
 			$id = $_POST['id'];
 			$this->load->model("clauses_model");
-			$clausulas = $this->clauses_model->getClausesByType($id);
+			$clausulas = $this->clauses_model->getClausesByType($id,$this->session->userdata('business'));
 			echo json_encode(array('status'=>true, 'clausulas'=>$clausulas));
         }else{
         	header('Location: '.base_url());
@@ -70,6 +70,11 @@ class Contrato_laboral extends CI_Controller {
 	public function newContract(){
 		if($_POST){
 			$this->load->model("contract_model");
+			$this->load->model("business_model");
+			$datosEmpresa = $this->business_model->getBusinessById($this->session->userdata('business'));
+			$cantidad = $this->contract_model->cantidadContratos($this->session->userdata('business'), date("Y"));
+
+			$nombreContrato = $datosEmpresa->ruc."-".date("Y")."-"."LAB"."-".str_pad($cantidad->cantidad+1, 4, "0", STR_PAD_LEFT);
 
 			$type = trim($_POST['type']);
 			$plazo = trim($_POST['plazo']);
@@ -81,7 +86,7 @@ class Contrato_laboral extends CI_Controller {
 			$comment = trim($_POST['comment']);
 			$clauses = trim($_POST['clauses']);
 			$lugarfirma = trim($_POST['lugarfirma']);
-			$typecontrato = 1;
+			//$typecontrato = 1;
 
 			$tipoRemuneracion = trim($_POST['tipoRemuneracion']);
 			$montoRemuneracion = trim($_POST['montoRemuneracion']);
@@ -102,7 +107,7 @@ class Contrato_laboral extends CI_Controller {
 			
 			$id = $this->contract_model->insertContract($type,$plazo,$dateInicio,$dateFin,$date,
 														$work,$user,$employee,$comment,$clausesarray,
-														$typecontrato,$tipoRemuneracion,$montoRemuneracion,$detalleworkcontract,$explicaworkcontract,$lugarfirma);
+														$tipoRemuneracion,$montoRemuneracion,$detalleworkcontract,$explicaworkcontract,$lugarfirma,$nombreContrato,$this->session->userdata('business'));
 
 			if($id['status']){
 				echo json_encode(array("status"=>true));

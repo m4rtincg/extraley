@@ -71,6 +71,11 @@ $(document).ready(function () {
 		      },
 		      descripcionBusinessEdit:{
 		      	required: true
+		      },
+		      gnusuariosBusinessEdit:{
+		      	required: true,
+		      	number: true,
+		      	min: 0
 		      }
 	    },
 	    messages: {
@@ -90,8 +95,8 @@ $(document).ready(function () {
 		  provinciaBusinessEdit: '<span data-placement="left" data-toggle="tooltip" title="Seleccione una provincia"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',    	
 		  distritoBusinessEdit: '<span data-placement="left" data-toggle="tooltip" title="Seleccione un distrito"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
 	      partidaBusinessEdit: '<span data-placement="left" data-toggle="tooltip" title="El número de partida es obligatorio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
-		  descripcionBusinessEdit: '<span data-placement="left" data-toggle="tooltip" title="La actividad económica de la empresa es requerida."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
-	    
+		  descripcionBusinessEdit: '<span data-placement="left" data-toggle="tooltip" title="La actividad económica de la empresa es requerida."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      gnusuariosBusinessEdit: '<span data-placement="left" data-toggle="tooltip" title="La cantidad de usuarios de la empresa deben ser mayores o igual a cero."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
 	    },
 	   	invalidHandler: function(event, validator) {
 	   		setTimeout(function() {
@@ -120,6 +125,7 @@ $(document).ready(function () {
 	    	formData.append("gpassBusinessEdit",$("#gpassBusinessEdit").val());
 	    	
 	    	formData.append("grevisionBusinessEdit",$("#grevisionBusinessEdit").val());
+	    	formData.append("gnusuariosBusinessEdit",$("#gnusuariosBusinessEdit").val());
 
 	    	formData.append("departamentoBusinessEdit",$("#departamentoBusinessEdit").val());
 	    	formData.append("provinciaBusinessEdit",$("#provinciaBusinessEdit").val());
@@ -219,6 +225,11 @@ $(document).ready(function () {
 		      },
 		      descripcionBusinessAdd:{
 		      	required: true
+		      },
+		      gnusuariosBusinessAdd:{
+		      	required: true,
+		      	number: true,
+		      	min: 0
 		      }
 	    },
 	    messages: {
@@ -238,7 +249,8 @@ $(document).ready(function () {
 		  provinciaBusinessAdd: '<span data-placement="left" data-toggle="tooltip" title="Seleccione una provincia"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',    	
 		  distritoBusinessAdd: '<span data-placement="left" data-toggle="tooltip" title="Seleccione un distrito"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
 	      partidaBusinessAdd: '<span data-placement="left" data-toggle="tooltip" title="El número de partida es obligatorio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
-		  descripcionBusinessAdd: '<span data-placement="left" data-toggle="tooltip" title="La actividad económica de la empresa es requerida."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
+		  descripcionBusinessAdd: '<span data-placement="left" data-toggle="tooltip" title="La actividad económica de la empresa es requerida."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      gnusuariosBusinessAdd: '<span data-placement="left" data-toggle="tooltip" title="La cantidad de usuarios de la empresa deben ser mayores o igual a cero."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
 	    },
 	   	invalidHandler: function(event, validator) {
 	   		setTimeout(function() {
@@ -267,6 +279,7 @@ $(document).ready(function () {
 	    	formData.append("gpassBusinessAdd",$("#gpassBusinessAdd").val());
 
 	    	formData.append("grevisionBusinessAdd",$("#grevisionBusinessAdd").val());
+	    	formData.append("gnusuariosBusinessAdd",$("#gnusuariosBusinessAdd").val());
 
 	    	formData.append("departamentoBusinessAdd",$("#departamentoBusinessAdd").val());
 	    	formData.append("provinciaBusinessAdd",$("#provinciaBusinessAdd").val());
@@ -474,6 +487,15 @@ function imgView(e){
 	  		$("#gdireccionBusinessView").html(data.direccion);
 	  		$("#gtelefonoBusinessView").html(data.telefono);
 	  		$("#gpassBusinessView").html(data.pass);
+
+	  		var nuser = (data.datos.n_usuarios==0)? "Ilimitado" : data.datos.n_usuarios ;
+	  		var rev = Array();
+	  		rev[1]="Gerente";
+	  		rev[2]="Administrador";
+	  		rev[3]="Gerente o administrador";
+	  		$("#gnusuariosBusinessView").html(nuser);
+	  		$("#grevisionBusinessView").html(rev[data.datos.revision]);
+
 	  		quitarDescargando();
 	  		$("#modalBusinessView").modal("show");
 	  	}else{
@@ -504,6 +526,7 @@ function imgEdit(e){
 	  		$("#gtelefonoBusinessEdit").val(data.telefono);
 
 	  		$("#grevisionBusinessEdit").val(data.datos.revision);
+	  		$("#gnusuariosBusinessEdit").val(data.datos.n_usuarios);
 	  		
 	  		$("#partidaBusinessEdit").val(data.datos.partida);
 	  		$("#descripcionBusinessEdit").val(data.datos.actividad);
@@ -531,14 +554,14 @@ function actualizarTabla(){
 	$.post( window.base_url+"empresas/selectAllBusiness", function( data ) {
 	  	if(data.status){
 	  		var html='<table id="listBusiness" class="table table-striped table-hover" cellspacing="0"><thead><tr>'
-					+'<th>RUC</th><th>Razón social</th><th>Dirección</th><th class="text-center">Teléfono</th><th class="text-center">'
+					+'<th>RUC</th><th>Razón social</th><th>Dirección</th><th class="text-center">Teléfono</th><th class="text-center">Contratos</th><th class="text-center">'
 					+'Estado</th><th class="text-center">Acción</th></tr></thead><tbody>';
 	  		$.each(data.datos, function(i, item) {
 	  			var check = (item.status==1)?"checked":"";
 			    html+= '<tr>'+
 					'<td>'+item.ruc+'</td>'+
 					'<td>'+item.name_razonSocial+'</td>'+
-					'<td>'+item.address+'</td><td class="text-center">'+item.phone+'</td>'+
+					'<td>'+item.address+'</td><td class="text-center">'+item.phone+'</td><td class="text-center"><a href="'+window.base_url+'empresas/view/'+item.id_business+'">Asignar tipos contratos</a></td>'+
 					'<td class="text-center">'+
 					'<div class="cont-onoff">'+
 					'<div class="onoffswitch">'+

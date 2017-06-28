@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+
+.contTipoTitulo{
+    margin-top: 20px;
+    font-family: robotobold;
+    font-size: 15px;
+}
+.contTipoTexto{
+    font-size: 14px;
+    font-family: robotolight;
+    padding-left: 15px;
+}
+.checkbox, .radio{
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+.checktype{
+    top: -1.5px;
+}
+label.checkname{
+    display: block;
+    width: 500px;
+    float: left;
+}
+label.checkoption{
+    display: block;
+    width: 200px;
+    float: left;
+}
+
+@media (min-width: 420px) {
+    
+}
+
+@media (min-width: 480px) {
+   
+}
+
+@media (min-width: 768px) {
+    
+}
+
+@media (min-width: 992px) {
+    .cont-lista-business-width{
+        width: 750px;
+        margin: 0 auto;
+        float: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .cont-lista-business-width{
+        width: 800px;
+    }
+}
+
+@media (min-width: 1300px) {
+}

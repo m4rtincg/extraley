@@ -194,45 +194,6 @@ class Home extends CI_Controller {
 	
 
 
-	public function downloadContract(){
-		if($_GET){
-			$id = trim($_GET['id']);
-			$this->load->library('PHPWord');
-			$this->load->model("contract_model");
-
-			$datos = $this->contract_model->selectContractById($id);
-			$clausulas = $this->contract_model->selectClausulasByContract($id);
-
-			$PHPWord = new PHPWord();
-			$section = $PHPWord->createSection();
-			
-			$PHPWord->addFontStyle('rStyle', array('bold'=>true, 'size'=>16));
-			$PHPWord->addFontStyle('rStyleTitle', array('bold'=>true, 'size'=>12));
-			$PHPWord->addParagraphStyle('pStyleCenter', array('align'=>'center', 'spaceAfter'=>100));
-			$PHPWord->addParagraphStyle('pStyleLeft', array('align'=>'left', 'spaceAfter'=>100));
-
-			$section->addText('Contrato laboral', 'rStyle', 'pStyleCenter');
-
-			$section->addText('El trabajador '.$datos->name_employee." ".$datos->lastname_employee." con DNI ".$datos->dni_employee." va a trabajar de ".$datos->name_work.".", null, 'pStyleLeft');
-			$section->addText('Clausulas: ', 'rStyle', 'pStyleLeft');
-
-			foreach ($clausulas as $key) {
-				$section->addText($this->str_to_utf8($key->tittle_clauses), 'rStyleTitle', 'pStyleLeft');
-				$section->addText($this->str_to_utf8($key->description_clauses), null, 'pStyleLeft');
-			}
-
-
-			$objWriter = PHPWord_IOFactory::createWriter($PHPWord, 'Word2007');
-			$objWriter->save('BasicTable.docx');
-
-			header("Content-Disposition: attachment; filename='Contrato laboral de ".$datos->name_employee.".docx'");
-			readfile('BasicTable.docx'); 
-			unlink('BasicTable.docx');
-
-		}else{
-			echo json_encode(array("status"=>false,"msg"=>"Error en el envio de datos"));
-		}
-	}
 	public function downloadPDFContract(){
 		if($_GET){
 			$id = trim($_GET['id']);
@@ -259,12 +220,12 @@ class Home extends CI_Controller {
 
 			$datos = $this->contract_model->selectContractById($id);
 			$clausulas = $this->contract_model->selectClausulasByContract($id);
-			$gerente = $this->business_model->getGerenteByBusiness($this->session->userdata('business'));
+			$gerente = $this->business_model->getGerenteByBusiness($datos->id_business);
 
 			$textClausula = '';
 			$c=1;
 			foreach ($clausulas as $key) {
-				$textClausula .= (strpos($key->description_clauses, "<p>") == 0)? "<p><strong>".nombrenumeroclausula1($c).": </strong>".substr($key->description_clauses, 3) : "<strong>PRIMERO: </strong><span>".$key->description_clauses."</span>" ;
+				$textClausula .= (strpos($key->clauses_text, "<p>") == 0)? "<p><strong>".nombrenumeroclausula1($c).": </strong>".substr($key->clauses_text, 3) : "<strong>PRIMERO: </strong><span>".$key->clauses_text."</span>" ;
 				$c=$c+1;
 			}
 
@@ -329,19 +290,6 @@ class Home extends CI_Controller {
 			echo json_encode(array("status"=>false,"msg"=>"Error en el envio de datos"));
 		}
 	}
-
-	function str_to_utf8 ($str) {
-	    $decoded = utf8_decode($str);
-	    if (mb_detect_encoding($decoded , 'UTF-8', true) === false)
-	        return $str;
-	    return $decoded;
-	}
-
-
-
-
-
-
 
 	public function uploadFirma(){
 		if($_POST && $_FILES && $this->session->userdata('session')){
@@ -476,7 +424,7 @@ class Home extends CI_Controller {
 							<?php } ?>
 							</td>
 							
-							<td class="text-center"><a download="contrato.pdf" href="<?= base_url() ?>home/downloadPDFContract?id=<?= $key->contract_id ?>"><i data-id="<?= $key->contract_id ?>" class="downloadWord fa fa-file-word-o" aria-hidden="true"></i></a></td>
+							<td class="text-center"><a download="contrato.pdf" href="<?= base_url() ?>home/downloadPDFContract?id=<?= $key->contract_id ?>"><i data-id="<?= $key->contract_id ?>" class="downloadWord fa fa-file-pdf-o" aria-hidden="true"></i></a></td>
 							<td class="text-center"><a target="_blank" class="foro <?= $clase ?>" href="<?= base_url() ?>foro?id=<?= $key->contract_id ?>"><i class="fa fa-users" aria-hidden="true"></i></a></td>
 							<?php if($key->status_contract==2) {?>
 								<?php if($key->firmapdf==""){ ?>
@@ -548,7 +496,7 @@ class Home extends CI_Controller {
 							<?php } ?>
 							</td>
 							
-							<td class="text-center"><a download="contrato.pdf" href="<?= base_url() ?>home/downloadPDFContract?id=<?= $key->contract_id ?>"><i data-id="<?= $key->contract_id ?>" class="downloadWord fa fa-file-word-o" aria-hidden="true"></i></a></td>
+							<td class="text-center"><a download="contrato.pdf" href="<?= base_url() ?>home/downloadPDFContract?id=<?= $key->contract_id ?>"><i data-id="<?= $key->contract_id ?>" class="downloadWord fa fa-file-pdf-o" aria-hidden="true"></i></a></td>
 							<td class="text-center"><a target="_blank" class="foro <?= $clase ?>" href="<?= base_url() ?>foro?id=<?= $key->contract_id ?>"><i class="fa fa-users" aria-hidden="true"></i></a></td>
 							<?php if($key->user_id_create==$this->session->userdata('user') && $key->status_contract==2) {?>
 								<?php if($key->firmapdf==""){ ?>
@@ -628,7 +576,7 @@ class Home extends CI_Controller {
 							<?php } ?>
 							</td>
 							
-							<td class="text-center"><a download="contrato.pdf" href="<?= base_url() ?>home/downloadPDFContract?id=<?= $key->contract_id ?>"><i data-id="<?= $key->contract_id ?>" class="downloadWord fa fa-file-word-o" aria-hidden="true"></i></a></td>
+							<td class="text-center"><a download="contrato.pdf" href="<?= base_url() ?>home/downloadPDFContract?id=<?= $key->contract_id ?>"><i data-id="<?= $key->contract_id ?>" class="downloadWord fa fa-file-pdf-o" aria-hidden="true"></i></a></td>
 							<td class="text-center"><a target="_blank" class="foro <?= $clase ?>" href="<?= base_url() ?>foro?id=<?= $key->contract_id ?>"><i class="fa fa-users" aria-hidden="true"></i></a></td>
 							<?php if($key->user_id_create==$this->session->userdata('user') && $key->status_contract==2) {?>
 								<?php if($key->firmapdf==""){ ?>

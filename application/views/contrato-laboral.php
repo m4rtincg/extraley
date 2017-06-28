@@ -6,13 +6,17 @@
                 <form id="form-contract-detail">
 
                     <div>
+
                         <div class="form-group">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <select class="form-control form-control-padding" id="tipoplazo" name="tipoplazo">
-                                <option value=''>-- Seleccione el tipo de plazo -- </option>
-                                <option value='1'>Plazo fijo</option>
-                                <option value='2'>Plazo indeterminado</option>
-                            </select>
+                            <label for="tipoplazo">Tipo de plazo:</label>
+                            <div class="form-control-contenedor">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <select class="form-control form-control-padding" id="tipoplazo" name="tipoplazo">
+                                    <option value=''>-- Seleccione el tipo de plazo -- </option>
+                                    <option value='1'>Plazo fijo</option>
+                                    <option value='2'>Plazo indeterminado</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="help-form"><i id="itipoplazo" onClick="asesorar('Tipo de plazo','Seleccione el tipo de plazo del contrato. Fijo o indeterminado')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>

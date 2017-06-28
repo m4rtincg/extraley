@@ -1,5 +1,5 @@
-<div id="cont-listado-contracts">
-	<h2>Lista de empleados <button id="btn_new_business" data-toggle="modal" data-target="#modalEmployeeAdd">Nuevo Empleado</button></h2>
+<div class="cont-listado-contenedor" id="cont-listado-contracts">
+	<h2>Lista de empleados <button class="btn_new_admin" id="btn_new_business" data-toggle="modal" data-target="#modalEmployeeAdd">Nuevo Empleado</button></h2>
 	<div id="contTable">
 
 	</div>

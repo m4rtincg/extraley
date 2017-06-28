@@ -28,15 +28,6 @@
                 </div>
             </div>
         </a>
-        <a href="<?= base_url() ?>clausulas">
-            <div class="contdata">
-                <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/gestion-clausulas.jpg);">
-                </div>
-                <div class="classconttext">
-                    Gestión de clausulas
-                </div>
-            </div>
-        </a>
         <a href="<?= base_url() ?>configuracion">
             <div class="contdata">
                 <div class="classcontimg" style="background-image: url(<?= base_url() ?>assets/img/gestion/configuracion.jpg);">

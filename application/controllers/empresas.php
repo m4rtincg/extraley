@@ -21,6 +21,53 @@ class Empresas extends CI_Controller {
         	header('Location: '.base_url());
      	}
 	}
+	public function view($id)
+	{
+		if($this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
+			$this->load->model("business_model");
+			$this->load->model("type_model");
+			
+			$data['laboral']= $this->type_model->selectAllContractTypeByType(1);
+			$data['civil']= $this->type_model->selectAllContractTypeByType(2);
+			$typesBusiness= $this->business_model->selectAlltypesBusinessByBusiness($id);
+			$arraytypesBusiness = array();
+			foreach ($typesBusiness as $key) {
+				$arraytypesBusiness[$key->id] = $key->id;
+			}
+			$data['typesBusiness']= $arraytypesBusiness;
+			$data['id']= $id;
+
+			$dataHeader['modulo'] = 'pagebusinessview';
+			$dataFooter['modulo'] = 'pagebusinessview';
+			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
+
+			$this->load->view('template/header',$dataHeader);
+			$this->load->view('seleccionarTiposContratos',$data);
+			$this->load->view('template/footer',$dataFooter);
+		}else{
+        	header('Location: '.base_url());
+     	}
+	}
+	public function clausulas($id,$tipo)
+	{
+		if($this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
+			$this->load->model("business_model");
+			$this->load->model("type_model");
+			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
+			$dataHeader['modulo'] = 'pageclausulas';
+			$dataFooter['modulo'] = 'pageclausulas';
+			$data["name"] = $this->type_model->selectContractTypeById($tipo)->name;
+			$data["empresa"] = $id;
+			$data["tipo"] = $tipo;
+			$this->load->view('template/header',$dataHeader);
+			$this->load->view('clausulas',$data);
+			$this->load->view('template/footer',$dataFooter);
+        }else{
+        	header('Location: '.base_url());
+     	}
+	}
+
+
 	public function changeStatus(){
 		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
 			$id = trim($_POST['id']);
@@ -80,6 +127,7 @@ class Empresas extends CI_Controller {
 			$distrito = trim($_POST['distritoBusinessEdit']);
 			$partida = trim($_POST['partidaBusinessEdit']);
 			$descripcion = trim($_POST['descripcionBusinessEdit']);
+			$gnusuariosBusinessEdit = trim($_POST['gnusuariosBusinessEdit']);
 
 			$pass = ($gpassBusinessEdit=="")?"":encriptar($gpassBusinessEdit);
 
@@ -96,7 +144,7 @@ class Empresas extends CI_Controller {
 							if($row->logo!="default.png"){
 								unlink("assets/img/business/".$row->logo);
 							}
-						    $update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida);
+						    $update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessEdit);
 						    if($update){
 						    	echo json_encode(array("status"=>true,"logo"=>$logo));
 						    }else{
@@ -107,7 +155,7 @@ class Empresas extends CI_Controller {
 						}
 					}else{
 						$logo = $row->logo;
-						$update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida);
+						$update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessEdit);
 					    if($update){
 					    	echo json_encode(array("status"=>true,"logo"=>$logo));
 					    }else{
@@ -147,6 +195,7 @@ class Empresas extends CI_Controller {
 			$distrito = trim($_POST['distritoBusinessAdd']);
 			$partida = trim($_POST['partidaBusinessAdd']);
 			$descripcion = trim($_POST['descripcionBusinessAdd']);
+			$gnusuariosBusinessAdd = trim($_POST['gnusuariosBusinessAdd']);
 
 			$pass = encriptar($gpassBusinessAdd);
 
@@ -158,7 +207,7 @@ class Empresas extends CI_Controller {
 					$logo = uniqid().$_FILES['fileimageAddLogo']['name'];
 					$fichero_subido = "assets/img/business/".$logo;
 					if (move_uploaded_file($_FILES['fileimageAddLogo']['tmp_name'], $fichero_subido)) {
-					    $update = $this->business_model->addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessAdd,$gapellidosBusinessAdd,$gnombresBusinessAdd,$gemailBusinessAdd,$gdireccionBusinessAdd,$gtelefonoBusinessAdd,$pass,$revision,$distrito,$descripcion,$partida);
+					    $update = $this->business_model->addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessAdd,$gapellidosBusinessAdd,$gnombresBusinessAdd,$gemailBusinessAdd,$gdireccionBusinessAdd,$gtelefonoBusinessAdd,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessAdd);
 					    if($update){
 					    	echo json_encode(array("status"=>true,"logo"=>$logo));
 					    }else{
@@ -169,7 +218,7 @@ class Empresas extends CI_Controller {
 					}
 				}else{
 					$logo = "default.png";
-					$update = $this->business_model->addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessAdd,$gapellidosBusinessAdd,$gnombresBusinessAdd,$gemailBusinessAdd,$gdireccionBusinessAdd,$gtelefonoBusinessAdd,$pass,$revision,$distrito,$descripcion,$partida);
+					$update = $this->business_model->addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessAdd,$gapellidosBusinessAdd,$gnombresBusinessAdd,$gemailBusinessAdd,$gdireccionBusinessAdd,$gtelefonoBusinessAdd,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessAdd);
 				    if($update){
 				    	echo json_encode(array("status"=>true,"logo"=>$logo));
 				    }else{
@@ -226,4 +275,32 @@ class Empresas extends CI_Controller {
 			echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
 		}
 	}
+
+
+
+	public function changeContratoType(){
+		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
+			$empresa = trim($_POST['empresa']);
+			$tipo = trim($_POST['tipo']);
+			$estado = trim($_POST['estado']);
+			$this->load->model("business_model");
+
+			if($estado==0){
+				$mensaje = "Se activo de forma correcta";
+				$rows = $this->business_model->addtypesBusiness($empresa,$tipo);
+			}else{
+				$mensaje = "Se desactivo de forma correcta";
+				$rows = $this->business_model->deletetypesBusiness($empresa,$tipo);
+			}
+			
+			if($rows != 0){
+				echo json_encode(array("status"=>true,"msg"=>$mensaje));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>$mensaje."No se pudo cambiar de estado"));
+			}
+		}else{
+        	header('Location: '.base_url());
+     	}
+	}
+
 }

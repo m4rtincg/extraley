@@ -1,5 +1,5 @@
-<div id="cont-listado-business">
-	<h2>Lista de empresas <button id="btn_new_business" data-toggle="modal" data-target="#modalBusinessAdd">Nueva empresa</button></h2>
+<div class="cont-listado-contenedor" id="cont-listado-business">
+	<h2>Lista de empresas <button class="btn_new_admin" id="btn_new_business" data-toggle="modal" data-target="#modalBusinessAdd">Nueva empresa</button></h2>
 	<div class="cont-lista-business-width">
 		
 	</div>
@@ -83,6 +83,16 @@
 
                         <div class="form-group">
                             <label>Contraseña : </label><span class="viewBusinessData"  id="gpassBusinessView"></span>
+                        </div>
+
+                        <h4 class="modal-subtitle">Opciones</h4>
+
+                        <div class="form-group">
+                            <label>Revisión de contratos : </label><span class="viewBusinessData" id="grevisionBusinessView"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cantidad máxima de usuarios : </label><span class="viewBusinessData" id="gnusuariosBusinessView"></span>
                         </div>
 
                     </div>
@@ -196,8 +206,8 @@
                             <input type="password" class="form-control form-control-padding" name="gpassBusinessEdit" maxlength="16" id="gpassBusinessEdit" placeholder="Escribe para cambiar Contraseña">
                         </div>
 
-                        <h4 class="modal-subtitle"></h4>
-                        <label>Revisión de contratos</label>
+                        <h4 class="modal-subtitle">Editar opciones</h4>
+
                         <div class="form-group">
                             <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <select class="form-control form-control-padding" name="grevisionBusinessEdit" id="grevisionBusinessEdit" required>
@@ -205,6 +215,10 @@
                                 <option value="2">Administrador</option>
                                 <option value="3">Gerente o administrador</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding solo-numeros" name="gnusuariosBusinessEdit" id="gnusuariosBusinessEdit" required placeholder="Cantidad máxima de usuarios">
                         </div>
 
                     </div>
@@ -321,8 +335,8 @@
                             <input type="password" class="form-control form-control-padding" name="gpassBusinessAdd" minlength="8" maxlength="16" id="gpassBusinessAdd" required placeholder="Contraseña">
                         </div>
 
-                        <h4 class="modal-subtitle"></h4>
-                        <label>Revisión de contratos</label>
+                        <h4 class="modal-subtitle">Opciones</h4>
+                        
                         <div class="form-group">
                             <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <select class="form-control form-control-padding" name="grevisionBusinessAdd" id="grevisionBusinessAdd" required>
@@ -330,6 +344,10 @@
                                 <option value="2">Administrador</option>
                                 <option value="3">Gerente o administrador</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding solo-numeros" name="gnusuariosBusinessAdd" id="gnusuariosBusinessAdd" value="0" required placeholder="Cantidad máxima de usuarios">
                         </div>
                     </div>
                 </div>

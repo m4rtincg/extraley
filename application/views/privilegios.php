@@ -1,4 +1,4 @@
-<div id="cont-listado-business">
+<div class="cont-listado-contenedor" id="cont-listado-business">
 	<h2>Asignar empresas</h2>
 	<div class="cont-lista-business-width">
 		

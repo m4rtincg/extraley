@@ -1,0 +1,193 @@
+@charset "utf-8";
+
+textarea.form-control{
+    height: 150px;
+    resize: none;
+}
+.img-view{
+    width: 28px;
+    cursor: pointer;
+}
+.img-edit{
+    width: 19px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/*cont*/
+.cont-listado-contenedor{
+    width: 100%;
+    font-size: 11px;
+    padding: 15px 10px 45px 10px;
+    position: relative;
+    float: none;
+    margin: 0 auto;
+    background: #fff;
+}
+/*cont title*/
+.cont-listado-contenedor h2{
+    text-align: center;
+    margin-bottom: 8px;
+    margin-top: 5px;
+    font-size: 24px;
+    font-weight: inherit;
+    font-family: robotobold;
+}
+/**/
+.btn_new_admin {
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    background: #2bb919;
+    border-radius: 4px;
+    padding: 8px 13px;
+    margin-top: 5px;
+    font-family: robotoregular;
+}
+/*Imagen input*/
+.form-group{
+    position: relative;
+}
+.form-control-padding{
+    padding-left: 32px;
+}
+.form-group i{
+    position: absolute;
+    font-size: 15px;
+    top: 9px;
+    left: 10px;
+    color: #777;
+}
+/*check*/
+.onoffswitch {
+    position: relative; width: 68px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #FFFFFF; border-radius: 22px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 27px; padding: 0; line-height: 27px;
+    font-size: 13px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: #51C234; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: #999999;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 4.5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 37px;
+    border: 2px solid #FFFFFF; border-radius: 22px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+.cont-onoff{
+    position: relative;
+    text-align: left;
+    float: none;
+    margin: 0 auto;
+    width: 68px;
+}
+/*Table*/
+table.dataTable th,table.dataTable td {
+     white-space: nowrap;
+}
+.cont-listado-contenedor table{
+    border: 1px solid #dddddd;
+}
+.cont-listado-contenedor .dataTables_paginate {
+    float: none;
+    margin: 0 auto;
+    margin-top: 22px;
+    text-align: center;
+}
+.table-responsive{
+    border: none!important;
+}
+.cont-listado-contenedor .table th, .cont-listado-contenedor .table td{
+    vertical-align: middle;
+}
+
+/*modal general*/
+.modal .modal-subtitle{
+    font-family: robotobold;
+    padding-top: 18px;
+    padding-bottom: 6px;
+    margin-top: 0px;
+    font-size: 16px;
+}
+
+@media (min-width: 420px) {
+    .cont-listado-contenedor {
+        font-size: 12px;
+    }
+}
+@media (min-width: 480px) {
+    .cont-listado-contenedor{
+        font-size: 12.2px;
+    }
+    .cont-listado-contenedor h2{
+        font-size: 25.5px;
+    }
+}
+
+@media (min-width: 768px) {
+    .cont-listado-contenedor{
+        font-size: 12.4px;
+        padding: 25px 20px 45px 20px;
+    }
+    .cont-listado-contenedor h2{
+        font-size: 27px;
+    }
+}
+
+@media (min-width: 992px) {
+   .cont-listado-contenedor{
+        font-size: 12.5px;
+    }
+    .cont-listado-contenedor h2{
+        font-size: 28px;
+    }
+}
+
+@media (min-width: 1200px) {
+   .cont-listado-contenedor{
+        font-size: 12.6px;
+    }
+    .cont-listado-contenedor h2{
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .cont-listado-contenedor{
+        font-size: 12.8px;
+        padding: 25px 30px 65px 30px;
+    }
+    .cont-listado-contenedor h2{
+        font-size: 22px;
+    }
+}

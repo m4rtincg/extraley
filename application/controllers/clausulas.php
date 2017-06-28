@@ -3,26 +3,15 @@
 class Clausulas extends CI_Controller {
 
 	public function index(){
-		if($this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
-			$this->load->model("business_model");
-			$this->load->model("type_model");
-			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
-			$dataHeader['modulo'] = 'pageclausulas';
-			$dataFooter['modulo'] = 'pageclausulas';
-			$data["types"] = $this->type_model->selectAll();
-			$this->load->view('template/header',$dataHeader);
-			$this->load->view('clausulas',$data);
-			$this->load->view('template/footer',$dataFooter);
-        }else{
-        	header('Location: '.base_url());
-     	}
+		header('Location: '.base_url());
 	}
 	public function actualizarData(){
 		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
-			$id= trim($_POST['id']);
+			$empresa= trim($_POST['empresa']);
+			$tipo= trim($_POST['tipo']);
 			$this->load->model("clauses_model");
 			
-			$data= $this->clauses_model->getClausesByTypeAdmin($id);
+			$data= $this->clauses_model->getClausesByTypeAdmin($empresa,$tipo);
 			echo json_encode(array("status"=>true,"datos"=>$data));
         }else{
         	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
@@ -50,11 +39,12 @@ class Clausulas extends CI_Controller {
 			$newtitle = trim($_POST['newtitle']);
 			$newdescripcion = trim($_POST['des']);
 			$select = trim($_POST['select']);
+			$empresa = trim($_POST['empresa']);
 
-			$row = $this->clauses_model->comprobate_name($select,$newtitle);
+			$row = $this->clauses_model->comprobate_name($select,$newtitle,$empresa);
 
 			if(!$row){
-				$data= $this->clauses_model->newClausesTemplate($newtitle,$newdescripcion,$select);
+				$data= $this->clauses_model->newClausesTemplate($newtitle,$newdescripcion,$select,$empresa);
 
 				if($data['status']){
 					echo json_encode($data);
@@ -76,11 +66,12 @@ class Clausulas extends CI_Controller {
 			$editdescripcion = trim($_POST['des']);
 			$ideditclauses = trim($_POST['ideditclauses']);
 			$idedittypeclauses = trim($_POST['idedittypeclauses']);
+			$empresa = trim($_POST['empresa']);
 
-			$row = $this->clauses_model->comprobate_name_edit($idedittypeclauses,$edittitle,$ideditclauses);
+			$row = $this->clauses_model->comprobate_name_edit($idedittypeclauses,$edittitle,$ideditclauses,$empresa);
 
 			if(!$row){
-				$data= $this->clauses_model->editClausesTemplate($edittitle,$editdescripcion,$idedittypeclauses,$ideditclauses);
+				$data= $this->clauses_model->editClausesTemplate($edittitle,$editdescripcion,$idedittypeclauses,$ideditclauses,$empresa);
 
 				if($data['status']){
 					echo json_encode($data);
@@ -132,7 +123,8 @@ class Clausulas extends CI_Controller {
 	}
 	public function updatesort(){
 		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
-			$id= trim($_POST['id']);
+			$tipo= trim($_POST['tipo']);
+			$empresa= trim($_POST['empresa']);
 			$datos= trim($_POST['datos']);
 			$this->load->model("clauses_model");
 			
@@ -140,7 +132,7 @@ class Clausulas extends CI_Controller {
 
 			$x=count($arraydatos);
 			foreach($arraydatos as $val){
-				$this->clauses_model->updatesort($id, $val, $x);
+				$this->clauses_model->updatesort($tipo, $empresa, $val, $x);
 				$x = $x-1;
 			}
 			echo json_encode(array("status"=>true));

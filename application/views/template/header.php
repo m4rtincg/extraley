@@ -14,8 +14,8 @@
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alert/igrowl.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/alert/feather.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/front.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/front2.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>assets/css/<?= $modulo ?>.css">
-
 </head>
 <body>
     <section id="menu">

@@ -76,7 +76,7 @@
           return $query->row();
         }
 
-        public function updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida){
+        public function updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$nuser){
             $this->db->trans_start();
             $data = array(
                'ruc' => $ruc,
@@ -89,7 +89,8 @@
                'revision' => $revision,
                'distrito'=> $distrito,
                'actividad'=> $descripcion,
-               'partida'=> $partida
+               'partida'=> $partida,
+               'n_usuarios'=> $nuser
             );
             $this->db->where('id_business', $id);
             $this->db->update('business', $data);
@@ -124,7 +125,7 @@
             return $this->db->trans_status();
         }
 
-        public function addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida){
+        public function addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$nuser){
             $this->db->trans_start();
             $data = array(
                'ruc' => $ruc,
@@ -138,7 +139,8 @@
                'revision' => $revision,
                'distrito'=> $distrito,
                'actividad'=> $descripcion,
-               'partida'=> $partida
+               'partida'=> $partida,
+               'n_usuarios'=> $nuser
             );
             $this->db->insert('business', $data);
             $id =  $this->db->insert_id();
@@ -213,6 +215,32 @@
 
             return $this->db->trans_status();
         }
+
+
+
+        public function selectAlltypesBusinessByBusiness($id)
+        {
+          $this->db->select('id_type as id');
+            $this->db->from('business_type');
+            $this->db->where('id_business', $id);
+            $query = $this->db->get();
+            return $query->result();
+        }
+        public function addtypesBusiness($empresa,$tipo){
+          $data = array(
+               'id_business' => $empresa,
+               'id_type' => $tipo
+            );
+            $this->db->insert('business_type', $data);
+            return  $this->db->insert_id();
+        }
+        public function deletetypesBusiness($empresa,$tipo){
+          $this->db->where('id_business', $empresa);
+          $this->db->where('id_type', $tipo);
+          $this->db->delete('business_type'); 
+          return $this->db->affected_rows();
+        }
+
 
     }
 ?>
