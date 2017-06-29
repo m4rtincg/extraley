@@ -15,25 +15,23 @@
                 <div class="modal-body">
                     <div class="form-group-cont">
 
-                        <h4 class="modal-subtitle">Datos del Empleado</h4>
-
                         <div class="form-group">
-                            <label>Nombres : </label><span class="viewEmployeeData" id="nombresEmployeeView"></span>
+                            <label>Nombres : </label><span class="viewBusinessData" id="nombresEmployeeView"></span>
                         </div>
                         <div class="form-group">
-                            <label>Apellidos : </label><span class="viewEmployeeData" id="apellidosEmployeeView"></span>
+                            <label>Apellidos : </label><span class="viewBusinessData" id="apellidosEmployeeView"></span>
                         </div>
                         <div class="form-group">
-                            <label>DNI : </label><span class="viewEmployeeData" id="dniEmployeeView"></span>
+                            <label>DNI : </label><span class="viewBusinessData" id="dniEmployeeView"></span>
                         </div>
                         <div class="form-group">
-                            <label>Dirección : </label><span class="viewEmployeeData" id="direccionEmployeeView"></span>
+                            <label>Dirección : </label><span class="viewBusinessData" id="direccionEmployeeView"></span>
                         </div>
                         <div class="form-group">
-                            <label>Email : </label><span class="viewEmployeeData" id="emailEmployeeView"></span>
+                            <label>Email : </label><span class="viewBusinessData" id="emailEmployeeView"></span>
                         </div>
                         <div class="form-group">
-                            <label>Teléfono : </label><span class="viewEmployeeData" id="telefonoEmployeeView"></span>
+                            <label>Teléfono : </label><span class="viewBusinessData" id="telefonoEmployeeView"></span>
                         </div>
                     
                     </div>
@@ -55,8 +53,6 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group-cont">
-
-                                <h4 class="modal-subtitle">Datos del Empleado</h4>
 
                                 <div class="form-group">
                                     <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
@@ -103,9 +99,6 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group-cont">
-
-                                <h4 class="modal-subtitle">Editar Empleado</h4>
-
                                 
                                 <div class="form-group">
                                     <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>

@@ -5,7 +5,7 @@
         {
         	$this->db->select('*');
             $this->db->from('business');
-            $this->db->where('id_business !=', "(select admin from config where id=1)", false);
+            //$this->db->where('id_business !=', "(select admin from config where id=1)", false);
             $query = $this->db->get();
             return $query->result();
         }

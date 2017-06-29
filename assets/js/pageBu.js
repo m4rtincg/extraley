@@ -562,22 +562,28 @@ function actualizarTabla(){
 					'<td>'+item.ruc+'</td>'+
 					'<td>'+item.name_razonSocial+'</td>'+
 					'<td>'+item.address+'</td><td class="text-center">'+item.phone+'</td><td class="text-center"><a href="'+window.base_url+'empresas/view/'+item.id_business+'">Asignar tipos contratos</a></td>'+
+					'<td class="text-center">';
+					if(item.id_business!=1){
+						html +='<div class="cont-onoff">'+
+						'<div class="onoffswitch">'+
+					    '<input type="checkbox" name="onoffswitch" data-id="'+item.id_business+'"'+
+					    ' onChange="changeStatus(this);" class="onoffswitch-checkbox" id="myonoffswitch'+item.id_business+'" '+check+'>'+
+					    '<label class="onoffswitch-label" for="myonoffswitch'+item.id_business+'">'+
+				        '<span class="onoffswitch-inner"></span>'+
+				        '<span class="onoffswitch-switch"></span>'+
+					    '</label>'+
+						'</div>'+
+						'</div>';
+					}else{
+						html+='Activo';
+					}
+					html += '</td>'+
 					'<td class="text-center">'+
-					'<div class="cont-onoff">'+
-					'<div class="onoffswitch">'+
-				    '<input type="checkbox" name="onoffswitch" data-id="'+item.id_business+'"'+
-				    ' onChange="changeStatus(this);" class="onoffswitch-checkbox" id="myonoffswitch'+item.id_business+'" '+check+'>'+
-				    '<label class="onoffswitch-label" for="myonoffswitch'+item.id_business+'">'+
-			        '<span class="onoffswitch-inner"></span>'+
-			        '<span class="onoffswitch-switch"></span>'+
-				    '</label>'+
-					'</div>'+
-					'</div>'+
-					'</td>'+
-					'<td class="text-center">'+
-					'<img data-id="'+item.id_business+'" class="img-view" onClick="imgView(this)" src="'+window.base_url+'assets/img/view.png">'+
-					'<img data-id="'+item.id_business+'" class="img-edit" onClick="imgEdit(this)" src="'+window.base_url+'assets/img/edit.svg">'+
-					'</td>'+
+					'<img data-id="'+item.id_business+'" class="img-view" onClick="imgView(this)" src="'+window.base_url+'assets/img/view.png">';
+					if(item.id_business!=1){
+						html += '<img data-id="'+item.id_business+'" class="img-edit" onClick="imgEdit(this)" src="'+window.base_url+'assets/img/edit.svg">';
+					}
+					html += '</td>'+
 					'</tr>';	
 			 });
 	  		html+='</tbody></table>';

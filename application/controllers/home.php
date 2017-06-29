@@ -284,7 +284,7 @@ class Home extends CI_Controller {
 	        $pdf->AddPage();
 	        $pdf->SetFont('', '', 9);
 	        $pdf->writeHTML($message,true,false,true,false,'');
-			$pdf->Output('example_001.pdf', 'I');
+			$pdf->Output($datos->nameContract.'.pdf', 'I');
 
 		}else{
 			echo json_encode(array("status"=>false,"msg"=>"Error en el envio de datos"));
