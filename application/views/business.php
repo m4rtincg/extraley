@@ -198,18 +198,18 @@
                             <input type="text" class="form-control form-control-padding" name="gdireccionBusinessEdit" maxlength="400" id="gdireccionBusinessEdit" required placeholder="Dirección">
                         </div>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-phone" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="gtelefonoBusinessEdit" maxlength="20" id="gtelefonoBusinessEdit" required placeholder="Telefono">
                         </div>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-key" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="password" class="form-control form-control-padding" name="gpassBusinessEdit" maxlength="16" id="gpassBusinessEdit" placeholder="Escribe para cambiar Contraseña">
                         </div>
 
                         <h4 class="modal-subtitle">Editar opciones</h4>
 
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-clock-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <select class="form-control form-control-padding" name="grevisionBusinessEdit" id="grevisionBusinessEdit" required>
                                 <option value="1">Gerente</option>
                                 <option value="2">Administrador</option>
