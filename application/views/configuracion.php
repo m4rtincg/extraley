@@ -3,12 +3,14 @@
     <div class="cont-lista-business-width">
         <form id="form-change">
             <div class="form-group-cont">
+             <label for="diasconfig">Días Previos:</label>
                 <div class="form-group">
-                    <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                    <i class="fa fa-calendar-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                     <input class="form-control form-control-padding solo-numero" name="diasconfig" min="0" id="diasconfig" value="<?= $configuracion->diasPrevios ?>" required placeholder="Días previos al mensaje del correo de culminación de contrato">
                 </div>
+                <label for="nombreconfig">Nombre:</label>
                 <div class="form-group">
-                    <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                    <i class="fa fa-address-card-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                     <textarea class="form-control form-control-padding" name="nombreconfig" maxlength="400" id="nombreconfig" required placeholder="Titulo login"><?= $configuracion->nombre_login ?></textarea>
                 </div>
                 </div>
