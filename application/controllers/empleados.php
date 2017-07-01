@@ -174,6 +174,12 @@ class Empleados extends CI_Controller {
 			$lugar2 = trim($_POST['lugar2']);
 			$fecha2 = trim($_POST['fecha2']);
 
+			$fecha_culminacionarray = explode("/", $fecha_culminacion);
+			$datefinarray = explode("/", $dateFin);
+			$datearray = explode("/", $date);
+
+			$fecha_culminacion = $dateinicioarray[2]."-".$dateinicioarray[1]."-".$dateinicioarray[0];
+
 			$this->load->model("employee_model");
 			$rows = $this->employee_model->updatebaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$fecha_fin,$lugar2,$fecha2);
 			if($rows){
