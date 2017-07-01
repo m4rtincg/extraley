@@ -1,0 +1,298 @@
+@charset "utf-8";
+
+#cont-form-registrar-cl label{
+    font-family: robotobold;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+textarea.form-control{
+    resize: none;
+    height: 85px;
+}
+#form-contract-detail #cont-fecha-inicio,#form-contract-detail #cont-fecha-fin{
+    display: none;
+}
+#cont-form-registrar-cl{
+    width: 290px;
+    margin: 0 auto;
+    float: none;
+}
+.cont-form-group{
+    height: 34px;
+}
+.cont-form-input{
+    float: left;
+    margin-bottom: 0px;
+    display: inline-block;
+    width: 199px;
+}
+#cont-data-trabajo{
+    display: none;
+}
+#cont-data-trabajador{
+    display: none;
+}
+#form-contract-detail #cont-tipo-contrato-laboral{
+    display: none;
+}
+.cont-form-btn{
+    float: left;
+    margin-bottom: 0px;
+    display: inline-block;
+    width: 65px;
+}
+.cont-form-input input.form-control{
+    border-right: none;
+    border-radius: 4px 0px 0px 4px;
+}
+.cont-form-btn button{
+    width: 100%;
+    text-align: center;
+    border: none;
+    color: #fff;
+    height: 34px;
+    background: #9ac53c;
+    border-radius: 0px 4px 4px 0px;
+}
+
+
+.DpdwCnt:before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #fff;
+}
+.DpdwCnt{
+    position: absolute;
+    left: 0;
+    top: 115%;
+    width: 100%;
+    display: none;
+    z-index: 1;
+    background: #fff;
+    border-radius: 6px;
+}
+.DpdwCnt ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.DpdwCnt ul li{
+    cursor: pointer;
+    padding: 8px 20px;
+    border-bottom: 1px solid #9c9797;
+}
+.DpdwCnt ul li.vermas{
+    border: none;
+    background: #9ac53c;
+    text-align: center;
+    color: #fff;
+    border-radius: 0px 0px 6px 6px;
+}
+#form-work-contract .form-group,#form-contract-detail .form-group{
+    width: calc(100% - 30px);
+    display: inline-block;
+}
+.help-form{
+    width: 30px;
+    float: right;
+    font-size: 23px;
+    color: #00a4b9;
+}
+.help-form i{
+    cursor: pointer;
+    top: 1.7px;
+    margin-left: 8.6px;
+    position: relative;
+    margin-top: 27px;
+}
+.form-control-contenedor{
+    position: relative;
+}
+.form-control-padding{
+    padding-left: 32px;
+}
+.form-group i{
+    position: absolute;
+    font-size: 15px;
+    top: 9px;
+    left: 10px;
+    color: #777;
+}
+.form-group-cont{
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding: 10px 15px;
+    border-radius: 0px 8px 8px 0px;
+}
+.form-group-cont.form-format{
+    background: #fff;
+    border-left: 4px solid #4CAF50;
+    border-top: 2px solid #f2f2f2;
+    border-bottom: 2px solid #f2f2f2;
+    border-right: 2px solid #f2f2f2;
+}
+.form-group-title{
+    margin-top: 0px;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-family: robotobold;
+}
+#cont-new-contract-laboral h2{
+    text-align: center;
+    font-size: 21px;
+    font-family: robotobold;
+}
+#cont-new-contract-laboral{
+    padding: 15px 0px 30px 0px;
+}
+.btn_view_clause{
+    background: #9ac53c;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    padding: 4px 12px;
+}
+.contCheckbox{
+    overflow: hidden;
+    padding: 0px 5px;
+    margin-bottom: 7px;
+}
+.contCheckboxRequired{
+    background: #ffe9a8;
+}
+.checkboxLabel{
+    float: left;
+    width: 194px;
+}
+.checkboxBtn{
+    float: left;
+    width: 50px;
+    padding: 6px 0px 4px 0px;
+    text-align: right;
+}
+#cont-btn-new-clauses{
+    margin-top: 15px;
+    text-align: right;
+}
+#cont-btn-new-clauses button{
+    background: #9ac53c;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    padding: 7px 17px;
+}
+#btn_new_contract{
+    background: #89b52b;
+    color: #fff;
+    border: 2px solid #89b52b;
+    padding: 6px 20px;
+    border-radius: 1px;
+    font-family: robotobold;
+}
+
+
+#modalListWork ul{
+    padding: 0px;
+    list-style: none;
+}
+#modalListWork ul li{
+    padding: 8px 20px;
+    cursor: pointer;
+}
+#modalListWork ul li:hover{
+    background: #d99090;
+}
+
+
+@media (min-width: 320px) {
+    #cont-form-registrar-cl{
+        width: 300px;
+    }
+}
+
+@media (min-width: 480px) {
+    #cont-form-registrar-cl{
+        width: 440px;
+    }
+    .cont-form-input {
+        width: 304px;
+    }
+    .cont-form-btn {
+        width: 100px;
+    }
+    .checkboxLabel{
+        width: 344px;
+    }
+    .checkboxBtn{
+        width: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    #cont-form-registrar-cl{
+        width: 520px;
+    }
+    .cont-form-input {
+        width: 354px;
+    }
+    .checkboxLabel{
+        width: 394px;
+    }
+    .form-group-cont {
+        padding: 15px 30px;
+    }
+    .modal-footer {
+        padding: 3px 40px 12px 40px;
+        text-align: right;
+        border: none;
+    }
+    .modal-body {
+        position: relative;
+        padding: 20px 40px 0px 40px;
+    }
+    textarea.form-control {
+        resize: none;
+        height: 140px;
+    }
+}
+
+@media (min-width: 992px) {
+    #cont-form-registrar-cl{
+        width: 640px;
+    }
+    .form-group-cont {
+        padding: 25px 45px;
+    }
+    #cont-new-contract-laboral h2 {
+        text-align: center;
+        font-size: 22px;
+        font-family: robotobold;
+        margin-top: 19px;
+    }
+    .cont-form-input {
+        width: 444px;
+    }
+    .checkboxLabel {
+        width: 484px;
+    }
+    #cont-btn-new-clauses {
+        margin-top: 30px;
+        text-align: right;
+    }
+    #btn_new_contract {
+        padding: 8px 25px;
+        font-size: 15px;
+        margin-left: -15px;
+        margin-top: -10px;
+    }
+}
+
+@media (min-width: 1200px) {
+    
+}
