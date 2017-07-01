@@ -62,32 +62,45 @@
                 <div class="modal-body">
                     <div class="form-group-cont">
 
+                        <label for="dniUserAdd">DNI:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-id-card-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding solo-numero" maxlength="8" minlength="8" name="dniUserAdd" id="dniUserAdd" required placeholder="DNI">
                         </div>
+
+                        <label for="apellidosUserAdd">Apellidos:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="apellidosUserAdd" maxlength="400" id="apellidosUserAdd" required placeholder="Apellidos">
                         </div>
+
+                        <label for="nombresUserAdd">Nombres:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
-                            <input type="text" class="form-control form-control-padding" name="nombresUserAdd" maxlength="400" id="nombresUserAdd" required placeholder="Nombre">
+                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="nombresUserAdd" maxlength="400" id="nombresUserAdd" required placeholder="Nombres">
                         </div>
+
+                        <label for="direccionUserAdd">Dirección:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-address-book-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="direccionUserAdd" maxlength="20" id="direccionUserAdd" required placeholder="Dirección">
                         </div>
+                        
+                        <label for="emailUserAdd">Email:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-envelope-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="emailUserAdd"  maxlength="200" id="emailUserAdd" required placeholder="Email">
                         </div>
+
+                        <label for="telefonoUserAdd">Teléfono:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-phone" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="telefonoUserAdd" id="telefonoUserAdd"  placeholder="Teléfono">
                         </div>
-                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+
+                        <label for="passwordUserAdd">Contraseña:</label>
+                        <div class="form-group">
+                            <i class="fa fa-lock" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="password" class="form-control form-control-padding" name="passwordUserAdd" id="passwordUserEdit"  placeholder="Contraseña">
                         </div>
 
@@ -112,32 +125,45 @@
                 <div class="modal-body">
                     <div class="form-group-cont">
 
+                        <label for="dniUserEdit">DNI:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-id-card-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding solo-numero" maxlength="8" minlength="8" name="dniUserEdit" id="dniUserEdit" required placeholder="DNI">
                         </div>
+
+                        <label for="apellidosUserEdit">Apellidos:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="apellidosUserEdit" maxlength="400" id="apellidosUserEdit" required placeholder="Apellidos">
                         </div>
+
+                        <label for="nombresUserEdit">Nombres:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="nombresUserEdit" maxlength="400" id="nombresUserEdit" required placeholder="Nombre">
                         </div>
+
+                        <label for="direccionUserEdit">Dirección:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-address-book-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="direccionUserEdit" maxlength="20" id="direccionUserEdit" required placeholder="Dirección">
                         </div>
+
+                        <label for="emailUserEdit">Email:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-envelope-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="emailUserEdit"  maxlength="200" id="emailUserEdit" required placeholder="Email">
                         </div>
+
+                        <label for="telefonoUserEdit">Teléfono:</label>
                         <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-phone" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="telefonoUserEdit" id="telefonoUserEdit"  placeholder="Teléfono">
                         </div>
+
+                        <label for="passwordUserEdit">Contraseña:</label>
                          <div class="form-group">
-                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-lock" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="password" class="form-control form-control-padding" name="passwordUserEdit" id="passwordUserEdit"  placeholder="Escribe para cambiar Contraseña">
                         </div>
                         
