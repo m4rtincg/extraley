@@ -1,64 +1,12 @@
 @charset "utf-8";
 
-
-.form-group{
-    position: relative;
+#form-change-pass label,#form-change label{
+    font-family: robotobold;
+    font-size: 13.5px;
+    margin-bottom: 3px;
 }
-.form-control-padding{
-    padding-left: 32px;
-}
-.form-group i{
-    position: absolute;
-    font-size: 15px;
-    top: 9px;
-    left: 10px;
-    color: #777;
-}
-table.dataTable th,table.dataTable td {
-     white-space: nowrap;
- }
- textarea.form-control{
-    height: 150px;
-    resize: none;
- }
-#listBusiness{
-	border: 1px solid #dddddd;
-}
-#cont-listado-business{
-    float: none;
-    margin: 0 auto;
-    background: #fff;
-}
-#cont-listado-business{
-	width: 100%;
-    font-size: 11px;
-    padding: 15px 10px 45px 10px;
-    position: relative;
-}
-#cont-listado-business .dataTables_paginate {
-    float: none;
-    margin: 0 auto;
-    margin-top: 22px;
-    text-align: center;
-}
-#cont-listado-business h2{
-	text-align: center;
-	margin-bottom: 20px;
-	font-size: 24px;
-
-}
-.table-responsive{
-	border: none!important;
-}
-#cont-listado-business th, #cont-listado-business td{
-	vertical-align: middle;
-}
-.cont-onoff{
-	position: relative;
-    text-align: left;
-    float: none;
-    margin: 0 auto;
-    width: 68px;
+.cont-listado-contenedor h2{
+    margin-bottom: 20px;
 }
 .btn_actualizar {
     font-size: 14px;
@@ -70,122 +18,12 @@ table.dataTable th,table.dataTable td {
     margin-top: 5px;
 }
 h3{
-    font-size: 22px;
-    margin-top: 30px;
-    margin-bottom: 15px;
+    font-family: robotobold;
+    font-size: 20px;
+    margin-bottom: 13px;
+    margin-top: 25px;
 }
 
-
-
-.onoffswitch {
-    position: relative; width: 68px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-}
-.onoffswitch-checkbox {
-    display: none;
-}
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #FFFFFF; border-radius: 22px;
-}
-.onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
-}
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 27px; padding: 0; line-height: 27px;
-    font-size: 13px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    box-sizing: border-box;
-}
-.onoffswitch-inner:before {
-    content: "ON";
-    padding-left: 10px;
-    background-color: #51C234; color: #FFFFFF;
-}
-.onoffswitch-inner:after {
-    content: "OFF";
-    padding-right: 10px;
-    background-color: #EEEEEE; color: #999999;
-    text-align: right;
-}
-.onoffswitch-switch {
-    display: block; width: 18px; margin: 4.5px;
-    background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
-    right: 37px;
-    border: 2px solid #FFFFFF; border-radius: 22px;
-    transition: all 0.3s ease-in 0s; 
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px; 
-}
-
-.img-view{
-	width: 28px;
-	cursor: pointer;
-}
-.img-edit{
-	width: 19px;
-	margin-left: 5px;
-	cursor: pointer;
-}
-#fileimageeditLogo{
-    display: none;
-}
-#fileimageAddLogo{
-    display: none;
-}
-#labelimageeditLogo{
-    margin-top: 20px;
-    cursor: pointer;
-    border: 1px solid;
-    max-width: 270px;
-}
-#labelimageAddLogo{
-    margin-top: 20px;
-    cursor: pointer;
-    border: 1px solid;
-    max-width: 270px;
-}
-#imageeditLogo{
-    width: 268px;
-    max-width: 270px;
-}
-#imageAddLogo{
-    width: 268px;
-    max-width: 270px;
-}
-.viewBusinessData{
-    margin-left: 8px;
-}
-#logoBusinessView{
-    margin-top: 12px;
-}
-
-/*#modalBusinessView .modal-header,#modalBusinessEdit .modal-header, #modalBusinessAdd .modal-header{
-    border: none;
-}
-#modalBusinessView .modal-title,#modalBusinessEdit .modal-title, #modalBusinessAdd .modal-title{
-    font-weight: bold;
-    padding-top: 4px;
-}*/
-#modalBusinessView .modal-subtitle,#modalBusinessEdit .modal-subtitle, #modalBusinessAdd .modal-subtitle{
-    font-weight: bold;
-    padding-top: 18px;
-    padding-bottom: 6px;
-    margin-top: 0px;
-    font-size: 16px;
-}
-#modalBusinessView .modal-body,#modalBusinessEdit .modal-body,#modalBusinessAdd .modal-body{
-    padding: 2px 15px 15px 15px;
-}
-#modalBusinessView .form-group,#modalBusinessEdit .form-group ,#modalBusinessAdd .form-group{
-    margin-bottom: 6px;
-    font-size: 12.5px;
-}
 #modalBusinessEdit .form-group{
     margin-bottom: 9px;
 }
@@ -197,109 +35,18 @@ h3{
     max-width: 130px;
 }
 
-/*#modalBusinessEdit .modal-footer button, #modalBusinessView .modal-footer button,#modalBusinessAdd .modal-footer button{
-    border-radius: 4px;
-    border: none;
-    color: #fff;
-    background: #9ac53c;
-    padding: 5px 19px;
-}
-.modal-footer{
-    border: none;
-    padding: 4px 15px 15px 15px;
-}*/
-
 @media (min-width: 420px) {
-    #cont-listado-business{
-		font-size: 12px;
-	}
-    #modalBusinessView .modal-dialog {
-        width: 370px;
-        margin: 15px auto;
-    }
-    #modalBusinessEdit .modal-dialog {
-        width: 370px;
-        margin: 15px auto;
-    }
-    #modalBusinessAdd .modal-dialog {
-        width: 370px;
-        margin: 15px auto;
-    }
 }
 
 @media (min-width: 480px) {
-    #cont-listado-business{
-		font-size: 12.2px;
-	}
-	#cont-listado-business h2{
-		font-size: 25.5px;
-	}
-    #modalBusinessView .modal-dialog {
-        width: 400px;
-        margin: 22px auto;
-    }
-    #modalBusinessEdit .modal-dialog {
-        width: 400px;
-        margin: 22px auto;
-    }
-    #modalBusinessAdd .modal-dialog {
-        width: 400px;
-        margin: 22px auto;
-    }
+   
 }
 
 @media (min-width: 768px) {
-   	#cont-listado-business{
-		font-size: 12.4px;
-		padding: 25px 20px 45px 20px;
-	}
-	#cont-listado-business h2{
-		font-size: 27px;
-	}
-    .modal-footer {
-        padding: 4px 30px 15px 15px;
-    }
-
-    #modalBusinessView .modal-dialog {
-        width: 475px;
-        margin: 30px auto;
-    }
-    #modalBusinessEdit .modal-dialog {
-        width: 475px;
-        margin: 30px auto;
-    }
-    #modalBusinessAdd .modal-dialog {
-        width: 475px;
-        margin: 30px auto;
-    }
-    #modalBusinessView .form-group, #modalBusinessEdit .form-group, #modalBusinessAdd .form-group {
-        margin-bottom: 5px;
-        font-size: 13px;
-    }
-    #modalBusinessView .modal-body, #modalBusinessEdit .modal-body, #modalBusinessAdd .modal-body {
-        padding: 3px 33px 15px 33px;
-    }
-    #logoBusinessView {
-        width: 165px;
-        margin-top: 15px;
-    }
-    #imageeditLogo {
-        width: 163px;
-        max-width: 165px;
-    }
-    #imageAddLogo {
-        width: 163px;
-        max-width: 165px;
-    }
+   
 }
 
 @media (min-width: 992px) {
-    #cont-listado-business{
-		font-size: 12.5px;
-	}
-	#cont-listado-business h2{
-		font-size: 28px;
-	}
     .cont-lista-business-width{
         width: 880px;
         margin: 0 auto;
@@ -308,23 +55,11 @@ h3{
 }
 
 @media (min-width: 1200px) {
-    #cont-listado-business{
-    	font-size: 12.6px;
-    }
-    #cont-listado-business h2{
-		font-size: 29px;
-	}
     .cont-lista-business-width{
         width: 450px;
     }
 }
 
 @media (min-width: 1300px) {
-    #cont-listado-business{
-	    font-size: 12.8px;
-	    padding: 25px 30px 65px 30px;
-    }
-    #cont-listado-business h2{
-		font-size: 30px;
-	}
+
 }

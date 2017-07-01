@@ -96,33 +96,7 @@ $(document).ready(function () {
 			}
 		},'json');
 	});
-	/*$("#form-new-clauses").submit(function(e) {
-	    e.preventDefault();
-	    $.post( window.base_url+"home/newClauses", $(this).serialize() ,function( data ) {
-			if(data.status){
-				var id = data.id;
-				var name = data.title;
-				var desc = data.description;
 
-                var txt = '<div class="contCheckbox">'+
-                        	'<div class="checkboxLabel">'+
-                            '<div class="checkbox">'+
-                            '<label><input type="checkbox" class="checkboxClass" checked name="check_list_clauses[]" value="'+id+'">'+name+'</label>'+
-                            '</div>'+
-                        	'</div>'+
-                        	'<div class="checkboxBtn">'+
-                            '<button class="btn_view_clause" onClick="viewClauses('+id+')">Ver</button>'+
-                        	'</div>'+
-                    		'</div>';
-
-				$("#contenedor-clausulas").append(txt);
-				$("#modalNewClauses").modal("hide");
-				$('#form-new-clauses').trigger("reset");
-			}else{
-				alert(data.msg);
-			}
-		},'json');
-	});*/
 
 	$("#form-new-work").validate({
 	    rules: {

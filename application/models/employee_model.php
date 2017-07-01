@@ -97,6 +97,59 @@
          }
 
 
+
+         //baja
+         public function selectBajaById($id){
+            $this->db->select('*');
+            $this->db->from('empleado_baja');
+            $this->db->where('id_empleado' , $id);
+            $query = $this->db->get();
+            return $query->row();
+         }
+         public function updatebaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$fecha_fin,$lugar2,$fecha2)
+        {
+            $data = array(
+                'nombre_banco' => $banco,
+                'fecha_culminacion' => $fecha_culminacion,
+                'n_cuenta' => $cuenta,
+                'lugar_entrega_cese' => $lugar1,
+                'fecha_entrega_cese' => $fecha1,
+                'fecha_inicio' => $fecha_inicio,
+                'fecha_fin' => $fecha_fin,
+                'lugar_entrega_constancia' => $lugar2,
+                'fecha_entrega_constancia' => $fecha2
+            );
+
+            $this->db->where('id_empleado', $id);
+            $this->db->update('empleado_baja', $data);
+
+            return $this->db->affected_rows();
+        }
+        public function deletebaja($id)
+        {
+            $this->db->where('id_empleado', $id);
+            $this->db->delete('empleado_baja');
+            return $this->db->affected_rows();
+        }
+        public function insertbaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$fecha_fin,$lugar2,$fecha2)
+        {
+            $data = array(
+                'id_empleado' => $id,
+                'nombre_banco' => $banco,
+                'fecha_culminacion' => $fecha_culminacion,
+                'n_cuenta' => $cuenta,
+                'lugar_entrega_cese' => $lugar1,
+                'fecha_entrega_cese' => $fecha1,
+                'fecha_inicio' => $fecha_inicio,
+                'fecha_fin' => $fecha_fin,
+                'lugar_entrega_constancia' => $lugar2,
+                'fecha_entrega_constancia' => $fecha2
+            );
+
+            $this->db->insert('empleado_baja', $data);
+            return $this->db->insert_id();
+        }
+
         
 
     }

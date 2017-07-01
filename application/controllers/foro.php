@@ -6,6 +6,7 @@ class Foro extends CI_Controller {
 		if($this->session->userdata('session')){
 			$this->load->model("business_model");
 			$this->load->model("foro_model");
+			$this->load->model("contract_model");
 			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
 			$dataHeader['modulo'] = 'pageforo';
 			$dataFooter['modulo'] = 'pageforo';
@@ -16,6 +17,7 @@ class Foro extends CI_Controller {
 			$data['fecha'] = $this->foro_model->date();
 			$data['id'] = $contract;
 			$data["iduser"] = $this->session->userdata('user');
+			$data['contrato'] = $this->contract_model->selectContractById($contract);
 			$this->load->view('template/header',$dataHeader);
 			$this->load->view('foro',$data);
 			$this->load->view('template/footer',$dataFooter);

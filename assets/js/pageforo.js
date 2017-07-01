@@ -21,7 +21,7 @@ $(document).ready(function () {
 		actChat();
 	}, 15000);
 
-	new AjaxUpload('uploadFile', {
+	/*new AjaxUpload('uploadFile', {
 		  action: window.base_url+'foro/upload',
 		  name: 'file',
 	      data: {id: $("#idContract").val()},
@@ -44,7 +44,7 @@ $(document).ready(function () {
             }
             quitarDescargandoFile();
         }
-	});
+	});*/
 
 });
 

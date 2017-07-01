@@ -134,3 +134,133 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
+<div id="modalBajaAdd" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="form-add-baja" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Datos de baja de un empleado</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group-cont">
+
+                        <h4 class="modal-subtitle">Constancia de cese</h4>
+
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding solo-numero" maxlength="11" minlength="11" name="rucBusinessAdd" required id="rucBusinessAdd" placeholder="RUC">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="razonBusinessAdd" id="razonBusinessAdd" maxlength="400" required placeholder="Razón social">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <textarea class="form-control form-control-padding" name="descripcionBusinessAdd" id="descripcionBusinessAdd" required placeholder="Empresa dedicada a: (Describir su objeto social o actividad económica principal. Ejm: a la comercialización de productos agropecuarios y agroindustria)"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding solo-numero" name="partidaBusinessAdd" id="partidaBusinessAdd" maxlength="50" required placeholder="N° de Partida Registral">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <select class="form-control form-control-padding" name="departamentoBusinessAdd" required id="departamentoBusinessAdd">
+                                <option value="">-- Seleccione departamento --</option>
+                                <?php foreach ($departamento as $key) { ?>
+                                    <option value="<?= $key->idDepa ?>"><?= $key->departamento ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <select class="form-control form-control-padding" name="provinciaBusinessAdd" required id="provinciaBusinessAdd">
+                                <option value="">-- Seleccione provincia --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <select class="form-control form-control-padding" name="distritoBusinessAdd" required id="distritoBusinessAdd">
+                                <option value="">-- Seleccione distrito --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="direccionBusinessAdd" id="direccionBusinessAdd" maxlength="400" required placeholder="Dirección">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="telefonoBusinessAdd" id="telefonoBusinessAdd" maxlength="20" required placeholder="Teléfono">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="emailBusinessAdd" id="emailBusinessAdd" maxlength="200" required placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="urlBusinessAdd" id="urlBusinessAdd" placeholder="URL">
+                        </div>
+                        <div class="form-group text-center">
+                            <input type='file' id="fileimageAddLogo" />
+                            <label for="fileimageAddLogo" id="labelimageAddLogo"><img id="imageAddLogo" src="<?= base_url() ?>assets/img/business/default.png" alt="logo" /></label>
+                        </div>
+
+                        <h4 class="modal-subtitle">Datos Gerente</h4>
+
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding solo-numero" maxlength="8" minlength="8" name="gdniBusinessAdd" id="gdniBusinessAdd" required placeholder="DNI">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="gapellidosBusinessAdd" maxlength="200" id="gapellidosBusinessAdd" required placeholder="Apellidos">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="gnombresBusinessAdd" maxlength="200" id="gnombresBusinessAdd" required placeholder="Nombres">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="gemailBusinessAdd" id="gemailBusinessAdd" required placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="gdireccionBusinessAdd" maxlength="400" id="gdireccionBusinessAdd" required placeholder="Dirección">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" name="gtelefonoBusinessAdd" maxlength="20" id="gtelefonoBusinessAdd" required placeholder="Telefono">
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="password" class="form-control form-control-padding" name="gpassBusinessAdd" minlength="8" maxlength="16" id="gpassBusinessAdd" required placeholder="Contraseña">
+                        </div>
+
+                        <h4 class="modal-subtitle">Opciones</h4>
+                        
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <select class="form-control form-control-padding" name="grevisionBusinessAdd" id="grevisionBusinessAdd" required>
+                                <option value="1">Gerente</option>
+                                <option value="2">Administrador</option>
+                                <option value="3">Gerente o administrador</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding solo-numeros" name="gnusuariosBusinessAdd" id="gnusuariosBusinessAdd" value="0" required placeholder="Cantidad máxima de usuarios">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

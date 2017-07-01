@@ -18,7 +18,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="help-form"><i id="tipoplazo" onClick="asesorar('Tipo de plazo','Seleccione el tipo de plazo del contrato. Fijo o indeterminado')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                        <div class="help-form"><i id="itipoplazo" onClick="asesorar('Tipo de plazo','Seleccione el tipo de plazo del contrato. Fijo o indeterminado')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
                     
                     <div id="cont-tipo-contrato-laboral">
@@ -38,46 +38,56 @@
                     </div>
 
                     <div>
-                        <label for="type_contract">Fecha de firma del contrato:</label>
                         <div class="form-group" id="cont-fecha">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <input type="text" class="form-control form-control-padding" id="fecha" name="fecha" placeholder="Fecha de firma de contrato">
+                            <label for="type_contract">Fecha de firma del contrato:</label>
+                            <div class="form-control-contenedor">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <input type="text" class="form-control form-control-padding" id="fecha" name="fecha" placeholder="Fecha de firma de contrato">
+                            </div>
                         </div>
                         <div class="help-form"><i id="ifecha" onClick="asesorar('Fecha de firma de contrato','Escribir la fecha en la que se va a firmar el contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
                     <div>
-                        <label for="cont-lugar">Lugar de firma del contrato:</label>
                         <div class="form-group" id="cont-lugar">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <input type="text" class="form-control form-control-padding" id="lugarfirma" name="lugarfirma" placeholder="Lugar de firma de contrato">
+                            <label for="cont-lugar">Lugar de firma del contrato:</label>
+                            <div class="form-control-contenedor">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <input type="text" class="form-control form-control-padding" id="lugarfirma" name="lugarfirma" placeholder="Lugar de firma de contrato">
+                            </div>
                         </div>
                         <div class="help-form"><i id="ilugarfirma" onClick="asesorar('Lugar de firma de contrato','Escribir el lugar donde se va a relizar la firma del contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
                     <div id="cont-fecha-inicio">
-                     <label for="fechainicio">fecha de inicio:</label>
                         <div class="form-group">
-                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                            <input type="text" class="form-control form-control-padding" id="fechainicio" value="" name="fechainicio" placeholder="Fecha inicio">
+                            <label for="fechainicio">Fecha de inicio:</label>
+                            <div class="form-control-contenedor">
+                                <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                                <input type="text" class="form-control form-control-padding" id="fechainicio" value="" name="fechainicio" placeholder="Fecha inicio">
+                            </div>
                         </div>
                         <div class="help-form"><i id="ifechainicio" onClick="asesorar('Fecha inicio','Escribir la fecha en la que va a iniciar a tener vigencia el contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
                     <div id="cont-fecha-fin">
-                      <label for="fechafin">fecha de vencimiento:</label>
                         <div class="form-group">
-                            <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
-                            <input type="text" class="form-control form-control-padding" id="fechafin" name="fechafin" value="" placeholder="Fecha de vencimiento">
+                            <label for="fechafin">Fecha de vencimiento:</label>
+                            <div class="form-control-contenedor">
+                                <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+                                <input type="text" class="form-control form-control-padding" id="fechafin" name="fechafin" value="" placeholder="Fecha de vencimiento">
+                            </div>
                         </div>
-                        <div class="help-form"><i id="ifechafin" onClick="asesorar('Fecha de vencimiento','Escribir la fecha en la que se va acabar el contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                        <div class="help-form"><i id="ifechafin" onClick="asesorar('Fecha de vencimiento','Escribir la fecha de finalización del contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
                     
                     <div>
-                    <label for="commentcontract">Deja tu comentario:</label>
                           <div class="form-group">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                            <textarea class="form-control form-control-padding" id="commentcontract" name="commentcontract" placeholder="Comentarios"></textarea>
+                            <label for="commentcontract">Comentarios:</label>
+                            <div class="form-control-contenedor">
+                                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                                <textarea class="form-control form-control-padding" id="commentcontract" name="commentcontract" placeholder="Comentarios"></textarea>
+                            </div>
                         </div>
                         <div class="help-form"><i id="icommentcontract" onClick="asesorar('Comentarios','Puedes escribir algun comentario para el contrato. Esta opción es opcional')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
@@ -87,7 +97,7 @@
 
             <div class="form-group-cont form-format">
                 <div class="form-group-title">Detalles del trabajador</div>
-                <label for="searchDNI">DNI:</label>
+                <label for="searchDNI">DNI del trabajador:</label>
                 <div class="form-group cont-form-group">
                  <div class="form-group cont-form-input">
                         <i class="fa fa-user" aria-hidden="true"></i>
@@ -101,12 +111,12 @@
                 </div>
 
                 <div class="form-group" id="cont-data-trabajador">
-                    <div><label>Nombres : </label><span id='span-nombres' style="margin-left:10px;"></span></div>
-                    <div><label>Apellidos : </label><span id='span-apellidos' style="margin-left:10px;"></span></div>
-                    <div><label>DNI : </label><span id='span-dni' style="margin-left:10px;"></span></div>
-                    <div><label>Telefono : </label><span id='span-telefono' style="margin-left:10px;"></span></div>
-                    <div><label>Dirección : </label><span id='span-direccion' style="margin-left:10px;"></span></div>
-                    <div><label>Email : </label><span id='span-email' style="margin-left:10px;"></span></div>
+                    <div><label>Nombres : </label><span id='span-nombres' style="margin-left:10px;font-family:robotolight;"></span></div>
+                    <div><label>Apellidos : </label><span id='span-apellidos' style="margin-left:10px;font-family:robotolight;"></span></div>
+                    <div><label>DNI : </label><span id='span-dni' style="margin-left:10px;font-family:robotolight;"></span></div>
+                    <div><label>Telefono : </label><span id='span-telefono' style="margin-left:10px;font-family:robotolight;"></span></div>
+                    <div><label>Dirección : </label><span id='span-direccion' style="margin-left:10px;font-family:robotolight;"></span></div>
+                    <div><label>Email : </label><span id='span-email' style="margin-left:10px;font-family:robotolight;"></span></div>
                     <input type="hidden" value="" id="id_employee">
                 </div>
 
@@ -135,45 +145,54 @@
 
 
                 <form id="form-work-contract">
-                  <div id="cont-new-contract-laboral">
-                  <label for="detalleworkcontract">Detalle del contrato:</label>
-                <div class="form-group">
-                    <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                    <textarea class="form-control form-control-padding" id="detalleworkcontract" name="detalleworkcontract" placeholder="Detalles del puesto del trabajo"></textarea>
-                </div>     
-                <div class="help-form"><i id="detalleworkcontract" onClick="asesorar('Comentarios','Puedes escribir algún detalle del puesto del trabajo. Esta opción es opcional')" class="fa fa-info-circle" aria-hidden="true"></i></div>
-            </div>  
+                <div id="">
+                    <div class="form-group">
+                        <label for="detalleworkcontract">Detalles del trabajo:</label>
+                        <div class="form-control-contenedor">
+                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <textarea class="form-control form-control-padding" id="detalleworkcontract" name="detalleworkcontract" placeholder="Detalles del puesto del trabajo"></textarea>
+                        </div>
+                    </div>     
+                    <div class="help-form"><i id="idetalleworkcontract" onClick="asesorar('Detalles del puesto de trabajo','Describir en que consiste el puesto de trabajo.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                </div>  
 
-                <div id="cont-new-contract-laboral">
-                <label for="explicaworkcontract">Razón del contrato:</label>
+                <div id="">
                 <div class="form-group">
-                <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                    <textarea class="form-control form-control-padding" id="explicaworkcontract" name="explicaworkcontract" placeholder="¿Por qué lo contrata?"></textarea>
+                    <label for="explicaworkcontract">Razón del contrato:</label>
+                    <div class="form-control-contenedor">
+                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                        <textarea class="form-control form-control-padding" id="explicaworkcontract" name="explicaworkcontract" placeholder="¿Por qué lo contrata?"></textarea>
+                    </div>
                 </div>
-                 <div class="help-form"><i id="explicaworkcontract" onClick="asesorar('Razón del contrato','Escribir la razón del contrato. Está opción es opcional')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                 <div class="help-form"><i id="iexplicaworkcontract" onClick="asesorar('Razón del contrato','Escribir la razón por la cual contrata al empleado.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                </div>
 
-                <div id="cont-new-contract-laboral">
-                <label for="tipoRemuneracion">Tipo de remuneración:</label>
+                <div id="">
                 <div class="form-group">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <select class="form-control form-control-padding" id="tipoRemuneracion" name="tipoRemuneracion">
-                        <option value="">-- Seleccione el tipo de remuneración -- </option>
-                        <option value="1">Mensual</option>
-                        <option value="2">Quincenal</option>
-                        <option value="3">Semanal</option>
-                        <option value="4">Diario</option>
-                    </select>
+                    <label for="tipoRemuneracion">Tipo de remuneración:</label>
+                    <div class="form-control-contenedor">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <select class="form-control form-control-padding" id="tipoRemuneracion" name="tipoRemuneracion">
+                            <option value="">-- Seleccione el tipo de remuneración -- </option>
+                            <option value="1">Mensual</option>
+                            <option value="2">Quincenal</option>
+                            <option value="3">Semanal</option>
+                            <option value="4">Diario</option>
+                        </select>
+                    </div>
                 </div>
-                 <div class="help-form"><i id="tipoRemuneracion" onClick="asesorar('Tipo de remuneración','Seleccione el tipo de remuneración.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                 <div class="help-form"><i id="itipoRemuneracion" onClick="asesorar('Tipo de remuneración','Seleccionar el tipo de remuneración.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                </div>
              
-                <label for="montoRemuneracion">Monto de remuneración:</label>
+                
                 <div class="form-group">
-                    <i class="fa fa-money" aria-hidden="true"></i>
-                    <input type="text" class="form-control form-control-padding" id="montoRemuneracion" name="montoRemuneracion" placeholder="Monto en soles">
+                    <label for="montoRemuneracion">Monto de remuneración:</label>
+                    <div class="form-control-contenedor">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                        <input type="text" class="form-control form-control-padding" id="montoRemuneracion" name="montoRemuneracion" placeholder="Monto en soles">
+                    </div>
                 </div>
-                <div class="help-form"><i id="montoRemuneracion" onClick="asesorar('Monto de remuneración','Escribir el monto de remuneración en soles.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                <div class="help-form"><i id="imontoRemuneracion" onClick="asesorar('Monto de remuneración','Escribir el monto de remuneración en soles(S/.).')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                
            
             </form>

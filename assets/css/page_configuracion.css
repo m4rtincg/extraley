@@ -14,9 +14,6 @@
     left: 10px;
     color: #777;
 }
-table.dataTable th,table.dataTable td {
-     white-space: nowrap;
- }
  textarea.form-control{
     height: 150px;
     resize: none;
@@ -29,24 +26,7 @@ table.dataTable th,table.dataTable td {
     margin: 0 auto;
     background: #fff;
 }
-#cont-listado-business{
-	width: 100%;
-    font-size: 11px;
-    padding: 15px 10px 45px 10px;
-    position: relative;
-}
-#cont-listado-business .dataTables_paginate {
-    float: none;
-    margin: 0 auto;
-    margin-top: 22px;
-    text-align: center;
-}
-#cont-listado-business h2{
-	text-align: center;
-	margin-bottom: 20px;
-	font-size: 24px;
 
-}
 .table-responsive{
 	border: none!important;
 }
@@ -54,21 +34,44 @@ table.dataTable th,table.dataTable td {
 	vertical-align: middle;
 }
 .btn_actualizar {
-    font-size: 14px;
+    font-size: 13.5px;
     color: #fff;
     border: none;
     background: #9ac53c;
     border-radius: 4px;
     padding: 8px 15px;
     margin-top: 5px;
+    font-family: robotoregular;
 }
 h3{
     font-size: 22px;
     margin-top: 30px;
     margin-bottom: 15px;
 }
-
-
+#btn_upload{
+    text-align: center;
+    margin-bottom: 18px;
+}
+#btn_upload button{
+    background: #000;
+    border: none;
+    border-radius: 2px;
+    padding: 6px 25px;
+    font-family: robotoregular;
+    color: #fff;
+}
+#btn_upload button i{
+    margin-right: 7px;
+}
+#nota{
+    width: 960px;
+    float: none;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-bottom: 14px;
+    font-size: 13px;
+    font-family: robotobold;
+}
 #cont-list-sliders{
     width: 960px;
     float: none;
@@ -80,9 +83,11 @@ h3{
     margin-right: 20px;
     float: left;
     margin-bottom: 15px;
+    height: 230px;
 }
 .cont-img .cont-img-imagen img{
     width: 100%;
+    max-height: 190px;
 }
 .cont-img-delete{
     margin-top: 8px;
@@ -92,40 +97,31 @@ h3{
     width: 25px;
     cursor: pointer;
 }
+h2.secondTitle{
+    margin-top: 35px;
+}
 
 @media (min-width: 420px) {
-    #cont-listado-business{
-		font-size: 12px;
-	}
+
 }
 
 @media (min-width: 480px) {
-    #cont-listado-business{
-		font-size: 12.2px;
-	}
-	#cont-listado-business h2{
-		font-size: 25.5px;
-	}
+
 }
 
 @media (min-width: 768px) {
-   	#cont-listado-business{
-		font-size: 12.4px;
-		padding: 25px 20px 45px 20px;
-	}
-	#cont-listado-business h2{
-		font-size: 27px;
-	}
-    
+    .cont-listado-contenedor h2{
+        margin-bottom: 17px;
+    }
+    #form-change label{
+        font-family: robotobold;
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
 }
 
 @media (min-width: 992px) {
-    #cont-listado-business{
-		font-size: 12.5px;
-	}
-	#cont-listado-business h2{
-		font-size: 28px;
-	}
+
     .cont-lista-business-width{
         width: 880px;
         margin: 0 auto;
@@ -134,23 +130,12 @@ h3{
 }
 
 @media (min-width: 1200px) {
-    #cont-listado-business{
-    	font-size: 12.6px;
-    }
-    #cont-listado-business h2{
-		font-size: 29px;
-	}
+
     .cont-lista-business-width{
         width: 450px;
     }
 }
 
 @media (min-width: 1300px) {
-    #cont-listado-business{
-	    font-size: 12.8px;
-	    padding: 25px 30px 65px 30px;
-    }
-    #cont-listado-business h2{
-		font-size: 30px;
-	}
+
 }

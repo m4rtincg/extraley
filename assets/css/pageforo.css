@@ -59,7 +59,7 @@
     width: 90%;
     float: right;
     margin-top: 5px;
-    background: #72fa68;
+    background: #b7efb3;
     color: #555;
 }
 .dis-cont i{
@@ -72,8 +72,8 @@
 }
 .dis-cont.me{
 	float: left;
-    background: #77a6ca;
-    border: 1px solid #3432db;
+    background: #dbe8f3;
+    border: 1px solid #5150c6;
 }
 .dis-cont.arch{
 	width: auto;
@@ -81,8 +81,9 @@
 	    max-width: 80%;
 }
 .dis-user{
-	font-weight: bold;
+	font-family: robotobold;
     margin-bottom: 2px;
+    font-size: 15px;
 }
 .dis-text{
 	margin-bottom: 3px;
@@ -134,13 +135,16 @@ h2{
 	.dis-cont {
     	padding: 10px;
     	width: 85%;
-    	margin-top: 10px;
+    	margin-top: 15px;
 	}
 	h2{
 		display: block;
 	    text-align: center;
 	    margin-top: 0px;
-	    margin-bottom: 12px;
+	    margin-bottom: 7px;
+	    font-weight: inherit;
+	    font-size: 22px;
+	    font-family: robotobold;
 	}
 	#back-contenedor {
 	    background: #f0f0f0;
@@ -148,14 +152,14 @@ h2{
 	#contenedor-discucion {
 	    border-radius: 5px;
 	    border: 1px solid #f2f2f2;
-	    padding: 15px 10px 25px 10px;
+	    padding: 10px 25px 25px 25px;
 	    height: 100%;
 	    overflow-y: scroll;
 	    max-height: 700px;
 	    background: #ffffff;
 	}
 	#contTexto{
-		width: 69%;
+		width: 75%;
 	}
 	#contdownload{
 		width: 4%;

@@ -1,60 +1,82 @@
     <div id="cont-new-contract-laboral">
-        <h2>Nuevo contrato laboral</h2>
+        <h2>Editar contrato <?= $contract->nameContract ?></h2>
         <div id="cont-form-registrar-cl">
             <div class="form-group-cont form-format">
                 <div class="form-group-title">Datos del contrato</div>
                 <form id="form-contract-detail">
 
                     <div class="form-group">
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <select class="form-control form-control-padding" id="tipoplazo" name="tipoplazo">
-                            <option value='1' <?= ($contract->plazo==1)?"selected":""  ?>>Plazo fijo</option>
-                            <option value='2' <?= ($contract->plazo==2)?"selected":""  ?>>Plazo indeterminado</option>
-                        </select>
+                        <label for="tipoplazo">Tipo de plazo:</label>
+                        <div class="form-control-contenedor">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <select class="form-control form-control-padding" id="tipoplazo" name="tipoplazo">
+                                <option value='1' <?= ($contract->plazo==1)?"selected":""  ?>>Plazo fijo</option>
+                                <option value='2' <?= ($contract->plazo==2)?"selected":""  ?>>Plazo indeterminado</option>
+                            </select>
+                        </div>
                     </div>
                     
                     <div class="form-group" id="cont-tipo-contrato-laboral">
-                        <i class="fa fa-book" aria-hidden="true"></i>
-                        <select class="form-control form-control-padding" name="type_contract" id="type_contract">
-                            <?php foreach ($contract_types as $key) { ?>
-                                <option value="<?= $key->id_contract_type ?>" <?= ($contract->contract_type_id==$key->id_contract_type)?"selected":""  ?>><?= $key->name_contract_type ?></option>
-                            <?php } ?>
-                        </select>
+                        <label for="type_contract">Tipo de contrato:</label>
+                        <div class="form-control-contenedor">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <select class="form-control form-control-padding" name="type_contract" id="type_contract">
+                                <?php foreach ($contract_types as $key) { ?>
+                                    <option value="<?= $key->id_contract_type ?>" <?= ($contract->contract_type_id==$key->id_contract_type)?"selected":""  ?>><?= $key->name_contract_type ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group" id="cont-fecha">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <input type="text" value="<?= date("d/m/Y", strtotime($contract->fecha)) ?>" class="form-control form-control-padding" id="fecha" name="fecha" placeholder="Fecha de firma de contrato">
+                        <label for="type_contract">Fecha de firma del contrato:</label>
+                        <div class="form-control-contenedor">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <input type="text" value="<?= date("d/m/Y", strtotime($contract->fecha)) ?>" class="form-control form-control-padding" id="fecha" name="fecha" placeholder="Fecha de firma de contrato">
+                        </div>
                     </div>
 
                     <div class="form-group" id="cont-lugar">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        <input type="text" value="<?= $contract->lugarcontract ?>" class="form-control form-control-padding" id="lugarfirma" name="lugarfirma" placeholder="Lugar de firma de contrato">
+                        <label for="cont-lugar">Lugar de firma del contrato:</label>
+                        <div class="form-control-contenedor">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <input type="text" value="<?= $contract->lugarcontract ?>" class="form-control form-control-padding" id="lugarfirma" name="lugarfirma" placeholder="Lugar de firma de contrato">
+                        </div>
                     </div>
 
                     <div class="form-group" id="cont-fecha-inicio">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                        <input type="text" class="form-control form-control-padding" id="fechainicio" value="<?= date("d/m/Y", strtotime($contract->fecha_inicio)) ?>" name="fechainicio" placeholder="Fecha inicio">
+                        <label for="fechainicio">Fecha de inicio:</label>
+                        <div class="form-control-contenedor">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" id="fechainicio" value="<?= date("d/m/Y", strtotime($contract->fecha_inicio)) ?>" name="fechainicio" placeholder="Fecha inicio">
+                        </div>
                     </div>
 
                     <div class="form-group" id="cont-fecha-fin">
-                        <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
-                        <input type="text" class="form-control form-control-padding" id="fechafin" name="fechafin" value="<?= ($contract->plazo==2)?"":date("d/m/Y", strtotime($contract->fecha_fin)) ?>" placeholder="Fecha de vencimiento">
+                        <label for="fechafin">Fecha de vencimiento:</label>
+                        <div class="form-control-contenedor">
+                            <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+                            <input type="text" class="form-control form-control-padding" id="fechafin" name="fechafin" value="<?= ($contract->plazo==2)?"":date("d/m/Y", strtotime($contract->fecha_fin)) ?>" placeholder="Fecha de vencimiento">
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                        <textarea class="form-control form-control-padding" id="commentcontract" name="commentcontract" placeholder="Comentarios"><?= $contract->comment_contract ?></textarea>
+                        <label for="commentcontract">Comentarios:</label>
+                        <div class="form-control-contenedor">
+                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            <textarea class="form-control form-control-padding" id="commentcontract" name="commentcontract" placeholder="Comentarios"><?= $contract->comment_contract ?></textarea>
+                        </div>
                     </div>
                 </form>
             </div>
 
             <div class="form-group-cont form-format">
                 <div class="form-group-title">Detalles del trabajador</div>
+                <label for="searchDNI">DNI del trabajador:</label>
                 <div class="form-group cont-form-group">
                     <div class="form-group cont-form-input">
                         <i class="fa fa-user" aria-hidden="true"></i>
-                        <input type="text" class="form-control form-control-padding" id="searchDNI" placeholder="DNI del trabajador">
+                        <input type="text" value="<?= $contract->dni_employee ?>" class="form-control form-control-padding" id="searchDNI" placeholder="DNI del trabajador">
                         <label id="dni-error" class="error" style="display:none;"><span data-placement="left" data-toggle="tooltip" title="Busque un trabajador"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span></label>
                     </div>
 
@@ -98,28 +120,40 @@
 
                 <form id="form-work-contract">
                 <div class="form-group">
-                    <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                    <textarea class="form-control form-control-padding" id="detalleworkcontract" name="detalleworkcontract" placeholder="Detalles del puesto del trabajo"><?= $contract->detalleworkcontract ?></textarea>
+                    <label for="detalleworkcontract">Detalles del trabajo:</label>
+                    <div class="form-control-contenedor">
+                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                        <textarea class="form-control form-control-padding" id="detalleworkcontract" name="detalleworkcontract" placeholder="Detalles del puesto del trabajo"><?= $contract->detalleworkcontract ?></textarea>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                    <textarea class="form-control form-control-padding" id="explicaworkcontract" name="explicaworkcontract" placeholder="¿Por qué lo contrata?"><?= $contract->explicaworkcontract ?></textarea>
+                    <label for="explicaworkcontract">Razón del contrato:</label>
+                    <div class="form-control-contenedor">
+                        <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                        <textarea class="form-control form-control-padding" id="explicaworkcontract" name="explicaworkcontract" placeholder="¿Por qué lo contrata?"><?= $contract->explicaworkcontract ?></textarea>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <select class="form-control form-control-padding" id="tipoRemuneracion" name="tipoRemuneracion">
-                        <option value="1" <?= ($contract->type_remuneracion==1)?"selected":""  ?>>Mensual</option>
-                        <option value="2" <?= ($contract->type_remuneracion==2)?"selected":""  ?>>Quincenal</option>
-                        <option value="3" <?= ($contract->type_remuneracion==3)?"selected":""  ?>>Semanal</option>
-                        <option value="4" <?= ($contract->type_remuneracion==4)?"selected":""  ?>>Diario</option>
-                    </select>
+                    <label for="tipoRemuneracion">Tipo de remuneración:</label>
+                    <div class="form-control-contenedor">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <select class="form-control form-control-padding" id="tipoRemuneracion" name="tipoRemuneracion">
+                            <option value="1" <?= ($contract->type_remuneracion==1)?"selected":""  ?>>Mensual</option>
+                            <option value="2" <?= ($contract->type_remuneracion==2)?"selected":""  ?>>Quincenal</option>
+                            <option value="3" <?= ($contract->type_remuneracion==3)?"selected":""  ?>>Semanal</option>
+                            <option value="4" <?= ($contract->type_remuneracion==4)?"selected":""  ?>>Diario</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <input type="text" value="<?= $contract->remuneracion ?>" class="form-control form-control-padding" id="montoRemuneracion" name="montoRemuneracion" placeholder="Monto en soles">
+                    <label for="montoRemuneracion">Monto de remuneración:</label>
+                    <div class="form-control-contenedor">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <input type="text" value="<?= $contract->remuneracion ?>" class="form-control form-control-padding" id="montoRemuneracion" name="montoRemuneracion" placeholder="Monto en soles">
+                    </div>
                 </div>
                 </form>
 

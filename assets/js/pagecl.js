@@ -38,6 +38,28 @@ $(document).ready(function () {
 		$("#icommentcontract").click();
 		$("#commentcontract").unbind("focus");
 	});
+
+	$("#detalleworkcontract").focus(function(e){
+		e.preventDefault();
+		$("#idetalleworkcontract").click();
+		$("#detalleworkcontract").unbind("focus");
+	});
+	$("#explicaworkcontract").focus(function(e){
+		e.preventDefault();
+		$("#iexplicaworkcontract").click();
+		$("#explicaworkcontract").unbind("focus");
+	});
+	$("#tipoRemuneracion").focus(function(e){
+		e.preventDefault();
+		$("#itipoRemuneracion").click();
+		$("#tipoRemuneracion").unbind("focus");
+	});
+	$("#montoRemuneracion").focus(function(e){
+		e.preventDefault();
+		$("#imontoRemuneracion").click();
+		$("#montoRemuneracion").unbind("focus");
+	});
+	
 	
 
 	$( "#searchWork" ).keyup(function( event ) {
@@ -127,33 +149,6 @@ $(document).ready(function () {
 			}
 		},'json');
 	});
-	/*$("#form-new-clauses").submit(function(e) {
-	    e.preventDefault();
-	    $.post( window.base_url+"home/newClauses", $(this).serialize() ,function( data ) {
-			if(data.status){
-				var id = data.id;
-				var name = data.title;
-				var desc = data.description;
-
-                var txt = '<div class="contCheckbox">'+
-                        	'<div class="checkboxLabel">'+
-                            '<div class="checkbox">'+
-                            '<label><input type="checkbox" class="checkboxClass" checked name="check_list_clauses[]" value="'+id+'">'+name+'</label>'+
-                            '</div>'+
-                        	'</div>'+
-                        	'<div class="checkboxBtn">'+
-                            '<button class="btn_view_clause" onClick="viewClauses('+id+')">Ver</button>'+
-                        	'</div>'+
-                    		'</div>';
-
-				$("#contenedor-clausulas").append(txt);
-				$("#modalNewClauses").modal("hide");
-				$('#form-new-clauses').trigger("reset");
-			}else{
-				alert(data.msg);
-			}
-		},'json');
-	});*/
 
 	$("#form-new-work").validate({
 	    rules: {
@@ -371,23 +366,6 @@ function selectWork(id,event){
 	},'json');
 }
 
-/*function addWork(){
-	$.post( window.base_url+"home/add_work", {name: $("#name_new_work").val()} ,function( data ) {
-	  	if(data.status){
-	  		$("#cont-data-trabajo span").html(data.name);
-			$("#cont-data-trabajo #id_work").val(data.id);
-			$("#cont-data-trabajo").show();
-			$("#work-error").hide();
-    		$("#searchWork").removeClass("error");
-			$("#searchWork").val("");
-			$("#modalNewWork").modal("hide");
-	  	}else{
-	  		alert(data.msg);
-	  	}
-	  	
-	},'json');
-}*/
-
 function searchEmployee(dni){
 	$.post( window.base_url+"home/dataDni", {dni: dni} ,function( data ) {
 	  	if(data.status){
@@ -503,7 +481,6 @@ function addContract(){
 		$.post( window.base_url+"contrato_laboral/newContract", {
 			work : $("#id_work").val(),
 			employee : $("#id_employee").val(),
-			//title : $("#title_contract").val(),
 			plazo : $("#tipoplazo").val(),
 			type : $("#type_contract").val(),
 			comment : $("#commentcontract").val(),
@@ -520,10 +497,12 @@ function addContract(){
 		  	if(data.status){
 		  		location.href=window.base_url+"home";
 		  	}else{
-		  		alert(data.msg);
+		  		mensajeError(data.msg);
 		  	}
 		  	
 		},'json');
+  	}else{
+  		mensajeError("Complete todos los campos requeridos para la generación del contrato.");
   	}
 
     setTimeout(function() {

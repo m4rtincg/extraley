@@ -1,5 +1,5 @@
 <div id="contentForo">
-	<h2>Foro Contrato 001-1231-31223-31231</h2>
+	<h2>Foro Contrato <?= $contrato->nameContract ?></h2>
 	<div id="contForo">
 		<div id="contDiscucion">
 			<div id="contenedor-discucion">
@@ -30,7 +30,7 @@
 		</div>
 		<div id="continputs">
 			<div id="contTexto"><textarea class="form-control" id="textarea-text" placeholder="Escribe algo en el foro"></textarea></div>
-			<div id="contdownload"><div><i id="uploadFile" data-id="<?= $id ?>" class="fa fa-upload" aria-hidden="true"></i></div></div>
+			<!--<div id="contdownload"><div><i id="uploadFile" data-id="<?= $id ?>" class="fa fa-upload" aria-hidden="true"></i></div></div>-->
 			<div id="contBtn"><button id="button-send" class="btn btn-success">Enviar</button></div>
 		</div>
 	</div>

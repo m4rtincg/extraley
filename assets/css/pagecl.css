@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+#cont-form-registrar-cl label{
+    font-family: robotobold;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
 textarea.form-control{
     resize: none;
     height: 85px;
@@ -89,7 +94,7 @@ textarea.form-control{
     color: #fff;
     border-radius: 0px 0px 6px 6px;
 }
-#form-contract-detail .form-group{
+#form-work-contract .form-group,#form-contract-detail .form-group{
     width: calc(100% - 30px);
     display: inline-block;
 }
@@ -133,9 +138,10 @@ textarea.form-control{
     border-right: 2px solid #f2f2f2;
 }
 .form-group-title{
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-size: 19px;
+    margin-top: 0px;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-family: robotobold;
 }
 #cont-new-contract-laboral h2{
     text-align: center;
@@ -182,11 +188,12 @@ textarea.form-control{
     padding: 7px 17px;
 }
 #btn_new_contract{
-    background: #9ac53c;
+    background: #89b52b;
     color: #fff;
-    border: 2px solid #fff;
+    border: 2px solid #89b52b;
     padding: 6px 20px;
-    border-radius: 6px;
+    border-radius: 1px;
+    font-family: robotobold;
 }
 
 
@@ -264,7 +271,7 @@ textarea.form-control{
     }
     #cont-new-contract-laboral h2 {
         text-align: center;
-        font-size: 23px;
+        font-size: 22px;
         font-family: robotobold;
         margin-top: 19px;
     }
@@ -279,8 +286,10 @@ textarea.form-control{
         text-align: right;
     }
     #btn_new_contract {
-        padding: 10px 35px;
-        font-size: 17px;
+        padding: 8px 25px;
+        font-size: 15px;
+        margin-left: -15px;
+        margin-top: -10px;
     }
 }
 

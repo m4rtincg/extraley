@@ -120,10 +120,88 @@ class Empleados extends CI_Controller {
 			if($rows){
 			echo json_encode(array("status"=>true,"datos"=>$rows));
 			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se encontro ese empleado"));
+			}
+		}else{
+        	header('Location: '.base_url());
+     	}
+    }
+
+    //Baja
+    public function selectBaja()
+	{
+		if($this->session->userdata('session')){
+			$id = trim($_POST['id']);
+
+			$this->load->model("employee_model");
+			$rows = $this->employee_model->selectBajaById($id);
+			if($rows){
+			echo json_encode(array("status"=>true,"datos"=>$rows));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se encontro esa baja."));
+			}
+		}else{
+        	header('Location: '.base_url());
+     	}
+    }
+    public function cancelarBaja()
+	{
+		if($this->session->userdata('session')){
+			$id = trim($_POST['id']);
+
+			$this->load->model("employee_model");
+			$rows = $this->employee_model->deletebaja($id);
+			if($rows){
+			echo json_encode(array("status"=>true,"datos"=>$rows));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se pudo cancelar."));
+			}
+		}else{
+        	header('Location: '.base_url());
+     	}
+    }
+    public function updateBaja()
+	{
+		if($this->session->userdata('session')){
+			$id = trim($_POST['id']);
+			$banco = trim($_POST['banco']);
+			$fecha_culminacion = trim($_POST['fecha_culminacion']);
+			$cuenta = trim($_POST['cuenta']);
+			$lugar1 = trim($_POST['lugar1']);
+			$fecha1 = trim($_POST['fecha1']);
+			$fecha_inicio = trim($_POST['fecha_inicio']);
+			$fecha_fin = trim($_POST['fecha_fin']);
+			$lugar2 = trim($_POST['lugar2']);
+			$fecha2 = trim($_POST['fecha2']);
+
+			$this->load->model("employee_model");
+			$rows = $this->employee_model->updatebaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$fecha_fin,$lugar2,$fecha2);
+			if($rows){
+			echo json_encode(array("status"=>true,"datos"=>$rows));
+			}else{
 				echo json_encode(array("status"=>false,"msg"=>"No se encontro ese usuario"));
 			}
 		}else{
         	header('Location: '.base_url());
      	}
-  }
+    }
+    public function addBaja()
+	{
+		if($this->session->userdata('session')){
+			$id = trim($_POST['id']);
+
+			$this->load->model("employee_model");
+			$rows = $this->employee_model->insertbaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$fecha_fin,$lugar2,$fecha2);
+			if($rows){
+			echo json_encode(array("status"=>true,"datos"=>$rows));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se encontro ese usuario"));
+			}
+		}else{
+        	header('Location: '.base_url());
+     	}
+    }
+
+
+
 }
