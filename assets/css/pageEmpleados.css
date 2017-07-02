@@ -1,16 +1,65 @@
 @charset "utf-8";
 
-#modalEmployeeView .modal-body,#modalEmployeeEdit .modal-body,#modalEmployeeAdd .modal-body{
+#modalEmployeeView .modal-body,#modalEmployeeEdit .modal-body,#modalEmployeeAdd .modal-body,#modalBajaAdd .modal-body,#modalBajaEdit .modal-body{
     padding: 15px 15px 15px 15px;
 }
-#modalEmployeeView .form-group,#modalEmployeeEdit .form-group ,#modalEmployeeAdd .form-group{
+#modalEmployeeView .form-group,#modalEmployeeEdit .form-group ,#modalEmployeeAdd .form-group,#modalBajaAdd .form-group,#modalBajaEdit .form-group{
     margin-bottom: 6px;
     font-size: 12.5px;
 }
 #modalEmployeeEdit .form-group{
     margin-bottom: 9px;
 }
-
+.modal label {
+    font-family: robotobold;
+    font-size: 13px;
+    margin-bottom: 0px;
+    margin-top: 7px;
+}
+#colm-baja-cont{
+    margin: 0 auto;
+    float: none;
+    width: 142px;
+}
+.btn_baja{
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    border: none;
+    margin-top: 5px;
+    padding: 2px; 3px;
+}
+.cancelar_baja{
+    background: #e88686;
+}
+.dar_baja{
+    width: 80px;
+    background: #efb44a;
+    padding: 4px;
+}
+.editar_baja{
+    background: #7fdf86;
+}
+.colm-baja{
+    width: 65px;
+    float: left;
+}
+.colm-baja:first-child{
+    width: 12px;
+}
+.modal label.error{
+    margin-top: 0px;
+}
+.modal .modal-subtitle{
+    margin-bottom: 0px;
+}
+.datepicker {
+    z-index: 10000;
+}
+.pdf-cl{
+        color: #d12727;
+    font-size: 24px;
+}
 
 @media (min-width: 420px) {
     #modalEmployeeView .modal-dialog {
@@ -22,6 +71,10 @@
         margin: 15px auto;
     }
     #modalEmployeeAdd .modal-dialog {
+        width: 370px;
+        margin: 15px auto;
+    }
+    #modalBajaAdd .modal-dialog,#modalBajaEdit .modal-dialog{
         width: 370px;
         margin: 15px auto;
     }
@@ -37,6 +90,10 @@
         margin: 22px auto;
     }
     #modalEmployeeAdd .modal-dialog {
+        width: 400px;
+        margin: 22px auto;
+    }
+    #modalBajaAdd .modal-dialog,#modalBajaEdit .modal-dialog{
         width: 400px;
         margin: 22px auto;
     }
@@ -59,12 +116,21 @@
         width: 475px;
         margin: 30px auto;
     }
-    #modalEmployeeView .form-group, #modalEmployeeEdit .form-group, #modalEmployeeAdd .form-group {
+    #modalEmployeeView .form-group, #modalEmployeeEdit .form-group, #modalEmployeeAdd .form-group, #modalBajaAdd .form-group,#modalBajaEdit .form-group {
         margin-bottom: 5px;
         font-size: 13px;
     }
     #modalEmployeeView .modal-body, #modalEmployeeEdit .modal-body, #modalEmployeeAdd .modal-body {
-        padding: 25px 33px 15px 33px;
+        padding: 12px 33px 15px 33px;
+    }
+    #modalBajaAdd .modal-body,#modalBajaEdit .modal-body{
+        padding: 0px 33px 15px 33px;
+    }
+
+    #modalBajaAdd .modal-dialog,#modalBajaEdit .modal-dialog{
+        width: 475px;
+        margin: 30px auto;
+        margin-bottom: 200px;
     }
     
 }

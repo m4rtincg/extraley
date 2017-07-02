@@ -39,7 +39,9 @@
                     <li><a href="<?= base_url() ?>actas"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Actas de acuestas y/o directorio</a></li>
                     <li><a href="<?= base_url() ?>gestion"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Gestión</a></li>
                     <li class="divider-nav delete-web"><a href="<?= base_url() ?>actualizarDatos"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Actualizar Datos</a></li>
+                    <?php if($this->session->userdata('rol')!=1) { ?>
                     <li class="divider-nav delete-web"><a href="<?= base_url() ?>actualizarEmpresa"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Actualizar Empresa</a></li>
+                    <?php } ?>
                     <li class="delete-web"><a href="<?= base_url() ?>login/logout"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>Cerrar Sesión</a></li>
                 </ul>
                  
@@ -70,7 +72,9 @@
                                     <hr>
                                     <ul id="nav-rigth">
                                         <li onClick="redireccion_actualizar();">Actualizar datos</li>
+                                        <?php if($this->session->userdata('rol')!=1) { ?>
                                         <li onClick="redireccion_actualizar_empresa();">Actualizar empresa</li>
+                                        <?php } ?>
                                         <li onClick="location.href ='<?= base_url() ?>login/logout'">Cerrar Sesión</li>
                                     </ul>
                                 </div>

@@ -56,7 +56,7 @@
                                 <input type="text" class="form-control form-control-padding" id="lugarfirma" name="lugarfirma" placeholder="Lugar de firma de contrato">
                             </div>
                         </div>
-                        <div class="help-form"><i id="lugarfirma" onClick="asesorar('Lugar de firma de contrato','Escribir el lugar donde se va a relizar la firma del contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                        <div class="help-form"><i id="ilugarfirma" onClick="asesorar('Lugar de firma de contrato','Escribir el lugar donde se va a relizar la firma del contrato')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
                     <div id="cont-fecha-inicio">
@@ -204,33 +204,7 @@
 
                 <div id="contenedor-clausulas">
                     No existen cláusulas
-                <!--<?php foreach ($clauses as $key) { 
-                    if($key->required==0){
-                        $class = "disabled" ;
-                        $class1 = "";
-                        $class3 = "contCheckboxRequired";
-                    }else{
-                        $class = "" ;
-                        $class1 = "checkboxClass";
-                        $class3 = "" ;
-                    }
-                ?>  
-                    <div class="contCheckbox <?= $class3 ?>">
-                        <div class="checkboxLabel">
-                            <div class="checkbox <?= $class ?>">
-                                <label><input type="checkbox" class="<?= $class1 ?>" checked name="check_list_clauses[]" value="<?= $key->id ?>" <?= $class ?>><?= $key->title ?> </label>
-                            </div>
-                        </div>
-                        <div class="checkboxBtn">
-                            <button class="btn_view_clause" onClick="viewClauses(<?= $key->id ?>)">Ver</button>
-                        </div>
-                    </div>
-                <?php } ?>-->
                 </div>
-
-                <!--<div id="cont-btn-new-clauses">
-                    <button data-toggle="modal" data-target="#modalNewClauses">Agregar nueva clausula</button>
-                </div>-->
 
             </div>
 

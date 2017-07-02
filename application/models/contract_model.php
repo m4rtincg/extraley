@@ -75,6 +75,93 @@
             $query = $this->db->get();
             return $query->result();
         }
+
+        public function updateContract($type,$plazo,$dateInicio,$dateFin,$date,
+                                                        $work,$user,$employee,$comment,$clauses,
+                                                        $tipoRemuneracion,$montoRemuneracion,$detalleworkcontract,$explicaworkcontract,$lugarfirma,$id,$empresa){
+            $this->db->trans_start();
+
+                $data = array(
+                   'contract_type_id' => $type,
+                    'plazo' => $plazo,
+                    'fecha_inicio' => $dateInicio,
+                    'fecha_fin' => $dateFin,
+                    'fecha' => $date,
+                    'work_id' => $work,
+                    'user_id_edit' => $user,
+                    'employee_id' => $employee,
+                    'comment_contract' => $comment,
+                    'type_remuneracion' => $tipoRemuneracion,
+                    'remuneracion' => $montoRemuneracion,
+                    'detalleworkcontract' => $detalleworkcontract,
+                    'explicaworkcontract' => $explicaworkcontract,
+                    'lugarcontract' => $lugarfirma
+                );
+                $this->db->where('contract_id', $id);
+                $this->db->update('contract', $data);
+
+
+                $this->db->where('contract_id', $id);
+                $this->db->delete('contract_clauses');
+
+
+                $this->db->select('clauses.tittle_clauses as title, clauses.description_clauses as des, clauses.id_clauses as id, clauses.required as required');
+                $this->db->from('clauses');
+                $this->db->where('clauses.status', 1);
+                $this->db->where('clauses.id_contract_type', $type);
+                $this->db->where('clauses.id_business', $empresa);
+                $this->db->order_by("clauses.sort", "desc");
+                $this->db->order_by("clauses.id_clauses","asc");
+                $query = $this->db->get();
+                $clausulas = $query->result();
+
+                $arraTitle = array();
+                $arraText = array();
+                $arraOrden = array();
+                $contador = 1;
+                foreach ($clausulas as $key) {
+                    $arraOrden[$key->id]= $contador;
+                    $arraTitle[$key->id]= $key->title;
+                    $arraText[$key->id]= $key->des;
+                    $contador = $contador + 1;
+                }
+
+
+                $requeridos = $this->getClausesRequerid($type,$empresa);
+                foreach ($requeridos as $key) {
+                    $data1 = array(
+                        'contract_id' => $id,
+                        'clauses_id' => $key->id,
+                        'orden' => $arraOrden[$key->id],
+                        'clauses_title' => $arraTitle[$key->id],
+                        'clauses_text' => $arraText[$key->id]
+                    );
+                    $this->db->insert('contract_clauses', $data1);
+                }
+                foreach($clauses as $clause){
+                    if($clause != ""){
+                        $data2 = array(
+                            'contract_id' => $id,
+                            'clauses_id' => $clause,
+                            'orden' => $arraOrden[$clause],
+                            'clauses_title' => $arraTitle[$clause],
+                            'clauses_text' => $arraText[$clause]
+                        );
+                        $this->db->insert('contract_clauses', $data2);
+                    }
+                }
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                return array("status"=>false,"id"=>0);
+            }else{
+                return array("status"=>true,"id"=>$id);
+            }
+
+
+        }
+
         
         public function insertContract($type,$plazo,$dateInicio,$dateFin,$date,
                                                         $work,$user,$employee,$comment,$clauses,
@@ -89,6 +176,7 @@
                     'fecha' => $date,
 	                'work_id' => $work,
 	                'user_id_create' => $user,
+                    'user_id_edit' => $user,
 	                'user_id_approve' => 0,
 	                'employee_id' => $employee,
 	                'status_contract' => 1,
@@ -211,6 +299,35 @@
             $this->db->where('id_business', $empresa);
             $query = $this->db->get();
             return $query->row();
+        }
+
+
+
+
+
+        public function getCorreoGerente($empresa){
+            $this->db->select('email_user as email');
+            $this->db->from('user');
+            $this->db->where('tipo', 2);
+            $this->db->where('id_business', $empresa);
+            $query = $this->db->get();
+            return $query->row()->email;
+        }
+        public function getCorreoAdmin(){
+            $this->db->select('email_user as email');
+            $this->db->from('user');
+            $this->db->where('tipo', 3);
+            $this->db->where('id_business',1);
+            $query = $this->db->get();
+            return $query->row()->email;
+        }
+        public function getCorreoUser($empresa){
+            $this->db->select('email_user as email');
+            $this->db->from('user');
+            $this->db->join('permisos_user', 'permisos_user.id_user = user.id_user');
+            $this->db->where('permisos_user.id_business',$empresa);
+            $query = $this->db->get();
+            return $query->result();
         }
 
     }

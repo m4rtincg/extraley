@@ -443,7 +443,8 @@ function addContract(){
 		});
 		data = (data=="")? "" : data.substr(0,data.length-1);
 
-		$.post( window.base_url+"contrato_laboral/newContract", {
+		$.post( window.base_url+"contrato_laboral/editContract", {
+			id : $("#idContract").val(),
 			work : $("#id_work").val(),
 			employee : $("#id_employee").val(),
 			//title : $("#title_contract").val(),

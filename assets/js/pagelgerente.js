@@ -114,22 +114,26 @@ function actualizarData(){
 			});
 
 
-			$('#filter-tipo').on( 'change', function () {
+			$('#filter-contrato').on( 'keyup', function () {
 			    table.columns(0).search( this.value ).draw();
 			});
-			$('#filter-user').on( 'keyup', function () {
+			$('#filter-tipo').on( 'change', function () {
 			    table.columns(1).search( this.value ).draw();
 			});
-			$('#filter-employee').on( 'keyup', function () {
+			$('#filter-user').on( 'keyup', function () {
 			    table.columns(2).search( this.value ).draw();
 			});
-			$('#filter-work').on( 'keyup', function () {
-			    table.columns(4).search( this.value ).draw();
+			$('#filter-employee').on( 'keyup', function () {
+			    table.columns(3).search( this.value ).draw();
 			});
-			$('#filter-status').on( 'change', function () {
+			$('#filter-work').on( 'keyup', function () {
 			    table.columns(5).search( this.value ).draw();
 			});
+			$('#filter-status').on( 'change', function () {
+			    table.columns(6).search( this.value ).draw();
+			});
 
+			$('#filter-contrato').trigger("keyup");
 			$('#filter-tipo').trigger("keyup");
 			$('#filter-user').trigger("keyup");
 			$('#filter-employee').trigger("keyup");

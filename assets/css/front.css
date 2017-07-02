@@ -208,7 +208,7 @@ label.error i{
 }
 #contenedor{
     position: relative;
-    background: #c9ffd0;
+    /*background: #c9ffd0;*/
     padding: 10px 0px;
     margin-top: 52px;
     background-size: 100% auto;
@@ -286,7 +286,7 @@ label.error i{
     color: #5b5b5b;
 }
 #back-contenedor{
-    background: #c9ffd0;
+    /*background: #c9ffd0;*/
 }
 
 @media (min-width: 480px) {

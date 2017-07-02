@@ -153,5 +153,15 @@
             return $query->result();
         }
 
+
+        public function selectcalusesByContractSaved($id){
+            $this->db->select('clauses_id as id');
+            $this->db->from('contract_clauses');
+            $this->db->where('contract_id', $id);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+
     }
 ?>

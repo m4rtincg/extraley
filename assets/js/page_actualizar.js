@@ -42,6 +42,9 @@ $(document).ready(function () {
 	    	cargando();
 	    	$.post( window.base_url+"actualizarDatos/update", $("#form-change").serialize() ,function( data ) {
 				if(data.status){
+					var n = $("#apellidosuser").val();
+					$(".session-name").html(n);
+					$("#session-nombre-datos").html(n);
 					mensajeSucess("Se modifico correctamente");
 					quitarDescargando();
 				}else{

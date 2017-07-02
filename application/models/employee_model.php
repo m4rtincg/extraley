@@ -46,7 +46,7 @@
 
          public function selectByAll($idbusiness)
         {
-            $this->db->select('id_employee as id, name_employee as name, dni_employee as dni, lastname_employee as lastname, email_employee as email, phone_employee as phone, address_employee as address');
+            $this->db->select('(select count(*) from empleado_baja where id_empleado=id_employee) as baja,status, id_employee as id, name_employee as name, dni_employee as dni, lastname_employee as lastname, email_employee as email, phone_employee as phone, address_employee as address');
             $this->db->from('employee');
             $this->db->where('id_business', $idbusiness);
             //$this->db->where('status', 1);
@@ -100,13 +100,13 @@
 
          //baja
          public function selectBajaById($id){
-            $this->db->select('*');
+            $this->db->select("id_empleado, nombre_banco, DATE_FORMAT(fecha_culminacion, '%d/%m/%Y' ) AS fecha_culminacion, n_cuenta, lugar_entrega_cese, DATE_FORMAT(fecha_entrega_cese, '%d/%m/%Y' ) AS fecha_entrega_cese , DATE_FORMAT(fecha_inicio, '%d/%m/%Y' ) AS 'fecha_inicio' , lugar_entrega_constancia, DATE_FORMAT(fecha_entrega_constancia, '%d/%m/%Y' ) AS fecha_entrega_constancia, trabajo",false);
             $this->db->from('empleado_baja');
             $this->db->where('id_empleado' , $id);
             $query = $this->db->get();
             return $query->row();
          }
-         public function updatebaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$fecha_fin,$lugar2,$fecha2)
+         public function updatebaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$bajapuestoAdd,$lugar2,$fecha2)
         {
             $data = array(
                 'nombre_banco' => $banco,
@@ -115,7 +115,7 @@
                 'lugar_entrega_cese' => $lugar1,
                 'fecha_entrega_cese' => $fecha1,
                 'fecha_inicio' => $fecha_inicio,
-                'fecha_fin' => $fecha_fin,
+                'trabajo' => $bajapuestoAdd,
                 'lugar_entrega_constancia' => $lugar2,
                 'fecha_entrega_constancia' => $fecha2
             );
@@ -131,7 +131,7 @@
             $this->db->delete('empleado_baja');
             return $this->db->affected_rows();
         }
-        public function insertbaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$fecha_fin,$lugar2,$fecha2)
+        public function insertbaja($id,$banco,$fecha_culminacion,$cuenta,$lugar1,$fecha1,$fecha_inicio,$bajapuestoEdit,$lugar2,$fecha2)
         {
             $data = array(
                 'id_empleado' => $id,
@@ -141,13 +141,22 @@
                 'lugar_entrega_cese' => $lugar1,
                 'fecha_entrega_cese' => $fecha1,
                 'fecha_inicio' => $fecha_inicio,
-                'fecha_fin' => $fecha_fin,
+                'trabajo' => $bajapuestoEdit,
                 'lugar_entrega_constancia' => $lugar2,
                 'fecha_entrega_constancia' => $fecha2
             );
 
             $this->db->insert('empleado_baja', $data);
             return $this->db->insert_id();
+        }
+        public function selectBajaByIdAll($id){
+            $this->db->select('*');
+            $this->db->from('empleado_baja');
+            $this->db->join('employee', 'employee.id_employee = empleado_baja.id_empleado');
+            $this->db->join('business', 'business.id_business = employee.id_business');
+            $this->db->where('id_empleado' , $id);
+            $query = $this->db->get();
+            return $query->row();
         }
 
         

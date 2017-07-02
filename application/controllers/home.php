@@ -269,9 +269,9 @@ class Home extends CI_Controller {
 			$pdf->setData($datos->logo, $datos->address."\nTeléfono: ".$datos->phone);
 	        $pdf->SetCreator(PDF_CREATOR);
 	        $pdf->SetAuthor('Leandro Mendoza Martin Vladimir');
-	        $pdf->SetTitle('Reporte');
-	        $pdf->SetSubject('PDF reporte');
-	        $pdf->SetKeywords('pdf, reporte');
+	        $pdf->SetTitle('Contrato');
+	        $pdf->SetSubject('PDF contrato');
+	        $pdf->SetKeywords('pdf, contrato');
 	        $pdf->SetHeaderData(PDF_HEADER_LOGO,PDF_HEADER_LOGO_WIDTH,PDF_HEADER_TITLE,PDF_HEADER_STRING);
 	        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN,'',PDF_FONT_SIZE_MAIN));
 	        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA,'',PDF_FONT_SIZE_DATA));
@@ -392,6 +392,7 @@ class Home extends CI_Controller {
 				<table id="listContracts" class="table table-striped table-hover" cellspacing="0">
 					<thead>
 						<tr>
+							<th>Contrato</th>
 							<th>Tipo de contrato</th>
 							<th>Nombre del trabajador</th>
 							<th>Remuneración</th>
@@ -413,6 +414,7 @@ class Home extends CI_Controller {
 							$clase = (!in_array($this->session->userdata('user'), $array) && $key->vista!="")? "alertq" :"activeq";
 							?>
 						<tr>
+							<td><?= $key->nameContract ?></td>
 							<td><?= $key->name_contract_type ?></td>
 							<td><?= $key->lastname_employee ?></td>
 							<td class="text-center">S/. <?= $key->remuneracion ?> <?= (isset($tiporemuneracion[$key->type_remuneracion]))? $tiporemuneracion[$key->type_remuneracion] :"" ?></td>
@@ -447,6 +449,7 @@ class Home extends CI_Controller {
 				<table id="listContracts" class="table table-striped table-hover" cellspacing="0">
 					<thead>
 						<tr>
+							<th>Contrato</th>
 							<th>Tipo de contrato</th>
 							<th>Usuario</th>
 							<th>Nombre del trabajador</th>
@@ -469,6 +472,7 @@ class Home extends CI_Controller {
 							$clase = (!in_array($this->session->userdata('user'), $array) && $key->vista!="")? "alertq" :"activeq";
 							?>
 						<tr>
+							<td><?= $key->nameContract ?></td>
 							<td><?= $key->name_contract_type ?></td>
 							<td><?= $key->apellidos_user ?></td>
 							<td><?= $key->lastname_employee ?></td>
@@ -525,6 +529,7 @@ class Home extends CI_Controller {
 				<table id="listContracts" class="table table-striped table-hover" cellspacing="0">
 					<thead>
 						<tr>
+							<td>Contrato</td>
 							<th>Empresa</th>
 							<th>Tipo de contrato</th>
 							<th>Usuario</th>
@@ -548,6 +553,7 @@ class Home extends CI_Controller {
 							$clase = (!in_array($this->session->userdata('user'), $array) && $key->vista!="")? "alertq" :"activeq";
 							?>
 						<tr>
+							<td><?= $key->nameContract ?></td>
 							<td><?= $key->name_razonSocial ?></td>
 							<td><?= $key->name_contract_type ?></td>
 							<td><?= $key->apellidos_user ?></td>
@@ -603,6 +609,7 @@ class Home extends CI_Controller {
         	header('Location: '.base_url());
      	}
 	}
+
 }
 
 /* End of file welcome.php */

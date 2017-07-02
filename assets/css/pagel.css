@@ -14,7 +14,7 @@ table.dataTable th,table.dataTable td {
 #cont-listado-contracts{
     float: none;
     margin: 0 auto;
-    background: #c9ffd0;
+    /*background: #c9ffd0;*/
 }
 #cont-listado-contracts{
 	width: 100%;

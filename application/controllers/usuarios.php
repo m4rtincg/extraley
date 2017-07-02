@@ -28,6 +28,7 @@ class Usuarios extends CI_Controller {
 			$dataHeader['modulo'] = 'pageprivilegios';
 			$dataFooter['modulo'] = 'pageprivilegios';
 			$data['id'] = $id;
+			$data["user"] = $this->business_model->getUserById($id);
 
 			$this->load->view('template/header',$dataHeader);
 			$this->load->view('privilegios',$data);

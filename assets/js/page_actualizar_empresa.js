@@ -84,6 +84,7 @@ $(document).ready(function () {
 			    success: function(data){
 			    	var data = jQuery.parseJSON(data);
 			        if (data.status) {
+			        	$("#imgHeaderLogo2").attr("src",window.base_url+'assets/img/business/'+data.logo);
 			        	quitarDescargando();
 						mensajeSucess("Se modifico de forma exitosa");
 			        }else{

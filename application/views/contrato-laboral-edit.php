@@ -161,41 +161,47 @@
 
             <div class="form-group-cont form-format">
                 <div class="form-group-title">Cláusulas</div>
-
-                <div id="contenedor-clausulas">
-                    No existen clusulas
-                <!--<?php foreach ($clauses as $key) { 
-                    if($key->required==0){
-                        $class = "disabled" ;
-                        $class1 = "";
-                        $class3 = "contCheckboxRequired";
-                    }else{
-                        $class = "" ;
-                        $class1 = "checkboxClass";
-                        $class3 = "" ;
+                <?php
+                    $arrayme = array();
+                    foreach ($contractme as $key) {
+                        $arrayme[$key->id] = $key->id;
                     }
-                ?>  
-                    <div class="contCheckbox <?= $class3 ?>">
-                        <div class="checkboxLabel">
-                            <div class="checkbox <?= $class ?>">
-                                <label><input type="checkbox" class="<?= $class1 ?>" checked name="check_list_clauses[]" value="<?= $key->id ?>" <?= $class ?>><?= $key->title ?> </label>
+
+                ?>
+                <div id="contenedor-clausulas">
+                    <?php foreach ($clausulas as $key) { 
+
+                        if($key->required==0){
+                            $class2 = "disabled" ;
+                            $class1 = "";
+                            $class3 = "contCheckboxRequired";
+                            $class4 = "checked";
+                        }else{
+                            $class2 = "" ;
+                            $class1 = "checkboxClass";
+                            $class3 = "" ;
+                            $class4 = (isset($arrayme[$key->id])) ? "checked" : "";
+                        }
+                        ?>
+                        <div class="contCheckbox <?= $class3 ?>">
+                            <div class="checkboxLabel">
+                                <div class="checkbox <?= $class2 ?>">
+                                    <label><input type="checkbox" class="<?= $class1 ?>" <?= $class4 ?> name="check_list_clauses[]" value="<?= $key->id ?>" <?= $class2 ?>><?= $key->title ?></label>
+                                </div>
+                            </div>
+                            <div class="checkboxBtn">
+                                <button class="btn_view_clause" onClick="viewClauses(<?= $key->id ?>)">Ver</button>
                             </div>
                         </div>
-                        <div class="checkboxBtn">
-                            <button class="btn_view_clause" onClick="viewClauses(<?= $key->id ?>)">Ver</button>
-                        </div>
-                    </div>
-                <?php } ?>-->
-                </div>
 
-                <!--<div id="cont-btn-new-clauses">
-                    <button data-toggle="modal" data-target="#modalNewClauses">Agregar nueva clausula</button>
-                </div>-->
+                    <?php } ?>
+                </div>
 
             </div>
 
             <div class="form-group-cont">
-                <button onClick="addContract();" id="btn_new_contract">Registrar contrato</button>
+                <input type="hidden" id="idContract" value="<?= $id ?>">
+                <button onClick="addContract();" id="btn_new_contract">Actualizar contrato</button>
             </div>
         </div>
     </div>

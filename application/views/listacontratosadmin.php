@@ -4,6 +4,14 @@
 		<div id="title-filtros">Filtros</div>
 		<div class="row-fiter">
 			<div class="filterLabel">
+				Contrato : 
+			</div>
+			<div class="filterInput">
+				<input type="text" class="form-control" id="filter-contrato">
+			</div>
+		</div>
+		<div class="row-fiter">
+			<div class="filterLabel">
 				Nombre de empresa : 
 			</div>
 			<div class="filterInput">

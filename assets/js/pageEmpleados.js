@@ -1,7 +1,121 @@
 $(document).ready(function () {
 	actualizarTabla();
+	
+	//$( document ).on('DOMMouseScroll mousewheel scroll','#modalBajaAdd', function(){       
+    $( "#modalBajaAdd" ).scroll(function() {
+        //window.clearTimeout( t );
+        //t = window.setTimeout( function(){            
+            $('#bajafechaculminacionAdd').datepicker('place');
+            $('#bajafecha1Add').datepicker('place');
+            $('#bajafechainicioAdd').datepicker('place');
+            $('#bajafecha2Add').datepicker('place');
+        //}, 100 );        
+    });
+    $( "#modalBajaEdit" ).scroll(function() {
+        //window.clearTimeout( t );
+        //t = window.setTimeout( function(){            
+            $('#bajafechaculminacionEdit').datepicker('place');
+            $('#bajafecha1Edit').datepicker('place');
+            $('#bajafechainicioEdit').datepicker('place');
+            $('#bajafecha2Edit').datepicker('place');
+        //}, 100 );        
+    });
 
-	   $("#form-add-employee").validate({
+	$('#bajafechaculminacionAdd').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate:new Date(),
+        onRender: function(date) {
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+    });
+    $('#bajafecha1Add').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate:new Date(),
+        onRender: function(date) {
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+    });
+    $('#bajafechainicioAdd').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate:new Date(),
+        onRender: function(date) {
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+    });
+    $('#bajafecha2Add').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate:new Date(),
+        onRender: function(date) {
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+    });
+
+
+
+    $('#bajafechaculminacionEdit').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate:new Date(),
+        onRender: function(date) {
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+    });
+    $('#bajafecha1Edit').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate:new Date(),
+        onRender: function(date) {
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+    });
+    $('#bajafechainicioEdit').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate:new Date(),
+        onRender: function(date) {
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+    });
+    $('#bajafecha2Edit').datepicker({
+        format: 'dd/mm/yyyy',
+        startDate:new Date(),
+        onRender: function(date) {
+            return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
+        }
+    });
+
+
+	jQuery.validator.addMethod("greaterThan", 
+		function(value, element, params) {
+
+			var res1 = value.split("/");
+			var res2 = $(params).val().split("/");
+
+			var res3 = res1[1]+"/"+res1[0]+"/"+res1[2];
+			var res4 = res2[1]+"/"+res2[0]+"/"+res2[2];
+
+	    if (!/Invalid|NaN/.test(new Date(res3))) {
+	        //return new Date(value) > new Date($(params).val());
+	        return new Date(res3) > new Date(res4);
+	    }
+
+	    //return isNaN(value) && isNaN($(params).val()) 
+		//        || (Number(value) > Number($(params).val())); 
+		return isNaN(res3) && isNaN(res4) 
+		        || (Number(res3) > Number(res4)); 
+	},'Must be greater than {0}.');
+
+
+	$.validator.addMethod(
+	    "date",
+	    function ( value, element ) {
+	        var bits = value.match( /([0-9]+)/gi ), str;
+	        if ( ! bits )
+	            return this.optional(element) || false;
+	        str = bits[ 1 ] + '/' + bits[ 0 ] + '/' + bits[ 2 ];
+	        return this.optional(element) || !/Invalid|NaN/.test(new Date( str ));
+	    },
+	    "Please enter a date in the format dd/mm/yyyy"
+	);
+
+   $("#form-add-employee").validate({
 	    rules: {
 		    
 		    nombresEmployeeAdd: {
@@ -76,6 +190,7 @@ $(document).ready(function () {
 			        	$('#form-add-employee').trigger("reset");
 						mensajeSucess("Se registro de forma exitosa");
 			        }else{
+			        	quitarDescargando();
 			        	mensajeError(data.msg);
 			        }
 			    }
@@ -83,8 +198,6 @@ $(document).ready(function () {
 	    	return false;
 	    }
 	});
-
-});
 
 	$("#form-edit-employee").validate({
 	    rules: {
@@ -137,16 +250,182 @@ $(document).ready(function () {
 	    	$.post( window.base_url+"empleados/editemployees", $("#form-edit-employee").serialize() ,function( data ) {
 				if(data.status){
 					actualizarTabla();
+					quitarDescargando();
 					$("#modalEmployeeEdit").modal("hide");
-					alert("Se edito la clausula.");
+					mensajeSucess("Se modificó correctamente.");
 				}else{
-					alert(data.msg);
+					quitarDescargando();
+			        mensajeError(data.msg);
 				}
 			},'json');
 	    	return false;
 	    }
 	});
 
+	$("#form-add-baja").validate({
+	    rules: {
+		    
+		    bajabancoAdd: {
+		        required: true,
+		        maxlength: 400
+		      },
+		    bajafechaculminacionAdd: {
+		        required: true,
+		       date:true,
+		       greaterThan: "#bajafechainicioAdd"
+		      },
+		     bajacuentaAdd: {
+		        required: true,
+		        number: true
+		      },
+		     bajalugar1Add: {
+		        required: true,
+		        maxlength: 400
+		      },
+		      bajafecha1Add: {
+		        required: true,
+		        maxlength: 400,
+		       	date:true
+		      },
+
+		      bajafechainicioAdd: {
+		      	required: true,
+		      	date:true
+		      },
+		      bajapuestoAdd: {
+		      	required: true,
+		      	maxlength: 400
+		      },
+		      bajalugar2Add: {
+		      	required: true,
+		      	maxlength: 400
+		      },
+		      bajafecha2Add: {
+		      	required: true,
+		      	date:true
+		      }
+
+	    },
+	    messages: {
+	  	  bajabancoAdd: '<span data-placement="left" data-toggle="tooltip" title="La nombre del banco no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  bajafechaculminacionAdd: '<span data-placement="left" data-toggle="tooltip" title="El formato de la fecha es incorrecto"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      bajacuentaAdd: '<span data-placement="left" data-toggle="tooltip" title="El numero de cuenta bancaria no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      bajalugar1Add: '<span data-placement="left" data-toggle="tooltip" title="El lugar de entrega de certificado no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',	    
+		  bajafecha1Add: '<span data-placement="left" data-toggle="tooltip" title="El formato de la fecha es incorrecto"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  bajafechainicioAdd: '<span data-placement="left" data-toggle="tooltip" title="El formato de la fecha es incorrecto"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  bajapuestoAdd: '<span data-placement="left" data-toggle="tooltip" title="El puesto de trabajo no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		 bajalugar2Add: '<span data-placement="left" data-toggle="tooltip" title="El lugar de entrega de certificado no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		 bajafecha2Add: '<span data-placement="left" data-toggle="tooltip" title="El formato de la fecha es incorrecto"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
+		 
+	    },
+	   	invalidHandler: function(event, validator) {
+	   		setTimeout(function() {
+	   			$('[data-toggle="tooltip"]').tooltip();
+	   			$('[data-toggle="tooltip"]').unbind("click");
+	   		}, 1000);
+	   	},
+	    submitHandler: function(form) {
+	    	cargando();
+	    	
+	    	$.post( window.base_url+"empleados/addBaja", $("#form-add-baja").serialize() ,function( data ) {
+				if(data.status){
+					$('#form-add-baja').trigger("reset");
+					actualizarTabla();
+					$("#modalBajaAdd").modal("hide");
+					mensajeSucess("Se registro de forma correcta.");
+					quitarDescargando();
+				}else{
+					mensajeError(data.msg);
+					quitarDescargando();
+				}
+			},'json');
+
+	    	return false;
+	    }
+	});
+
+	$("#form-edit-baja").validate({
+	    rules: {
+		    
+		    bajabancoEdit: {
+		        required: true,
+		        maxlength: 400
+		      },
+		    bajafechaculminacionEdit: {
+		        required: true,
+		       date:true,
+		       greaterThan: "#bajafechainicioEdit"
+		      },
+		     bajacuentaEdit: {
+		        required: true,
+		        number: true
+		      },
+		     bajalugar1Edit: {
+		        required: true,
+		        maxlength: 400
+		      },
+		      bajafecha1Edit: {
+		        required: true,
+		        maxlength: 400,
+		       	date:true
+		      },
+
+		      bajafechainicioEdit: {
+		      	required: true,
+		      	date:true
+		      },
+		      bajapuestoEdit: {
+		      	required: true,
+		        maxlength: 400,
+		      },
+		      bajalugar2Edit: {
+		      	required: true,
+		      	maxlength: 400
+		      },
+		      bajafecha2Edit: {
+		      	required: true,
+		      	date:true
+		      }
+
+	    },
+	    messages: {
+	  	  bajabancoEdit: '<span data-placement="left" data-toggle="tooltip" title="La nombre del banco no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  bajafechaculminacionEdit: '<span data-placement="left" data-toggle="tooltip" title="El formato de la fecha es incorrecto"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      bajacuentaEdit: '<span data-placement="left" data-toggle="tooltip" title="El numero de cuenta bancaria no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      bajalugar1Edit: '<span data-placement="left" data-toggle="tooltip" title="El lugar de entrega de certificado no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',	    
+		  bajafecha1Edit: '<span data-placement="left" data-toggle="tooltip" title="El formato de la fecha es incorrecto"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  bajafechainicioEdit: '<span data-placement="left" data-toggle="tooltip" title="El formato de la fecha es incorrecto"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  bajapuestoEdit: '<span data-placement="left" data-toggle="tooltip" title="El puesto de trabajo no puede estar vacio."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		 bajalugar2Edit: '<span data-placement="left" data-toggle="tooltip" title="El lugar de entrega de certificado no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		 bajafecha2Edit: '<span data-placement="left" data-toggle="tooltip" title="El formato de la fecha es incorrecto"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
+		 
+	    },
+	   	invalidHandler: function(event, validator) {
+	   		setTimeout(function() {
+	   			$('[data-toggle="tooltip"]').tooltip();
+	   			$('[data-toggle="tooltip"]').unbind("click");
+	   		}, 1000);
+	   	},
+	    submitHandler: function(form) {
+	    	cargando();
+	    	
+	    	$.post( window.base_url+"empleados/updateBaja", $("#form-edit-baja").serialize() ,function( data ) {
+				if(data.status){
+					actualizarTabla();
+					$('#form-edit-baja').trigger("reset");
+					$("#modalBajaEdit").modal("hide");
+					mensajeSucess("Se modifico de forma correcta.");
+					quitarDescargando();
+				}else{
+					mensajeError(data.msg);
+					quitarDescargando();
+				}
+			},'json');
+
+	    	return false;
+	    }
+	});
+});
 
 
 
@@ -155,16 +434,27 @@ function actualizarTabla(){
 	$.post( window.base_url+"empleados/selectAllEmployee", function( data ) {
 	  	if(data.status){
 	  		var html='<table id="listEmployee" class="table table-striped table-hover" cellspacing="0"><thead><tr>'
-					+'<th>Nombres</th><th>Apellidos</th><th>DNI</th><th class="text-center">Teléfono</th><th class="text-center">'
+					+'<th>Nombres</th><th>Apellidos</th><th>DNI</th><th class="text-center">Teléfono</th><th class="text-center">Baja</th><th class="text-center">'
 					+'Estado</th><th class="text-center">Acción</th></tr></thead><tbody>';
 	  		$.each(data.datos, function(i, item) {
-	  					var check = (item.status==1)?"checked":"";
+	  			var check = (item.status==1)?"checked":"";
+
 	  			html+= '<tr>'+
 					'<td>'+item.name+'</td>'+
 					'<td>'+item.lastname+'</td>'+
-					'<td>'+item.dni+'</td><td class="text-center">'+item.phone+'</td>'+
+					'<td>'+item.dni+'</td><td class="text-center">'+item.phone+'</td>';
+
+					if(item.baja==1){
+						html+= '<td class="text-center">'+
+						'<div id="colm-baja-cont"><div class="colm-baja"><div>CC</div><div><a title="Constancia de cese" download="Constancia de cese" href="'+window.base_url+'empleados/downloadPDFCese?id='+item.id+'"><i class="fa fa-file-pdf-o pdf-cl" aria-hidden="true"></i></a></div></div>'+
+						'<div class="colm-baja"><div>CT</div><div><a title="Constancia de trabajo" download="Constancia de trabajo" href="'+window.base_url+'empleados/downloadPDFConstancia?id='+item.id+'"><i class="fa fa-file-pdf-o pdf-cl" aria-hidden="true"></i></a></div></div>'+
+						'<div class="colm-baja"><div><button onClick="cancelarbaja('+item.id+')" class="btn_baja cancelar_baja">Cancelar</button></div>'+
+						'<div><button onClick="editarbaja('+item.id+')" class="btn_baja editar_baja">Editar</button></div></div></div></td>';
+					}else{
+						html+= '<td class="text-center"><button onClick="darbaja('+item.id+')" class="btn_baja dar_baja">Dar de baja</button></td>';
+					}
 					//'<td></td>'+
-					'<td class="text-center">'+
+				html+= '<td class="text-center">'+
 					'<div class="cont-onoff">'+
 					'<div class="onoffswitch">'+
 				    '<input type="checkbox" name="onoffswitch" data-id="'+item.id+'"'+
@@ -207,7 +497,7 @@ function actualizarTabla(){
 		    	}
 			});
 	  	}else{
-	  		$.growl.error({ title: "", message: data.msg });
+	  		mensajeError(data.msg);
 	  	}
 
 
@@ -269,6 +559,49 @@ function imgView(e){
 
 	  		quitarDescargando();
 	  		$("#modalEmployeeView").modal("show");
+	  	}else{
+	  		quitarDescargando();
+	  		mensajeError(data.msg);
+	  	}
+	}, "json");
+}
+
+
+
+
+function darbaja(id){
+	$("#bajaempleadoadd").val(id);
+	$("#modalBajaAdd").modal("show");
+}
+function cancelarbaja(id){
+	cargando();
+	$.post( window.base_url+"empleados/cancelarBaja", {id:id} , function( data ) {
+	  	if(data.status){
+	  		actualizarTabla();
+	  		mensajeSucess("Se cancelo exitosamente");
+	  		quitarDescargando();
+	  	}else{
+	  		quitarDescargando();
+	  		mensajeError(data.msg);
+	  	}
+	}, "json");
+}
+function editarbaja(id){
+	cargando();
+	$.post( window.base_url+"empleados/selectBaja", {id:id} , function( data ) {
+	  	if(data.status){
+	  		$("#bajabancoEdit").val(data.datos.nombre_banco);
+	  		$("#bajafechaculminacionEdit").val(data.datos.fecha_culminacion);
+	  		$("#bajacuentaEdit").val(data.datos.n_cuenta);
+	  		$("#bajalugar1Edit").val(data.datos.lugar_entrega_cese);
+	  		$("#bajafecha1Edit").val(data.datos.fecha_entrega_cese);
+	  		$("#bajafechainicioEdit").val(data.datos.fecha_inicio);
+	  		$("#bajalugar2Edit").val(data.datos.lugar_entrega_constancia);
+	  		$("#bajafecha2Edit").val(data.datos.fecha_entrega_constancia);
+	  		$("#bajapuestoEdit").val(data.datos.trabajo);
+	  		$("#bajaempleadoedit").val(data.datos.id_empleado);
+	  		$("#modalBajaEdit").modal("show");
+	  		quitarDescargando();
 	  	}else{
 	  		quitarDescargando();
 	  		mensajeError(data.msg);
