@@ -1,5 +1,18 @@
 @charset "utf-8";
 
+.modal label {
+    font-family: robotobold;
+    font-size: 13px;
+    margin-bottom: 0px;
+    margin-top: 7px;
+}
+.modal .modal-subtitle{
+    margin-bottom: 0px;
+    padding-bottom: 3px;
+}
+.modal label.error{
+    margin-top: 0px;
+}
 #fileimageeditLogo{
     display: none;
 }

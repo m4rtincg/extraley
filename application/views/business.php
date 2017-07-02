@@ -243,7 +243,7 @@
 
                         <h4 class="modal-subtitle">Editar opciones</h4>
 
-                        <label for="grevisionBusinessEdit">Cargo:</label>
+                        <label for="grevisionBusinessEdit">Revisión de contratos:</label>
                         <div class="form-group">
                             <i class="fa fa-clock-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <select class="form-control form-control-padding" name="grevisionBusinessEdit" id="grevisionBusinessEdit" required>
@@ -253,7 +253,7 @@
                             </select>
                         </div>
 
-                        <label for="gnusuariosBusinessEdit">Usuario:</label>
+                        <label for="gnusuariosBusinessEdit">Cantidad máxima de usuarios:</label>
                         <div class="form-group">
                             <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding solo-numeros" name="gnusuariosBusinessEdit" id="gnusuariosBusinessEdit" required placeholder="Cantidad máxima de usuarios">
@@ -407,7 +407,7 @@
 
                         <h4 class="modal-subtitle">Opciones</h4>
                         
-                        <label for="grevisionBusinessAdd">Cargo:</label>
+                        <label for="grevisionBusinessAdd">Revisión de contratos:</label>
                         <div class="form-group">
                             <i class="fa fa-clock-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <select class="form-control form-control-padding" name="grevisionBusinessAdd" id="grevisionBusinessAdd" required>
@@ -417,7 +417,7 @@
                             </select>
                         </div>
 
-                        <label for="gnusuariosBusinessAdd">Usuario:</label>
+                        <label for="gnusuariosBusinessAdd">Cantidad máxima de usuarios:</label>
                         <div class="form-group">
                             <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding solo-numeros" name="gnusuariosBusinessAdd" id="gnusuariosBusinessAdd" value="0" required placeholder="Cantidad máxima de usuarios">
