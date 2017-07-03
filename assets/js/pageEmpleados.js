@@ -4,7 +4,7 @@ $(document).ready(function () {
 	//$( document ).on('DOMMouseScroll mousewheel scroll','#modalBajaAdd', function(){       
     $( "#modalBajaAdd" ).scroll(function() {
         //window.clearTimeout( t );
-        //t = window.setTimeout( function(){            
+        //t = window.setTimeout( function(){   
             $('#bajafechaculminacionAdd').datepicker('place');
             $('#bajafecha1Add').datepicker('place');
             $('#bajafechainicioAdd').datepicker('place');
@@ -45,6 +45,7 @@ $(document).ready(function () {
     $('#bajafecha2Add').datepicker({
         format: 'dd/mm/yyyy',
         startDate:new Date(),
+        container:'#modalBajaAdd',
         onRender: function(date) {
             return date.valueOf() < new Date().valueOf() ? 'disabled' : '';
         }
@@ -476,16 +477,13 @@ function actualizarTabla(){
 	  		html+='</tbody></table>';
 	  		$("#contTable").html(html);
 
-
-
-
-	  		var dataTabla = $('#listEmployee').DataTable({
+	  		var table = $('#listEmployee').DataTable({
 				"responsive": true,
 				"sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
 				"pageLength":25,
-				"order":[[2,"asc"]],
+				"order":[[5,"asc"]],
 				"autoWidth": false,
-				searching: false,
+				searching: true,
 				"ordering": true,
 				"bLengthChange": false,
 				"bInfo" : false,
@@ -496,6 +494,18 @@ function actualizarTabla(){
 			      	}
 		    	}
 			});
+
+			$('#filter-dni').on( 'keyup', function () {
+			    table.columns(2).search( this.value ).draw();
+			});			
+			$('#filter-status').on( 'change', function () {
+			    table.columns(5).search( this.value ).draw();
+			});
+			
+			$('#filter-dni').trigger("keyup");
+			$('#filter-status').trigger("change");
+
+
 	  	}else{
 	  		mensajeError(data.msg);
 	  	}
@@ -512,9 +522,11 @@ function changeStatus(e){
     if(e.checked) {
        estado = 1;
     }
+    var ids = $(e).data("id");
     cargando();
     $.post( window.base_url+"empleados/changestatus", {id:$(e).data("id"),status:estado} , function( data ) {
 	  	if(data.status){
+	  		actualizarTabla();
 	  		quitarDescargando();
 	  		mensajeSucess(data.msg);
 	  	}else{

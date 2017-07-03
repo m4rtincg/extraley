@@ -49,6 +49,7 @@
             $this->db->select('(select count(*) from empleado_baja where id_empleado=id_employee) as baja,status, id_employee as id, name_employee as name, dni_employee as dni, lastname_employee as lastname, email_employee as email, phone_employee as phone, address_employee as address');
             $this->db->from('employee');
             $this->db->where('id_business', $idbusiness);
+            $this->db->order_by("status", "desc");
             //$this->db->where('status', 1);
             $query = $this->db->get();
             return $query->result();

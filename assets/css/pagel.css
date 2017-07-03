@@ -51,9 +51,6 @@ table.dataTable th,table.dataTable td {
 #listContracts .foro.alertq i{
 	color: #cf6060;
 }
-.view-filter{
-	display: none;
-}
 .text-firma-pdf{
 	font-size: 10.5px;
 }
@@ -64,34 +61,6 @@ table.dataTable th,table.dataTable td {
 #listContracts .upload-pdf-firma-cont-del i {
     font-size: 20px;
     color: #290069;
-}
-
-#title-filtros{
-	font-family: robotobold;
-    font-size: 15px;
-    margin-bottom: 5px;
-}
-#filtros{
-	margin-bottom: 19px;
-    overflow: hidden;
-}
-#filtros .row-fiter{
-	margin-bottom: 5px;
-    overflow: hidden;
-}
-#filtros .filterLabel{
-	float: left;
-    width: 40%;
-    padding: 6px 0px;
-}
-#filtros .filterInput{
-	float: left;
-    width: 60%;
-}
-.filterInput input, .filterInput select{
-	font-size: 13px;
-    height: 28px;
-    padding: 5px 12px;
 }
 
 td div:first-child .btn_eventos{
@@ -133,20 +102,6 @@ td div:first-child .btn_eventos{
 	#cont-listado-contracts h2{
 		font-size: 20.5px;
 	}
-
-	#filtros .row-fiter {
-	    float: left;
-	    width: 50%;
-	}
-	#filtros .filterLabel{
-		width: 100%;
-	}
-	#filtros .filterInput {
-	    width: 86%;
-	}
-	#filtros {
-    	margin-bottom: 22px;
-    }
 }
 
 @media (min-width: 768px) {
@@ -157,17 +112,6 @@ td div:first-child .btn_eventos{
 	#cont-listado-contracts h2{
 		font-size: 21px;
 	}
-
-	#filtros .filterLabel{
-		width: 130px;
-	}
-	#filtros .filterInput {
-	    width: 50%;
-	}
-	#title-filtros {
-	    font-size: 18px;
-	    margin-bottom: 7px;
-	}
 }
 
 @media (min-width: 992px) {
@@ -176,13 +120,6 @@ td div:first-child .btn_eventos{
 	}
 	#cont-listado-contracts h2{
 		font-size: 22px;
-	}
-
-	#filtros .row-fiter{
-		width: 40%;
-	}
-	#filtros .filterInput {
-	    width: 55%;
 	}
 }
 

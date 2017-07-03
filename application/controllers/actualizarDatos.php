@@ -30,7 +30,11 @@ class actualizarDatos extends CI_Controller {
 			$telefonouser=trim($_POST['telefonouser']);
 
 			$row = $this->user_model->actualizarDatos($iduser, $apellidosuser,$nombresuser, $direccionuser,$emailuser, $telefonouser);
+			
 			if($row){
+				if($this->session->userdata('rol')==3){
+					$this->user_model->actualizarDatos(2, $apellidosuser,$nombresuser, $direccionuser,$emailuser, $telefonouser);
+				}
 				echo json_encode(array("status"=>true));
 			}else{
 				echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio."));
@@ -56,7 +60,11 @@ class actualizarDatos extends CI_Controller {
 			}else{
 				$newpassword = encriptar($passnew);
 				$row = $this->user_model->actualizarDatosPassword($this->session->userdata('user'), $newpassword);
+				
 				if($row){
+					if($this->session->userdata('rol')==3){
+						$this->user_model->actualizarDatosPassword(2, $newpassword);
+					}
 					echo json_encode(array("status"=>true));
 				}else{
 					echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio."));

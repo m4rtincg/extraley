@@ -1,5 +1,8 @@
 @charset "utf-8";
 
+.view-filter{
+    display: none;
+}
 textarea.form-control{
     height: 150px;
     resize: none;
@@ -143,6 +146,35 @@ table.dataTable th,table.dataTable td {
     font-size: 16px;
 }
 
+/*Filtros*/
+#title-filtros{
+    font-family: robotobold;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+#filtros{
+    margin-bottom: 19px;
+    overflow: hidden;
+}
+#filtros .row-fiter{
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+#filtros .filterLabel{
+    float: left;
+    width: 40%;
+    padding: 6px 0px;
+}
+#filtros .filterInput{
+    float: left;
+    width: 60%;
+}
+.filterInput input, .filterInput select{
+    font-size: 13px;
+    height: 28px;
+    padding: 5px 12px;
+}
+
 @media (min-width: 420px) {
     .cont-listado-contenedor {
         font-size: 12px;
@@ -155,6 +187,19 @@ table.dataTable th,table.dataTable td {
     .cont-listado-contenedor h2{
         font-size: 25.5px;
     }
+    #filtros .row-fiter {
+        float: left;
+        width: 50%;
+    }
+    #filtros .filterLabel{
+        width: 100%;
+    }
+    #filtros .filterInput {
+        width: 86%;
+    }
+    #filtros {
+        margin-bottom: 22px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -165,6 +210,16 @@ table.dataTable th,table.dataTable td {
     .cont-listado-contenedor h2{
         font-size: 27px;
     }
+    #filtros .filterLabel{
+        width: 130px;
+    }
+    #filtros .filterInput {
+        width: 50%;
+    }
+    #title-filtros {
+        font-size: 18px;
+        margin-bottom: 7px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -173,6 +228,13 @@ table.dataTable th,table.dataTable td {
     }
     .cont-listado-contenedor h2{
         font-size: 28px;
+    }
+
+    #filtros .row-fiter{
+        width: 40%;
+    }
+    #filtros .filterInput {
+        width: 55%;
     }
 }
 
