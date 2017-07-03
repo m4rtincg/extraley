@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	$(".solo-numero").keypress(function(e){
-		var key =  e.keyCode
+		var key =  e.keyCode ? e.keyCode : e.which;
 		return (key >= 48 && key <= 57);
 	});
 	
