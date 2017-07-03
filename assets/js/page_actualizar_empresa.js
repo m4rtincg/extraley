@@ -158,7 +158,7 @@ function readURLAdd(input) {
         	if(e.target.result.indexOf("data:image/png") == 0 || e.target.result.indexOf("data:image/jpeg") == 0){
         		$('#imageLogo').attr('src', e.target.result);
         	}else{
-        		alert("Solo formatos png o jpg");
+        		mensajeError("Solo imágenes formato png o jpg");
         		$("#fileimageLogo").replaceWith("<input type='file' id='fileimageLogo' />");
         		$('#imageLogo').attr('src', window.base_url+"assets/img/business/"+$("#imagenactualbd").val());
         		$("#fileimageLogo").change(function(){

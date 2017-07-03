@@ -38,23 +38,33 @@ class actualizarEmpresa extends CI_Controller {
 			$row = $this->business_model->getBusinessById($id);
 			$ruc = $row->ruc;
 			if($row){
-				
 				if(isset($_FILES['fileimageeditLogo'])){
-					$logo = uniqid().$_FILES['fileimageeditLogo']['name'];
-					$fichero_subido = "assets/img/business/".$logo;
-					if (move_uploaded_file($_FILES['fileimageeditLogo']['tmp_name'], $fichero_subido)) {
-						if($row->logo!="default.png"){
-							unlink("assets/img/business/".$row->logo);
+
+					if($_FILES['fileimageeditLogo']['type']=="image/jpeg" || $_FILES['fileimageeditLogo']['type']=="image/png"){
+						
+						if($_FILES['fileimageeditLogo']['size']>2097152){
+							echo json_encode(array("status"=>false,"msg"=>"La imagen es demasiada pesada. debe ser menor a 2MB."));
+						}else{
+							$logo = uniqid().$_FILES['fileimageeditLogo']['name'];
+							$fichero_subido = "assets/img/business/".$logo;
+							if (move_uploaded_file($_FILES['fileimageeditLogo']['tmp_name'], $fichero_subido)) {
+								if($row->logo!="default.png"){
+									unlink("assets/img/business/".$row->logo);
+								}
+							    $update = $this->business_model->updateBusiness2($id,$name,$address,$phone,$email,$url,$logo,$revision,$distrito,$actividad,$partida);
+							    if($update){
+							    	echo json_encode(array("status"=>true,"logo"=>$logo));
+							    }else{
+							    	echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio"));
+							    }
+							} else {
+							    echo json_encode(array("status"=>false,"msg"=>"No se pudo subir la imagen"));
+							}
 						}
-					    $update = $this->business_model->updateBusiness2($id,$name,$address,$phone,$email,$url,$logo,$revision,$distrito,$actividad,$partida);
-					    if($update){
-					    	echo json_encode(array("status"=>true,"logo"=>$logo));
-					    }else{
-					    	echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio"));
-					    }
-					} else {
-					    echo json_encode(array("status"=>false,"msg"=>"No se pudo subir la imagen"));
-					}
+					}else{
+						echo json_encode(array("status"=>false,"msg"=>"Solo imágenes formato jpg o png."));
+					}	
+
 				}else{
 					$logo = $row->logo;
 					$update = $this->business_model->updateBusiness2($id,$name,$address,$phone,$email,$url,$logo,$revision,$distrito,$actividad,$partida);
