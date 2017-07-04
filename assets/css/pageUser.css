@@ -63,7 +63,7 @@
         font-size: 13px;
     }
     #modalUserView .modal-body, #modalUserEdit .modal-body, #modalUserAdd .modal-body {
-        padding: 25px 33px 15px 33px;
+        padding: 16px 33px 15px 33px;
     }
 }
 

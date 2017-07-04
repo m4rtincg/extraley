@@ -16,7 +16,21 @@
         <a href="http://extraley.com.pe/">
             <img id="logo" alt="logo Extra Ley" src="<?= base_url() ?>assets/img/logo.png">
         </a>
-        <span id="logo-tittle"><span><?= $name ?></span></span>
+        <span id="logo-tittle"><span>
+            <div id="carousel-login-name" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <?php $c2 = true; foreach ($mensajes as $key) { ?>
+                    <?php $t2=''; if($c2){$t2="active";$c2=false;}else{$t2="";} ?>
+                        <div class="item <?= $t2 ?>">
+
+                            <div class="message-cont">
+                                <div class="message-text"><?= $key->msg ?></div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </span></span>
     </section>
     <section id="nav"></section>
     <section id="contenedor">

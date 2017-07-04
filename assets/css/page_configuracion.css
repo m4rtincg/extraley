@@ -1,6 +1,10 @@
 @charset "utf-8";
 
-
+.img-delete{
+    cursor: pointer;
+    width: 21px;
+    margin-left: 5px;
+}
 .form-group{
     position: relative;
 }
@@ -33,7 +37,7 @@
 #cont-listado-business th, #cont-listado-business td{
 	vertical-align: middle;
 }
-.btn_actualizar {
+.btn_actualizar, .btn_add {
     font-size: 13.5px;
     color: #fff;
     border: none;
@@ -126,6 +130,12 @@ h2.secondTitle{
         width: 880px;
         margin: 0 auto;
         float: none;
+    }
+    #contTable{
+        width: 960px;
+        float: none;
+        margin: 0 auto;
+        overflow: hidden;
     }
 }
 

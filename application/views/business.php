@@ -1,6 +1,29 @@
 <div class="cont-listado-contenedor" id="cont-listado-business">
 	<h2>Lista de empresas <button class="btn_new_admin" id="btn_new_business" data-toggle="modal" data-target="#modalBusinessAdd">Nueva empresa</button></h2>
-	<div class="cont-lista-business-width">
+	<div id="filtros">
+        <div id="title-filtros">Filtros</div>
+        <div class="row-fiter">
+            <div class="filterLabel">
+                DNI : 
+            </div>
+            <div class="filterInput">
+                <input type="text" class="form-control" id="filter-dni">
+            </div>
+        </div>
+        <div class="row-fiter">
+            <div class="filterLabel">
+                Estado : 
+            </div>
+            <div class="filterInput">
+                <select class="form-control" id="filter-status">
+                    <option value="">Todos</option>
+                    <option value="on">Activos</option>
+                    <option value="off">Inactivos</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="cont-lista-business-width">
 		
 	</div>
 </div>

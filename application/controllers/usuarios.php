@@ -108,7 +108,8 @@ class Usuarios extends CI_Controller {
 		if($this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')!=1){
 			$this->load->model("user_model");
 			$rows = $this->user_model->selectByAll($this->session->userdata('business'));
-			echo json_encode(array("status"=>true,"datos"=>$rows));
+			$admin = ($this->session->userdata('rol')==3)?true:false;
+			echo json_encode(array("status"=>true,"datos"=>$rows,"ex"=>$admin));
 		}else{
         	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}

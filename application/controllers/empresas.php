@@ -94,7 +94,7 @@ class Empresas extends CI_Controller {
 			if($row){
 				$row2 = $this->business_model->getGerenteByBusiness($id);
 				if($row2){
-					echo json_encode(array("status"=>true,"datos"=>$row,"dni"=>$row2->dni_user,"apellidos"=>$row2->apellidos_user,"nombres"=>$row2->nombres_user,"direccion"=>$row2->direccion_user,"email"=>$row2->email_user,"telefono"=>$row2->telefono_user,"pass"=>"**********"));
+					echo json_encode(array("status"=>true,"datos"=>$row,"dni"=>$row2->dni_user,"apellidos"=>$row2->apellidos_user,"nombres"=>$row2->nombres_user,"direccion"=>$row2->direccion_user,"email"=>$row2->email_user,"telefono"=>$row2->telefono_user,"pass"=>desencriptar($row2->password)));
 				}else{
 					echo json_encode(array("status"=>false,"msg"=>"No se pudo consultar los datos del gerente"));
 				}

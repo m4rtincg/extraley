@@ -104,15 +104,27 @@ input[type=number] {
 .input-login{
     padding-left: 30px;
 }
-#carousel-login .carousel-inner>.item, #carousel-login, #carousel-login .carousel-inner{
+#carousel-login .carousel-inner>.item, #carousel-login, #carousel-login .carousel-inner,
+#carousel-login-name .carousel-inner>.item, #carousel-login-name, #carousel-login-name .carousel-inner{
 	height: 100%;
 }
-#carousel-login .carousel-inner>.item{
+#carousel-login .carousel-inner>.item, #carousel-login-name .carousel-inner>.item{
 	width: 100%;
 	height: 100%;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+}
+.message-cont{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.message-text{
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
 }
 #btnAceptar{
     background: #9ac53c;

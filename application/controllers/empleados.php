@@ -14,7 +14,9 @@ class MyPdf3 extends TCPDF  {
     	$partes_ruta = pathinfo($this->logo);
     	$typeImg = (isset($extensionarray[$partes_ruta['extension']]))? $extensionarray[$partes_ruta['extension']] :"PNG";
         $image_file = base_url()."assets/img/business/".$this->logo;
-        $this->Image($image_file, 22, 6, '', 11, $typeImg, '', 'T', false, 300, '', false, false, 0, false, false, false);
+        if($this->logo!="default.png"){
+        	$this->Image($image_file, 22, 6, '', 11, $typeImg, '', 'T', false, 300, '', false, false, 0, false, false, false);
+        }
         $this->SetFont('helvetica', '', 8);
         $this->setCellPaddings(0, 3.5, 0, 0);
         //$this->MultiCell(0,15,$this->datos,0,'R','','');

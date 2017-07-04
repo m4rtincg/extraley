@@ -25,10 +25,9 @@ class Configuracion extends CI_Controller {
 	public function update(){
 		if($_POST and $this->session->userdata('session')){
 			$this->load->model("config_model");
-			$nombre=trim($_POST['nombreconfig']);
 			$dias=trim($_POST['diasconfig']);
 
-			$row = $this->config_model->updateConfig($nombre,$dias);
+			$row = $this->config_model->updateConfig($dias);
 			if($row){
 				echo json_encode(array("status"=>true));
 			}else{
@@ -77,6 +76,84 @@ class Configuracion extends CI_Controller {
 				}
 			}else{
 				echo json_encode(array('status'=>false , 'msg'=>'No se pudo eliminar la firma'));
+			}
+			
+		}else{
+			echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+		}
+	}
+
+
+
+	public function addMessage(){
+		if($_POST and $this->session->userdata('session')){
+			$this->load->model("message_model");
+			$msg=trim($_POST['mensajeAdd']);
+
+			$row = $this->message_model->insertMessage($msg);
+			if($row){
+				echo json_encode(array("status"=>true));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se pudo registrar."));
+			}
+			
+		}else{
+			echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+		}
+	}
+	public function deleteMessage(){
+		if($_POST and $this->session->userdata('session')){
+			$this->load->model("message_model");
+			$id=trim($_POST['id']);
+
+			$row = $this->message_model->deleteMessage($id);
+			if($row){
+				echo json_encode(array("status"=>true));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se pudo eliminar."));
+			}
+			
+		}else{
+			echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+		}
+	}
+	public function updateMessage(){
+		if($_POST and $this->session->userdata('session')){
+			$this->load->model("message_model");
+			$id=trim($_POST['idmensajeedit']);
+			$msg=trim($_POST['mensajeEdit']);
+
+			$row = $this->message_model->updateMessage($id, $msg);
+			if($row){
+				echo json_encode(array("status"=>true));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio."));
+			}
+			
+		}else{
+			echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+		}
+	}
+	public function selectAllMessage(){
+		if($this->session->userdata('session')){
+			$this->load->model("message_model");
+
+			$row = $this->message_model->selectAllMessage();
+			echo json_encode(array("status"=>true,"datos"=>$row));
+		}else{
+			echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+		}
+	}
+	public function selectMessage(){
+		if($_POST and $this->session->userdata('session')){
+			$this->load->model("message_model");
+			$id=trim($_POST['id']);
+
+			$row = $this->message_model->selectAllMessageById($id);
+			if($row){
+				echo json_encode(array("status"=>true, "datos"=>$row));
+			}else{
+				echo json_encode(array("status"=>false,"msg"=>"No se pudo encontrar este mensaje."));
 			}
 			
 		}else{

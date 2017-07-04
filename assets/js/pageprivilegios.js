@@ -22,7 +22,7 @@ function actualizarTabla(){
 	  			var checkbtn = "";
 	  			if($.inArray(item.id_business, arrayempresas)!=-1){
 	  				check = "<span class='asignado'>Asignado</span>";
-	  				checkbtn = "<button onClick='cancelarAsignacion("+item.id_business+","+$("#id").val()+");' class='btn-asignado'>Cancelar Asignación</button>";
+	  				checkbtn = "<button onClick='cancelarAsignacion("+item.id_business+","+$("#id").val()+");' class='btn-no-asignado'>Cancelar Asignación</button>";
 	  			}else{
 	  				check = "<span class='no-asignado'>No asignado</span>";
 	  				checkbtn = "<button onClick='asignar("+item.id_business+","+$("#id").val()+");' class='btn-asignado'>Asignar</button>";

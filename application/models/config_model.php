@@ -8,9 +8,8 @@
             $query = $this->db->get();
             return $query->row();
         }
-        public function updateConfig($nombre,$dias){
+        public function updateConfig($dias){
             $data = array(
-                'nombre_login' => $nombre,
                 'diasPrevios' => $dias
             );
             $this->db->where('id', 1);

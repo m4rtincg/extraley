@@ -12,7 +12,7 @@
         </div>
         <div class="row-fiter">
             <div class="filterLabel">
-                Nombre de empresa : 
+                Estado : 
             </div>
             <div class="filterInput">
                 <select class="form-control" id="filter-status">

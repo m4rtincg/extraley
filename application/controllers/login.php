@@ -23,7 +23,8 @@ class Login extends CI_Controller {
 			header('Location: home');
         }else{
             $this->load->model("config_model");
-			$data['name'] = $this->config_model->getConfig()->nombre_login;
+            $this->load->model("message_model");
+			$data['mensajes'] = $this->message_model->selectAllMessage();
 			$data['sliders'] = $this->config_model->getSliders();
 			$this->load->view('login',$data);
         }

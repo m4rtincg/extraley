@@ -1,6 +1,29 @@
 <div class="cont-listado-contenedor" id="cont-listado-users">
 	<h2>Lista de usuarios <button class="btn_new_admin" id="btn_new_business" data-toggle="modal" data-target="#modalUserAdd">Nuevo Usuario</button></h2>
-	<div id="contTable">
+	<div id="filtros">
+        <div id="title-filtros">Filtros</div>
+        <div class="row-fiter">
+            <div class="filterLabel">
+                DNI : 
+            </div>
+            <div class="filterInput">
+                <input type="text" class="form-control" id="filter-dni">
+            </div>
+        </div>
+        <div class="row-fiter">
+            <div class="filterLabel">
+                Estado : 
+            </div>
+            <div class="filterInput">
+                <select class="form-control" id="filter-status">
+                    <option value="">Todos</option>
+                    <option value="on">Activos</option>
+                    <option value="off">Inactivos</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="contTable">
 		
 	</div>
 </div>
@@ -70,13 +93,13 @@
 
                         <label for="apellidosUserAdd">Apellidos:</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="apellidosUserAdd" maxlength="400" id="apellidosUserAdd" required placeholder="Apellidos">
                         </div>
 
                         <label for="nombresUserAdd">Nombres:</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="nombresUserAdd" maxlength="400" id="nombresUserAdd" required placeholder="Nombres">
                         </div>
 
@@ -88,7 +111,7 @@
                         
                         <label for="emailUserAdd">Email:</label>
                         <div class="form-group">
-                            <i class="fa fa-envelope-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-envelope" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="emailUserAdd"  maxlength="200" id="emailUserAdd" required placeholder="Email">
                         </div>
 
@@ -133,13 +156,13 @@
 
                         <label for="apellidosUserEdit">Apellidos:</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="apellidosUserEdit" maxlength="400" id="apellidosUserEdit" required placeholder="Apellidos">
                         </div>
 
                         <label for="nombresUserEdit">Nombres:</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="nombresUserEdit" maxlength="400" id="nombresUserEdit" required placeholder="Nombre">
                         </div>
 
@@ -151,7 +174,7 @@
 
                         <label for="emailUserEdit">Email:</label>
                         <div class="form-group">
-                            <i class="fa fa-envelope-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-envelope" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="emailUserEdit"  maxlength="200" id="emailUserEdit" required placeholder="Email">
                         </div>
 
