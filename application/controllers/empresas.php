@@ -138,21 +138,34 @@ class Empresas extends CI_Controller {
 				if(! $this->business_model->comprobarBusinessruc($id,$ruc)){
 
 					if(isset($_FILES['fileimageeditLogo'])){
-						$logo = uniqid().$_FILES['fileimageeditLogo']['name'];
-						$fichero_subido = "assets/img/business/".$logo;
-						if (move_uploaded_file($_FILES['fileimageeditLogo']['tmp_name'], $fichero_subido)) {
-							if($row->logo!="default.png"){
-								unlink("assets/img/business/".$row->logo);
+
+						if($_FILES['fileimageeditLogo']['type']=="image/jpeg" || $_FILES['fileimageeditLogo']['type']=="image/png"){
+						
+							if($_FILES['fileimageeditLogo']['size']>2097152){
+								echo json_encode(array("status"=>false,"msg"=>"La imagen es demasiada pesada. Debe ser menor a 2MB."));
+							}else{
+								$logo = uniqid().$_FILES['fileimageeditLogo']['name'];
+								$logo = str_replace(' ', '', $logo);
+								$fichero_subido = "assets/img/business/".$logo;
+								if (move_uploaded_file($_FILES['fileimageeditLogo']['tmp_name'], $fichero_subido)) {
+									if($row->logo!="default.png"){
+										unlink("assets/img/business/".$row->logo);
+									}
+								    $update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessEdit);
+								    if($update){
+								    	echo json_encode(array("status"=>true,"logo"=>$logo));
+								    }else{
+								    	echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio"));
+								    }
+								} else {
+								    echo json_encode(array("status"=>false,"msg"=>"No se pudo subir la imagen"));
+								}
 							}
-						    $update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessEdit);
-						    if($update){
-						    	echo json_encode(array("status"=>true,"logo"=>$logo));
-						    }else{
-						    	echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio"));
-						    }
-						} else {
-						    echo json_encode(array("status"=>false,"msg"=>"No se pudo subir la imagen"));
-						}
+
+						}else{
+							echo json_encode(array("status"=>false,"msg"=>"Solo imágenes formato jpg o png."));
+						}	
+
 					}else{
 						$logo = $row->logo;
 						$update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessEdit);
@@ -204,18 +217,31 @@ class Empresas extends CI_Controller {
 			if(! $this->business_model->comprobarBusinessrucAdd($ruc)){
 
 				if(isset($_FILES['fileimageAddLogo'])){
-					$logo = uniqid().$_FILES['fileimageAddLogo']['name'];
-					$fichero_subido = "assets/img/business/".$logo;
-					if (move_uploaded_file($_FILES['fileimageAddLogo']['tmp_name'], $fichero_subido)) {
-					    $update = $this->business_model->addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessAdd,$gapellidosBusinessAdd,$gnombresBusinessAdd,$gemailBusinessAdd,$gdireccionBusinessAdd,$gtelefonoBusinessAdd,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessAdd);
-					    if($update){
-					    	echo json_encode(array("status"=>true,"logo"=>$logo));
-					    }else{
-					    	echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio"));
-					    }
-					} else {
-					    echo json_encode(array("status"=>false,"msg"=>"No se pudo subir la imagen"));
-					}
+
+					if($_FILES['fileimageAddLogo']['type']=="image/jpeg" || $_FILES['fileimageAddLogo']['type']=="image/png"){
+						
+						if($_FILES['fileimageAddLogo']['size']>2097152){
+							echo json_encode(array("status"=>false,"msg"=>"La imagen es demasiada pesada. Debe ser menor a 2MB."));
+						}else{
+							$logo = uniqid().$_FILES['fileimageAddLogo']['name'];
+							$logo = str_replace(' ', '', $logo);
+							$fichero_subido = "assets/img/business/".$logo;
+							if (move_uploaded_file($_FILES['fileimageAddLogo']['tmp_name'], $fichero_subido)) {
+							    $update = $this->business_model->addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessAdd,$gapellidosBusinessAdd,$gnombresBusinessAdd,$gemailBusinessAdd,$gdireccionBusinessAdd,$gtelefonoBusinessAdd,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessAdd);
+							    if($update){
+							    	echo json_encode(array("status"=>true,"logo"=>$logo));
+							    }else{
+							    	echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio"));
+							    }
+							} else {
+							    echo json_encode(array("status"=>false,"msg"=>"No se pudo subir la imagen"));
+							}
+						}
+
+					}else{
+						echo json_encode(array("status"=>false,"msg"=>"Solo imágenes formato jpg o png."));
+					}	
+
 				}else{
 					$logo = "default.png";
 					$update = $this->business_model->addBusiness($ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessAdd,$gapellidosBusinessAdd,$gnombresBusinessAdd,$gemailBusinessAdd,$gdireccionBusinessAdd,$gtelefonoBusinessAdd,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessAdd);

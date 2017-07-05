@@ -43,9 +43,10 @@ class actualizarEmpresa extends CI_Controller {
 					if($_FILES['fileimageeditLogo']['type']=="image/jpeg" || $_FILES['fileimageeditLogo']['type']=="image/png"){
 						
 						if($_FILES['fileimageeditLogo']['size']>2097152){
-							echo json_encode(array("status"=>false,"msg"=>"La imagen es demasiada pesada. debe ser menor a 2MB."));
+							echo json_encode(array("status"=>false,"msg"=>"La imagen es demasiada pesada. Debe ser menor a 2MB."));
 						}else{
 							$logo = uniqid().$_FILES['fileimageeditLogo']['name'];
+							$logo = str_replace(' ', '', $logo);
 							$fichero_subido = "assets/img/business/".$logo;
 							if (move_uploaded_file($_FILES['fileimageeditLogo']['tmp_name'], $fichero_subido)) {
 								if($row->logo!="default.png"){

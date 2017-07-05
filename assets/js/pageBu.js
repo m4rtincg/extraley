@@ -312,7 +312,7 @@ $(document).ready(function () {
 	    }
 	});
 
-	$("select").change(function(){
+	$(".modal select").change(function(){
 		$(this).find("option[value='']").remove();
 	});
 
@@ -558,11 +558,12 @@ function actualizarTabla(){
 					+'Estado</th><th class="text-center">Acción</th></tr></thead><tbody>';
 	  		$.each(data.datos, function(i, item) {
 	  			var check = (item.status==1)?"checked":"";
+	  			var check2 = (item.status==1)?"on":"off";
 			    html+= '<tr>'+
 					'<td>'+item.ruc+'</td>'+
 					'<td>'+item.name_razonSocial+'</td>'+
 					'<td>'+item.address+'</td><td class="text-center">'+item.phone+'</td><td class="text-center"><a href="'+window.base_url+'empresas/view/'+item.id_business+'">Asignar tipos contratos</a></td>'+
-					'<td class="text-center">';
+					'<td class="text-center"><span style="display:none;">'+check2+'</span>';
 					if(item.id_business!=1){
 						html +='<div class="cont-onoff">'+
 						'<div class="onoffswitch">'+
@@ -592,9 +593,9 @@ function actualizarTabla(){
 				"responsive": true,
 				"sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
 				"pageLength":25,
-				"order":[[2,"asc"]],
+				"order":[[5,"desc"]],
 				"autoWidth": false,
-				searching: false,
+				searching: true,
 				"ordering": true,
 				"bLengthChange": false,
 				"bInfo" : false,
@@ -605,6 +606,15 @@ function actualizarTabla(){
 			      	}
 		    	}
 			});
+			$('#filter-dni').on( 'keyup', function () {
+			    dataTabla.columns(0).search( this.value ).draw();
+			});			
+			$('#filter-status').on( 'change', function () {
+			    dataTabla.columns(5).search( this.value ).draw();
+			});
+			
+			$('#filter-dni').trigger("keyup");
+			$('#filter-status').trigger("change");
 	  	}else{
 	  		mensajeError(data.msg);
 	  	}

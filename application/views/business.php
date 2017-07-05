@@ -4,7 +4,7 @@
         <div id="title-filtros">Filtros</div>
         <div class="row-fiter">
             <div class="filterLabel">
-                DNI : 
+                RUC : 
             </div>
             <div class="filterInput">
                 <input type="text" class="form-control" id="filter-dni">
@@ -230,19 +230,19 @@
 
                         <label for="gapellidosBusinessEdit">Apellidos:</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="gapellidosBusinessEdit" maxlength="200" id="gapellidosBusinessEdit" required placeholder="Apellidos">
                         </div>
 
                         <label for="gnombresBusinessEdit">Nombres:</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="gnombresBusinessEdit" maxlength="200" id="gnombresBusinessEdit" required placeholder="Nombres">
                         </div>
 
                         <label for="gemailBusinessEdit">Email:</label>
                         <div class="form-group">
-                            <i class="fa fa-envelope-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-envelope" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="gemailBusinessEdit" id="gemailBusinessEdit" required placeholder="Email">
                         </div>
 
@@ -394,19 +394,19 @@
                         </div>
                         <label for="gapellidosBusinessAdd">Apellidos:</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="gapellidosBusinessAdd" maxlength="200" id="gapellidosBusinessAdd" required placeholder="Apellidos">
                         </div>
 
                         <label for="gnombresBusinessAdd">Nombres:</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="gnombresBusinessAdd" maxlength="200" id="gnombresBusinessAdd" required placeholder="Nombres">
                         </div>
     
                         <label for="gemailBusinessAdd">Email:</label>
                         <div class="form-group">
-                            <i class="fa fa-envelope-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-envelope" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding" name="gemailBusinessAdd" id="gemailBusinessAdd" required placeholder="Email">
                         </div>
 
