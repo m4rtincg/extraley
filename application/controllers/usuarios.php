@@ -10,9 +10,10 @@ class Usuarios extends CI_Controller {
 			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
 			$dataHeader['modulo'] = 'pageUser';
 			$dataFooter['modulo'] = 'pageuser';
+			$data['cant'] = $dataHeader["user"]->n_usuarios;
 
 			$this->load->view('template/header',$dataHeader);
-			$this->load->view('usuarios');
+			$this->load->view('usuarios',$data);
 			$this->load->view('template/footer',$dataFooter);
         }else{
         	header('Location: '.base_url());
@@ -51,18 +52,29 @@ class Usuarios extends CI_Controller {
 			$id_business = $this->session->userdata('business');
 
 			$this->load->model("user_model");
+			$this->load->model("business_model");
 
-			if(! $this->user_model->comprobardniAdd($dni,$id_business)){
+			$rows = $this->user_model->selectByAll($id_business);
+			$cantidad_de_usuarios = count($rows);
 
-			   $add = $this->user_model->adduser($dni,$apellidos,$nombres,$direccion,$email,$telefono,$pass,$id_business);
-			    if($add){
-			    	echo json_encode(array("status"=>true));
-			    }else{
-			    	echo json_encode(array("status"=>false,"msg"=>"No se pudo registrar el usuario"));
-			    }
-					
+			$bus = $this->business_model->getBusinessById($id_business);
+			$cantid= $bus->n_usuarios;
+
+			if($cantid == 0 || $cantid > $cantidad_de_usuarios){
+				if(! $this->user_model->comprobardniAdd($dni,$id_business)){
+
+				   $add = $this->user_model->adduser($dni,$apellidos,$nombres,$direccion,$email,$telefono,$pass,$id_business);
+				    if($add){
+				    	echo json_encode(array("status"=>true));
+				    }else{
+				    	echo json_encode(array("status"=>false,"msg"=>"No se pudo registrar el usuario"));
+				    }
+						
+				}else{
+					echo json_encode(array("status"=>false,"msg"=>"Ese dni ya existe"));
+				}
 			}else{
-				echo json_encode(array("status"=>false,"msg"=>"Ese dni ya existe"));
+				echo json_encode(array("status"=>false,"msg"=>"Ya excedistes la cantidad máxima de usuarios."));
 			}
 		}else{
         	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
@@ -120,17 +132,37 @@ class Usuarios extends CI_Controller {
 		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')!=1){
 			$id = trim($_POST['id']);
 			$status = trim($_POST['status']);
+			$id_business = $this->session->userdata('business');
 
 			$this->load->model("user_model");
+			$this->load->model("business_model");
 
-	
+			if($status==1){
+				$rows = $this->user_model->selectByAllStatus($id_business);
+				$cantidad_de_usuarios = count($rows);
 
-			   $add = $this->user_model->deleteuser($id,$status);
+				$bus = $this->business_model->getBusinessById($id_business);
+				$cantid= $bus->n_usuarios;
+
+				if($cantid == 0 || $cantid > $cantidad_de_usuarios){
+					$add = $this->user_model->deleteuser($id,$status);
+				    if($add){
+				    	echo json_encode(array("status"=>true,"msg"=>"Se ha cambiado de estado correctamente."));
+				    }else{
+				    	echo json_encode(array("status"=>false,"msg"=>"No se pudo cambiar el estado"));
+				    }
+				}else{
+					echo json_encode(array("status"=>false,"msg"=>"Ya excedistes la cantidad máxima de usuarios activos."));
+				}
+
+			}else{
+				$add = $this->user_model->deleteuser($id,$status);
 			    if($add){
 			    	echo json_encode(array("status"=>true,"msg"=>"Se ha cambiado de estado correctamente."));
 			    }else{
 			    	echo json_encode(array("status"=>false,"msg"=>"No se pudo cambiar el estado"));
 			    }
+			}
 				
 		}else{
         	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));

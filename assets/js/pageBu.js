@@ -408,7 +408,7 @@ function readURL(input) {
             if(e.target.result.indexOf("data:image/png") == 0 || e.target.result.indexOf("data:image/jpeg") == 0){
         		$('#imageeditLogo').attr('src', e.target.result);
         	}else{
-        		alert("Solo formatos png o jpg");
+        		mensajeError("Solo formatos png o jpg");
         		$("#fileimageeditLogo").replaceWith("<input type='file' id='fileimageeditLogo' />");
         		$('#imageeditLogo').attr('src', window.base_url+"assets/img/business/"+$("#idbusinessimageRealEdit").val());
         		$("#fileimageeditLogo").change(function(){
@@ -432,7 +432,7 @@ function readURLAdd(input) {
         	if(e.target.result.indexOf("data:image/png") == 0 || e.target.result.indexOf("data:image/jpeg") == 0){
         		$('#imageAddLogo').attr('src', e.target.result);
         	}else{
-        		alert("Solo formatos png o jpg");
+        		mensajeError("Solo formatos png o jpg");
         		$("#fileimageAddLogo").replaceWith("<input type='file' id='fileimageAddLogo' />");
         		$('#imageAddLogo').attr('src', window.base_url+"assets/img/business/default.png");
         		$("#fileimageAddLogo").change(function(){

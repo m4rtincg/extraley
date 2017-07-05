@@ -85,6 +85,17 @@
             return $query->result();
         }
 
+        public function selectByAllStatus($business)
+        {
+            $this->db->select('*');
+            $this->db->from('user');
+            $this->db->where('id_business', $business);
+            $this->db->where('tipo', 1);
+            $this->db->where('status', 1);
+            $query = $this->db->get();
+            return $query->result();
+        }
+
           public function selectById($id)
         {
             $this->db->select('*');

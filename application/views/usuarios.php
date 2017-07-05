@@ -1,6 +1,9 @@
 <div class="cont-listado-contenedor" id="cont-listado-users">
 	<h2>Lista de usuarios <button class="btn_new_admin" id="btn_new_business" data-toggle="modal" data-target="#modalUserAdd">Nuevo Usuario</button></h2>
-	<div id="filtros">
+	<div>
+        <p class="msgCant">(*) Cantidad máxima de usuarios: <?= ($cant==0)? 'Ilimitado': $cant ?></p>
+    </div>
+    <div id="filtros">
         <div id="title-filtros">Filtros</div>
         <div class="row-fiter">
             <div class="filterLabel">

@@ -143,9 +143,9 @@ $(document).ready(function () {
 				if(data.status){
 					actualizarTabla();
 					$("#modalUserEdit").modal("hide");
-					alert("Se edito la clausula.");
+					mensajeSucess("Se modificó el usuario de forma exitosa");
 				}else{
-					alert(data.msg);
+					mensajeError(data.msg);
 				}
 			},'json');
 	    	return false;
@@ -168,11 +168,12 @@ function actualizarTabla(){
 				html +='<th class="text-center">Acción</th></tr></thead><tbody>';
 	  		$.each(data.datos, function(i, item) {
 	  					var check = (item.status==1)?"checked":"";
+	  					var check2 = (item.status==1)?"on":"off";
 	  			html+= '<tr>'+
 					'<td>'+item.dni_user+'</td>'+
 					'<td>'+item.apellidos_user+'</td>'+
 					'<td>'+item.nombres_user+'</td><td class="text-center">'+item.telefono_user+'</td>'+
-					'<td class="text-center">'+
+					'<td class="text-center"><span style="display:none;">'+check2+'</span>'+
 					'<div class="cont-onoff">'+
 					'<div class="onoffswitch">'+
 				    '<input type="checkbox" name="onoffswitch" data-id="'+item.id_user+'"'+
@@ -197,16 +198,13 @@ function actualizarTabla(){
 	  		html+='</tbody></table>';
 	  		$("#contTable").html(html);
 
-
-
-
 	  		var dataTabla = $('#listUser').DataTable({
 				"responsive": true,
 				"sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
 				"pageLength":25,
-				"order":[[2,"asc"]],
+				"order":[[4,"desc"]],
 				"autoWidth": false,
-				searching: false,
+				searching: true,
 				"ordering": true,
 				"bLengthChange": false,
 				"bInfo" : false,
@@ -217,6 +215,17 @@ function actualizarTabla(){
 			      	}
 		    	}
 			});
+
+			$('#filter-dni').on( 'keyup', function () {
+			    dataTabla.columns(0).search( this.value ).draw();
+			});			
+			$('#filter-status').on( 'change', function () {
+			    dataTabla.columns(4).search( this.value ).draw();
+			});
+			
+			$('#filter-dni').trigger("keyup");
+			$('#filter-status').trigger("change");
+
 	  	}else{
 	  		mensajeError(data.msg);
 	  	}
@@ -237,9 +246,11 @@ function changeStatus(e){
     $.post( window.base_url+"usuarios/changestatus", {id:$(e).data("id"),status:estado} , function( data ) {
 	  	if(data.status){
 	  		quitarDescargando();
+	  		actualizarTabla();
 	  		mensajeSucess(data.msg);
 	  	}else{
 	  		quitarDescargando();
+	  		actualizarTabla();
 	  		mensajeError(data.msg);
 	  	}
 	}, "json");

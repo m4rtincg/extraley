@@ -439,6 +439,7 @@ function actualizarTabla(){
 					+'Estado</th><th class="text-center">Acción</th></tr></thead><tbody>';
 	  		$.each(data.datos, function(i, item) {
 	  			var check = (item.status==1)?"checked":"";
+	  			var check2 = (item.status==1)?"on":"off";
 
 	  			html+= '<tr>'+
 					'<td>'+item.name+'</td>'+
@@ -455,7 +456,7 @@ function actualizarTabla(){
 						html+= '<td class="text-center"><button onClick="darbaja('+item.id+')" class="btn_baja dar_baja">Dar de baja</button></td>';
 					}
 					//'<td></td>'+
-				html+= '<td class="text-center">'+
+				html+= '<td class="text-center"><span style="display:none;">'+check2+'</span>'+
 					'<div class="cont-onoff">'+
 					'<div class="onoffswitch">'+
 				    '<input type="checkbox" name="onoffswitch" data-id="'+item.id+'"'+
@@ -481,7 +482,7 @@ function actualizarTabla(){
 				"responsive": true,
 				"sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
 				"pageLength":25,
-				"order":[[5,"asc"]],
+				"order":[[5,"desc"]],
 				"autoWidth": false,
 				searching: true,
 				"ordering": true,
