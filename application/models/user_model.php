@@ -150,5 +150,16 @@
 
             return $this->db->affected_rows();
          }
+
+         public function deshabilitar($id){
+            $data = array(
+                'status'=>0
+              );
+
+            $this->db->where('id_user', $id);
+            $this->db->update('user', $data);
+
+            return $this->db->affected_rows();
+         }
     }
 ?>

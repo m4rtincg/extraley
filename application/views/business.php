@@ -276,9 +276,9 @@
                             </select>
                         </div>
 
-                        <label for="gnusuariosBusinessEdit">Cantidad máxima de usuarios:</label>
+                        <label for="gnusuariosBusinessEdit">Cantidad máxima de usuarios : (0 = ilimitado)</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding solo-numeros" name="gnusuariosBusinessEdit" id="gnusuariosBusinessEdit" required placeholder="Cantidad máxima de usuarios">
                         </div>
 
@@ -440,9 +440,9 @@
                             </select>
                         </div>
 
-                        <label for="gnusuariosBusinessAdd">Cantidad máxima de usuarios:</label>
+                        <label for="gnusuariosBusinessAdd">Cantidad máxima de usuarios : (0 = ilimitado)</label>
                         <div class="form-group">
-                            <i class="fa fa-user-o" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
+                            <i class="fa fa-user" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
                             <input type="text" class="form-control form-control-padding solo-numeros" name="gnusuariosBusinessAdd" id="gnusuariosBusinessAdd" value="0" required placeholder="Cantidad máxima de usuarios">
                         </div>
                     </div>

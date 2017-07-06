@@ -1,7 +1,7 @@
 $(document).ready(function () {
 	$(".solo-numero").keypress(function(e){
 		var key =  e.keyCode ? e.keyCode : e.which;
-		return (key >= 48 && key <= 57);
+		return ((key >= 48 && key <= 57) || key==13 || key==8);
 	});
 	
 	$('#navbar-ex1-collapse').on('hide.bs.collapse', function (e) {

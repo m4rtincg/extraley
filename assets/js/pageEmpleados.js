@@ -153,7 +153,7 @@ $(document).ready(function () {
 		  apellidosEmployeeAdd: '<span data-placement="left" data-toggle="tooltip" title="Este campo no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
 	      dniEmployeeAdd: '<span data-placement="left" data-toggle="tooltip" title="El DNI debe tener 8 digitos"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
 	      direccionEmployeeAdd: '<span data-placement="left" data-toggle="tooltip" title="La dirección no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',	    
-		  emailEmployeeAdd: '<span data-placement="left" data-toggle="tooltip" title="El formato del email es incorrecto. Menor 20 digitos"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  emailEmployeeAdd: '<span data-placement="left" data-toggle="tooltip" title="El formato del email es incorrecto."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
 		  telefonoEmployeeAdd: '<span data-placement="left" data-toggle="tooltip" title="El teléfono no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
 		 
 	    },

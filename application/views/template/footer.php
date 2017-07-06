@@ -75,31 +75,31 @@
 
                                 <div class="form-group">
                                     <i class="fa fa-address-card" style="font-size: 15px;top: 9.5px;" aria-hidden="true"></i>
-                                    <input type="text" class="form-control form-control-padding" name="newDNI" id="newDNI" placeholder="Número de DNI">
+                                    <input type="text" class="form-control form-control-padding solo-numero" required maxlength="8" name="newDNI" id="newDNI" placeholder="Número de DNI">
                                 </div>
 
                                 <div class="form-group">
                                     <i class="fa fa-building" aria-hidden="true"></i>
-                                    <input type="text" class="form-control form-control-padding" name="newNombres" id="newNombres" placeholder="Nombres">
+                                    <input type="text" class="form-control form-control-padding" name="newNombres" required id="newNombres" placeholder="Nombres">
                                 </div>
 
                                 <div class="form-group">
                                     <i class="fa fa-building" aria-hidden="true"></i>
-                                    <input type="text" class="form-control form-control-padding" name="newApellidos" id="newApellidos" placeholder="Apellidos">
+                                    <input type="text" class="form-control form-control-padding" name="newApellidos" required id="newApellidos" placeholder="Apellidos">
                                 </div>
 
                                 <div class="form-group">
                                     <i class="fa fa-location-arrow" aria-hidden="true"></i>
-                                    <input type="text" class="form-control form-control-padding" name="newDireccion" id="newDireccion" placeholder="Dirección">
+                                    <input type="text" class="form-control form-control-padding" name="newDireccion" required id="newDireccion" placeholder="Dirección">
                                 </div>
 
                                 <div class="form-group">
                                     <i class="fa fa-phone" aria-hidden="true"></i>
-                                    <input type="text" class="form-control form-control-padding" name="newTelefono" id="newTelefono" placeholder="Teléfono">
+                                    <input type="text" class="form-control form-control-padding" name="newTelefono" required id="newTelefono" placeholder="Teléfono">
                                 </div>
                                 <div class="form-group">
                                     <i class="fa fa-at" aria-hidden="true"></i>
-                                    <input type="text" class="form-control form-control-padding" name="newCorreo" id="newCorreo" placeholder="Correo">
+                                    <input type="text" class="form-control form-control-padding" name="newCorreo" required id="newCorreo" placeholder="Correo">
                                 </div>
                             </div>
                         </div>

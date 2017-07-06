@@ -18,14 +18,20 @@
 .checktype{
     top: -1.5px;
 }
+
 label.checkname{
     display: block;
-    width: 500px;
+    width: 380px;
     float: left;
 }
 label.checkoption{
     display: block;
-    width: 200px;
+    width: 160px;
+    float: left;
+}
+label.checkeditar{
+    display: block;
+    width: 160px;
     float: left;
 }
 
@@ -38,7 +44,10 @@ label.checkoption{
 }
 
 @media (min-width: 768px) {
-    
+    #modalTipoContratoAdd .modal-dialog , #modalTipoContratoEdit .modal-dialog {
+        width: 475px;
+        margin: 30px auto;
+    }
 }
 
 @media (min-width: 992px) {

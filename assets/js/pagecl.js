@@ -128,7 +128,7 @@ $(document).ready(function () {
 	        searchEmployee($(this).val());
 	    }
 	});
-	$("#form-new-employee").submit(function(e) {
+	/*$("#form-new-employee").submit(function(e) {
 	    e.preventDefault();
 	    $.post( window.base_url+"home/newEmployee", $(this).serialize() ,function( data ) {
 			if(data.status){
@@ -148,7 +148,76 @@ $(document).ready(function () {
 				alert(data.msg);
 			}
 		},'json');
+	});*/
+	$("#form-new-employee").validate({
+	    rules: {
+		      newNombres: {
+		        required: true,
+		        maxlength: 400
+		      },
+		    newApellidos: {
+		        required: true,
+		        maxlength: 400,
+		       
+		      },
+		     newDNI: {
+		        required: true,
+		        maxlength: 8,
+		        minlength: 8
+		      },
+		     newDireccion: {
+		        required: true,
+		        maxlength: 400
+		      },
+		      newCorreo: {
+		        required: true,
+		        maxlength: 400,
+		       	email: true
+		      },
+		      newTelefono: {
+		      	required: true,
+		      	maxlength: 20
+		      }
+	    },
+	    messages: {
+	    	newNombres: '<span data-placement="left" data-toggle="tooltip" title="La nombre no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  newApellidos: '<span data-placement="left" data-toggle="tooltip" title="Este campo no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      newDNI: '<span data-placement="left" data-toggle="tooltip" title="El DNI debe tener 8 digitos"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      newDireccion: '<span data-placement="left" data-toggle="tooltip" title="La dirección no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',	    
+		  newCorreo: '<span data-placement="left" data-toggle="tooltip" title="El formato del email es incorrecto."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  newTelefono: '<span data-placement="left" data-toggle="tooltip" title="El teléfono no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
+		 
+	    },
+	   	invalidHandler: function(event, validator) {
+	   		setTimeout(function() {
+	   			$('[data-toggle="tooltip"]').tooltip();
+	   			$('[data-toggle="tooltip"]').unbind("click");
+	   		}, 1000);
+	   	},
+	    submitHandler: function(form) {
+	    	$.post( window.base_url+"home/newEmployee", $("#form-new-employee").serialize() ,function( data ) {
+				if(data.status){
+					$("#cont-data-trabajador #span-nombres").html(data.name);
+					$("#cont-data-trabajador #span-apellidos").html(data.lastname);
+					$("#cont-data-trabajador #span-dni").html(data.dni);
+					$("#cont-data-trabajador #span-telefono").html(data.phone);
+					$("#cont-data-trabajador #span-direccion").html(data.address);
+					$("#cont-data-trabajador #span-email").html(data.email);
+					$("#cont-data-trabajador #id_employee").val(data.id);
+					$("#dni-error").hide();
+	    			$("#searchDNI").removeClass("error");
+					$("#cont-data-trabajador").show();
+					$("#modalNewEmployee").modal("hide");
+					$('#form-new-employee').trigger("reset");
+				}else{
+					alert(data.msg);
+				}
+			},'json');
+	    	return false;
+	    }
 	});
+
+
 
 	$("#form-new-work").validate({
 	    rules: {

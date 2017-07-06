@@ -25,16 +25,6 @@ class Empresas extends CI_Controller {
 	{
 		if($this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
 			$this->load->model("business_model");
-			$this->load->model("type_model");
-			
-			$data['laboral']= $this->type_model->selectAllContractTypeByType(1);
-			$data['civil']= $this->type_model->selectAllContractTypeByType(2);
-			$typesBusiness= $this->business_model->selectAlltypesBusinessByBusiness($id);
-			$arraytypesBusiness = array();
-			foreach ($typesBusiness as $key) {
-				$arraytypesBusiness[$key->id] = $key->id;
-			}
-			$data['typesBusiness']= $arraytypesBusiness;
 			$data['id']= $id;
 
 			$dataHeader['modulo'] = 'pagebusinessview';
@@ -132,6 +122,7 @@ class Empresas extends CI_Controller {
 			$pass = ($gpassBusinessEdit=="")?"":encriptar($gpassBusinessEdit);
 
 			$this->load->model("business_model");
+			$this->load->model("user_model");
 			$row = $this->business_model->getBusinessById($id);
 
 			if($row){
@@ -154,6 +145,16 @@ class Empresas extends CI_Controller {
 								    $update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessEdit);
 								    if($update){
 								    	echo json_encode(array("status"=>true,"logo"=>$logo));
+
+								    	//verificar si se ha disminuido la cantidad maxima de usuarios
+								    	$cantidad_maxima_usuarios = $gnusuariosBusinessEdit;
+								    	$rows = $this->user_model->selectByAllStatus($id);
+										$cantidad_de_usuarios = count($rows);
+
+										if($cantidad_de_usuarios > $cantidad_maxima_usuarios){
+											$this->inhabilitarUsuarios($rows, $cantidad_de_usuarios - $cantidad_maxima_usuarios);
+										}
+
 								    }else{
 								    	echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio"));
 								    }
@@ -171,6 +172,16 @@ class Empresas extends CI_Controller {
 						$update = $this->business_model->updateBusiness($id,$ruc,$name,$address,$phone,$email,$url,$logo,$gdniBusinessEdit,$gapellidosBusinessEdit,$gnombresBusinessEdit,$gemailBusinessEdit,$gdireccionBusinessEdit,$gtelefonoBusinessEdit,$pass,$revision,$distrito,$descripcion,$partida,$gnusuariosBusinessEdit);
 					    if($update){
 					    	echo json_encode(array("status"=>true,"logo"=>$logo));
+
+					    	//verificar si se ha disminuido la cantidad maxima de usuarios
+					    	$cantidad_maxima_usuarios = $gnusuariosBusinessEdit;
+					    	$rows = $this->user_model->selectByAllStatus($id);
+							$cantidad_de_usuarios = count($rows);
+							
+							if($cantidad_de_usuarios > $cantidad_maxima_usuarios){
+								$this->inhabilitarUsuarios($rows, $cantidad_de_usuarios - $cantidad_maxima_usuarios);
+							}
+					    	
 					    }else{
 					    	echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio"));
 					    }
@@ -327,6 +338,125 @@ class Empresas extends CI_Controller {
 		}else{
         	header('Location: '.base_url());
      	}
+	}
+
+
+	private function inhabilitarUsuarios($usuarios, $cantidad){
+		$this->load->model("user_model");
+		$contador = 0;
+		foreach ($usuarios as $key) {
+			if($contador<$cantidad){
+				$this->user_model->deshabilitar($key->id_user);
+			}
+			
+			$contador = $contador + 1;
+		}
+	}
+
+
+	public function addTipo(){
+		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
+			$this->load->model("type_model");
+			$nombretipoAdd=trim($_POST['nombretipoAdd']);
+			$descripciontipoAdd=trim($_POST['descripciontipoAdd']);
+			
+
+			if($this->type_model->comprobarTypeAdd($nombretipoAdd)){
+				echo json_encode(array("status"=>false,"msg"=>"Ese nombre ya se encuentra registrado."));
+			}else{
+				$row= $this->type_model->addType($nombretipoAdd,$descripciontipoAdd);
+				if($row){
+					echo json_encode(array("status"=>true));
+				}else{
+					echo json_encode(array("status"=>false,"msg"=>"No se pudo registrar."));
+				}
+			}
+			
+		}else{
+			echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+		}
+	}
+
+	public function editTipo(){
+		if($_POST and $this->session->userdata('session') and $this->session->userdata('rol') and $this->session->userdata('rol')==3){
+			$this->load->model("type_model");
+			$nombretipoEdit=trim($_POST['nombretipoEdit']);
+			$descripciontipoEdit=trim($_POST['descripciontipoEdit']);
+			$idtypeEdit=trim($_POST['idtypeEdit']);
+
+			if($this->type_model->comprobarTypeEdit($idtypeEdit,$nombretipoEdit)){
+				echo json_encode(array("status"=>false,"msg"=>"Ese nombre ya se encuentra registrado."));
+			}else{
+				$row= $this->type_model->editType($idtypeEdit,$nombretipoEdit,$descripciontipoEdit);
+				if($row){
+					echo json_encode(array("status"=>true));
+				}else{
+					echo json_encode(array("status"=>false,"msg"=>"No se realizo ningun cambio."));
+				}
+			}
+			
+		}else{
+			echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+		}
+	}
+
+	public function selectTipo(){
+		$this->load->model("type_model");
+		$id=trim($_POST['id']);
+		$row= $this->type_model->selectTypeById($id);
+		if($row){
+			echo json_encode(array("status"=>true,"datos"=>$row));
+		}else{
+			echo json_encode(array("status"=>false,"msg"=>"No se encontro el tipo de contrato."));
+		}
+	}
+
+	public function actualizarTipo(){
+		$this->load->model("business_model");
+		$this->load->model("type_model");
+		$id=trim($_POST['empresa']);
+		
+		$laboral= $this->type_model->selectAllContractTypeByType(1);
+		$civil= $this->type_model->selectAllContractTypeByType(2);
+		$typesBusiness= $this->business_model->selectAlltypesBusinessByBusiness($id);
+		$arraytypesBusiness = array();
+		foreach ($typesBusiness as $key) {
+			$arraytypesBusiness[$key->id] = $key->id;
+		}
+		$typesBusiness= $arraytypesBusiness;
+
+		ob_start();
+		?>
+		<div id="contlaboral">
+            <div class="contTipoTitulo">Contrato Laboral</div>
+            <div class="contTipoTexto">
+                <?php foreach ($laboral as $key) { 
+                    $aux = (isset($typesBusiness[$key->id])) ? "checked" : "";
+                    $aux2 = (isset($typesBusiness[$key->id])) ? "" : "style='display:none;'";
+                    ?>
+                    <div class="checkbox">
+                        <label class="checkname"><input onChange="changeTypeBusiness(<?= $key->id ?>,this)" class="checktype" <?= $aux ?> type="checkbox" value=""><?= $key->name ?></label><label class="checkeditar"><span><a onClick="editar(<?= $key->id ?>);">Editar</a></span></label><label class="checkoption" <?= $aux2 ?>><a href="<?= base_url() ?>empresas/clausulas/<?= $id ?>/<?= $key->id ?>">Ver clausulas</a></label>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+        <!--<div id="contcivil">
+            <div class="contTipoTitulo">Contrato Civil</div>
+            <div class="contTipoTexto">
+                <?php foreach ($civil as $key) { 
+                    $aux = (isset($typesBusiness[$key->id])) ? "checked" : "";
+                    $aux2 = (isset($typesBusiness[$key->id])) ? "" : "style='display:none;'";
+                    ?>
+                    <div class="checkbox">
+                        <label class="checkname"><input name="check_list_clauses[]" onChange="changeTypeBusiness(<?= $key->id ?>,this)" class="checktype" <?= $aux ?> type="checkbox" value=""><?= $key->name ?></label><label class="checkeditar"><span><a onClick="editar(<?= $key->id ?>);">Editar</a></span></label><label class="checkoption" <?= $aux2 ?>><a href="">Ver clausulas</a></label>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>-->
+		<?php
+		$html = ob_get_clean();
+		echo json_encode(array("status"=>true, "datos"=>$html));
+		
 	}
 
 }
