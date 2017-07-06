@@ -111,7 +111,7 @@ class Empleados extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"Ese dni ya existe"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
@@ -122,7 +122,7 @@ class Empleados extends CI_Controller {
 			$rows = $this->employee_model->selectByAll($this->session->userdata('business'));
 			echo json_encode(array("status"=>true,"datos"=>$rows));
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
@@ -142,7 +142,7 @@ class Empleados extends CI_Controller {
 			    }
 				
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
@@ -159,7 +159,7 @@ class Empleados extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"No se encontro ese empleado"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
     }
 
@@ -177,7 +177,7 @@ class Empleados extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"No se encontro esa baja."));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
     }
     public function cancelarBaja()
@@ -193,7 +193,7 @@ class Empleados extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"No se pudo cancelar."));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
     }
     public function updateBaja()
@@ -230,7 +230,7 @@ class Empleados extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"No se encontro ese usuario"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
     }
     public function addBaja()
@@ -268,7 +268,7 @@ class Empleados extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"No se encontro ese usuario"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
     }
 

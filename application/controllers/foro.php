@@ -40,7 +40,7 @@ class Foro extends CI_Controller {
 			}
 			
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function actForo(){
@@ -58,7 +58,7 @@ class Foro extends CI_Controller {
 			}
 			
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function upload(){
@@ -80,7 +80,7 @@ class Foro extends CI_Controller {
 			}
 			
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 }

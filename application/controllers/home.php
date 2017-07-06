@@ -310,7 +310,7 @@ class Home extends CI_Controller {
 			}
 			
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
@@ -331,7 +331,7 @@ class Home extends CI_Controller {
 				echo json_encode(array('status'=>false , 'msg'=>'No se pudo eliminar la firma'));
 			}
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
@@ -347,7 +347,7 @@ class Home extends CI_Controller {
 				echo json_encode(array('status'=>false , 'msg'=>'No se pudo aprobar el contrato'));
 			}
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function contractRechazar(){
@@ -362,7 +362,7 @@ class Home extends CI_Controller {
 				echo json_encode(array('status'=>false , 'msg'=>'No se pudo rechazar el contrato'));
 			}
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function contractEnviar(){
@@ -377,7 +377,7 @@ class Home extends CI_Controller {
 				echo json_encode(array('status'=>false , 'msg'=>'No se pudo enviar el contrato'));
 			}
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function actualizarData()
@@ -606,7 +606,7 @@ class Home extends CI_Controller {
 				echo json_encode(array("status"=>true, "html"=>$html));
 			}
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 

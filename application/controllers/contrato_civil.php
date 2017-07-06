@@ -52,7 +52,7 @@ class Contrato_civil extends CI_Controller {
 			$clausulas = $this->clauses_model->getClausesByType($id,$this->session->userdata('business'));
 			echo json_encode(array('status'=>true, 'clausulas'=>$clausulas));
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
@@ -63,7 +63,7 @@ class Contrato_civil extends CI_Controller {
 			$work = $this->work_model->selectById($id);
 			echo json_encode(array('status'=>true, 'deswork'=>$work->descripcion_work, 'titlework'=>$work->name_work));
         }else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 

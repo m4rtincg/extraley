@@ -71,7 +71,7 @@ class Empresas extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"No se pudo cambiar de estado"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function selectBusiness(){
@@ -92,7 +92,7 @@ class Empresas extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"No se pudo consultar los datos"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function updateBusiness(){
@@ -195,7 +195,7 @@ class Empresas extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"No se pudo consultar los datos"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function addBusiness(){
@@ -267,7 +267,7 @@ class Empresas extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>"Ese ruc ya existe"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 	public function selectAllBusiness(){
@@ -276,7 +276,7 @@ class Empresas extends CI_Controller {
 			$rows = $this->business_model->getAllBusiness();
 			echo json_encode(array("status"=>true,"datos"=>$rows));
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
@@ -288,7 +288,7 @@ class Empresas extends CI_Controller {
 			$rows2 = $this->business_model->getAllPermisosByUser($user);
 			echo json_encode(array("status"=>true,"datos"=>$rows,"empresas"=>$rows2));
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
@@ -336,7 +336,7 @@ class Empresas extends CI_Controller {
 				echo json_encode(array("status"=>false,"msg"=>$mensaje."No se pudo cambiar de estado"));
 			}
 		}else{
-        	header('Location: '.base_url());
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
      	}
 	}
 
