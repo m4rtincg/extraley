@@ -28,7 +28,7 @@
                     <div class="modal-body">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="button" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -45,11 +45,11 @@
                         <div class="modal-body">
                             <label style="margin-bottom:15px;">Escriba el nombre del puesto de trabajo</label>
                             <div class="form-group">
-                                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                                <i class="fa fa-briefcase" aria-hidden="true"></i>
                                 <input class="form-control form-control-padding" name="name_new_work" id="name_new_work" placeholder="Nombre del puesto de trabajo">
                             </div>
                             <div class="form-group">
-                                <i class="fa fa-at" aria-hidden="true"></i>
+                                <i class="fa fa-building" aria-hidden="true"></i>
                                 <textarea class="form-control form-control-padding" name="new_descripcion_work" id="new_descripcion_work" placeholder="Descripción del puesto de trabajo"></textarea>
                             </div>
                         </div>
@@ -79,12 +79,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <i class="fa fa-building" aria-hidden="true"></i>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
                                     <input type="text" class="form-control form-control-padding" name="newNombres" required id="newNombres" placeholder="Nombres">
                                 </div>
 
                                 <div class="form-group">
-                                    <i class="fa fa-building" aria-hidden="true"></i>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
                                     <input type="text" class="form-control form-control-padding" name="newApellidos" required id="newApellidos" placeholder="Apellidos">
                                 </div>
 
@@ -178,10 +178,10 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <div id="tituloAsesoria">Fecha de firma de contrato</div>
-                        <div id="mensajeAsesoria">Coloque la fecha en la cual se va a realizar la firma del contrato</div>
+                        <div id="tituloAsesoria"></div>
+                        <div id="mensajeAsesoria"></div>
                         <div id="botonAsesoria">
-                            <button data-dismiss="modal">Aceptar</button>
+                            <button data-dismiss="modal" id="asesorAceptar">Aceptar</button>
                         </div>
                     </div>
                 </div>

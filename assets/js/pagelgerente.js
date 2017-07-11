@@ -1,6 +1,19 @@
 $(document).ready(function () {
 	actualizarData();
 });
+function finalizar(id){
+	cargando();
+	$.post( window.base_url+"home/contractFinalizar", {id:id} , function( data ) {
+		if(data.status){
+			actualizarData();
+			quitarDescargando();
+			mensajeSucess("Se finalizo el contrato.");
+		}else{
+			quitarDescargando();
+			mensajeError(data.msg);
+		}
+	},'json');
+}
 function editContrato(id){
 	location.href = window.base_url+"contrato_laboral/edit/"+id;
 }

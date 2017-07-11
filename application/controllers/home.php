@@ -16,7 +16,9 @@ class MyPdf3 extends TCPDF  {
     	$partes_ruta = pathinfo($this->logo);
     	$typeImg = (isset($extensionarray[$partes_ruta['extension']]))? $extensionarray[$partes_ruta['extension']] :"PNG";
         $image_file = base_url()."assets/img/business/".$this->logo;
-        $this->Image($image_file, 22, 6, '', 11, $typeImg, '', 'T', false, 300, '', false, false, 0, false, false, false);
+        if($this->logo!="default.png"){
+        	$this->Image($image_file, 22, 6, '', 11, $typeImg, '', 'T', false, 300, '', false, false, 0, false, false, false);
+        }
         $this->SetFont('helvetica', '', 8);
         $this->setCellPaddings(0, 3.5, 0, 0);
         $this->MultiCell(0,15,$this->datos,0,'R','','');
@@ -44,7 +46,7 @@ class Home extends CI_Controller {
 			$this->load->model("contract_model");
 			$this->load->model("business_model");
 			$this->load->model("contract_type_model");
-			$data["typecontracts"] = $this->contract_type_model->selectAll();
+			$data["typecontracts"] = $this->contract_type_model->selectAllBybusiness($this->session->userdata('business'));
 			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
 			$dataHeader["modulo"] = 'pagel';
 			$this->load->view('template/header',$dataHeader);
@@ -240,8 +242,10 @@ class Home extends CI_Controller {
 			$diferenciadias = (intval($arraydiferencia[2])==0) ? "" : ((intval($arraydiferencia[2])==1) ? $arraydiferencia[2]." dia": $arraydiferencia[2]." dias");
 			$diferenciafecha = $diferenciaanios." ".$diferenciameses." ".$diferenciadias;
 			$diferenciafecha = ($diferenciafecha == "  ")? "0 días" : $diferenciafecha;
+			$nombreContratoActual = (strpos(trim($datos->name_contract_type), "Contrato ")==0)? substr(trim($datos->name_contract_type), 9) : trim($datos->name_contract_type) ;
 
-			$array1 = array("[empresa-razonsocial]","[empresa-ruc]","[empresa-direccion]",
+			$array1 = array("[articulo-contrato]","[tipo-contrato]",
+						"[empresa-razonsocial]","[empresa-ruc]","[empresa-direccion]",
 						"[empresa-distrito]","[empresa-provincia]","[empresa-departamento]",
 						"[empresa-actividadeconomica]","[empleado-trabajo]","[empleado-detallestrabajo]","[empleado-explicacioncontrato]",
 						"[empleado-nombres]","[empleado-dni]","[empleado-direccion]",
@@ -250,7 +254,8 @@ class Home extends CI_Controller {
 						"[contrato-fechainicio]","[contrato-fechafin]","[contrato-diferenciafecha]",
 						"[contrato-fecha]","[contrato-lugarfirma]","[empresa-partidaregistral]"
 					);
-			$array2 = array($datos->name_razonSocial,$datos->ruc,$datos->address,
+			$array2 = array($datos->descripciontype,$nombreContratoActual,
+						$datos->name_razonSocial,$datos->ruc,$datos->address,
 						$datos->distrito,$datos->provincia,$datos->departamento,
 						$datos->actividad,$datos->name_work,$datos->detalleworkcontract,$datos->explicaworkcontract,
 						$datos->name_employee.' '.$datos->lastname_employee,$datos->dni_employee,$datos->address_employee,
@@ -261,7 +266,20 @@ class Home extends CI_Controller {
 					);
 			
 
-			$formato = $datos->format_type;
+			$formato = '<strong style="text-align:center"><u>CONTRATO DE TRABAJO SUJETO A MODALIDAD</u></strong>
+					<p>Conste por el presente documento, el Contrato de Trabajo Sujeto a Modalidad [tipo-contrato] 
+					que celebran al amparo del [articulo-contrato], 
+					de una parte; </p> <p>[empresa-razonsocial], identificada con R.U.C. N° [empresa-ruc], con domicilio en [empresa-direccion], 
+					Distrito de [empresa-distrito], Provincia de [empresa-provincia], Departamento de [empresa-departamento], 
+					debidamente representada por el señor [gerente-nombres], identificado con D.N.I N° [gerente-dni], según poderes inscritos en la Partida 
+					Registral N° [empresa-partidaregistral] del Registro de Personas Jurídicas, a quien en adelante se le denominará <strong>EL EMPLEADOR</strong>, 
+					y de la otra parte; </p> <p>[empleado-nombres], identificado con D.N.I. N° [empleado-dni], con domicilio en [empleado-direccion], a quien en 
+					adelante se denominará <strong>EL TRABAJADOR</strong>; en los términos y condiciones siguientes: </p> <p>[clausulas]</p> <p>En señal de conformidad, 
+					las partes suscriben el presente contrato en tres ejemplares de idéntico tenor, en la ciudad de [contrato-lugarfirma], el [contrato-fecha]. </p> 
+					<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> 
+					<table with="100%"> <tr><td></td><td style="text-align:center">--------------------------------</td><td></td><td style="text-align:center">--------------------------------</td><td></td></tr> 
+					<tr><td></td><td style="text-align:center">EL EMPLEADOR</td><td></td><td style="text-align:center">EL TRABAJADOR</td><td></td></tr> </table>';
+			
 			$message = str_replace("[clausulas]", $textClausula, $formato);
 			$message = str_replace($array1, $array2, $message);
 
@@ -301,7 +319,13 @@ class Home extends CI_Controller {
 			if (move_uploaded_file($_FILES['file']['tmp_name'], $fichero_subido)) {
 			    $foro = $this->contract_model->uploadFirma($id,$logo);
 				if($foro){
-					echo json_encode(array('status'=>true));
+					$row = $this->contract_model->changeContractStatus($id,4,0);
+					if($row){
+						echo json_encode(array('status'=>true));
+					}else{
+						echo json_encode(array('status'=>false,'msg'=>'No se pudo cambiar de estado.'));
+					}
+						
 				}else{
 					echo json_encode(array('status'=>false));
 				}
@@ -323,7 +347,12 @@ class Home extends CI_Controller {
 			if(unlink("assets/img/firmas/".$row->firmapdf)){
 				$foro = $this->contract_model->uploadFirma($id,"");
 				if($foro){
-					echo json_encode(array('status'=>true));
+					$row = $this->contract_model->changeContractStatus($id,2,0);
+					if($row){
+						echo json_encode(array('status'=>true));
+					}else{
+						echo json_encode(array('status'=>false,'msg'=>'No se pudo cambiar de estado.'));
+					}
 				}else{
 					echo json_encode(array('status'=>false, 'msg'=>'Error de conexion con la BD.'));
 				}
@@ -345,6 +374,21 @@ class Home extends CI_Controller {
 				echo json_encode(array('status'=>true));
 			}else{
 				echo json_encode(array('status'=>false , 'msg'=>'No se pudo aprobar el contrato'));
+			}
+        }else{
+        	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
+     	}
+	}
+	public function contractFinalizar(){
+		if($_POST && $this->session->userdata('session')){
+			$this->load->model("contract_model");
+			$id=trim($_POST['id']);
+			$row = $this->contract_model->changeContractStatus($id,5,0);
+
+			if($row){
+				echo json_encode(array('status'=>true));
+			}else{
+				echo json_encode(array('status'=>false , 'msg'=>'No se pudo rechazar el contrato'));
 			}
         }else{
         	echo json_encode(array("status"=>false,"msg"=>"No tienes permiso."));
@@ -407,7 +451,7 @@ class Home extends CI_Controller {
 					<tbody>
 						<?php
 							$tiporemuneracion = array(0=>"no definido" ,1=>"mensual", 2=>"quincenal", 3=>"semanal", 4=>"diario");
-							$estadoContrato = array(0=>"No creado", 1=>"Borrador", 2=>"Aceptado", 3=>"Rechazado")
+							$estadoContrato = array(0=>"No creado", 1=>"Borrador", 2=>"Aceptado", 3=>"Rechazado", 4=>"Firmado", 5=>"Finalizado");
 						?>
 						<?php foreach ($contracts as $key) { 
 							$array = explode(";", $key->vista);
@@ -428,12 +472,17 @@ class Home extends CI_Controller {
 							
 							<td class="text-center"><a download="contrato.pdf" href="<?= base_url() ?>home/downloadPDFContract?id=<?= $key->contract_id ?>"><i data-id="<?= $key->contract_id ?>" class="downloadWord fa fa-file-pdf-o" aria-hidden="true"></i></a></td>
 							<td class="text-center"><a target="_blank" class="foro <?= $clase ?>" href="<?= base_url() ?>foro?id=<?= $key->contract_id ?>"><i class="fa fa-users" aria-hidden="true"></i></a></td>
-							<?php if($key->status_contract==2) {?>
-								<?php if($key->firmapdf==""){ ?>
+							<?php if($key->status_contract==2) { ?>
 								<td class="text-center upload-pdf-firma-cont"><div><i data-id="<?= $key->contract_id ?>" class="fa fa-upload upload-pdf-firma" onClick="uploadfirma(this)" aria-hidden="true"></i></div><div class="text-firma-pdf">Suba la firma</div></td>
-								<?php }else{ ?>
-								<td class="text-center upload-pdf-firma-cont-del"><div><a download="<?= substr($key->firmapdf, strpos($key->firmapdf, "-") + 1) ?>" href="<?= base_url() ?>assets/img/firmas/<?= $key->firmapdf ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></div><div class="text-firma-pdf"><?= substr($key->firmapdf, strpos($key->firmapdf, "-") + 1) ?></div><div class="delete-firma"><i class="fa fa-times-circle" onClick="deleteFirma(<?= $key->contract_id ?>)" aria-hidden="true"></i></div></td>
-								<?php } ?>
+							<?php } else if($key->status_contract==4){ ?>
+								<td class="text-center upload-pdf-firma-cont-del"><div>
+									<a download="<?= substr($key->firmapdf, strpos($key->firmapdf, "-") + 1) ?>" href="<?= base_url() ?>assets/img/firmas/<?= $key->firmapdf ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></div>
+									<div class="text-firma-pdf"><?= substr($key->firmapdf, strpos($key->firmapdf, "-") + 1) ?></div>
+									<div class="delete-firma"><i class="fa fa-times-circle" onClick="deleteFirma(<?= $key->contract_id ?>)" aria-hidden="true"></i></div></td>
+							<?php } else if($key->status_contract==5){ ?>
+								<td class="text-center upload-pdf-firma-cont-del"><div>
+									<a download="<?= substr($key->firmapdf, strpos($key->firmapdf, "-") + 1) ?>" href="<?= base_url() ?>assets/img/firmas/<?= $key->firmapdf ?>"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a></div>
+									<div class="text-firma-pdf"><?= substr($key->firmapdf, strpos($key->firmapdf, "-") + 1) ?></div>
 							<?php } else { echo "<td></td>"; } ?>
 						</tr>
 						<?php } ?>
@@ -465,7 +514,7 @@ class Home extends CI_Controller {
 					<tbody>
 						<?php
 							$tiporemuneracion = array(0=>"no definido" ,1=>"mensual", 2=>"quincenal", 3=>"semanal", 4=>"diario");
-							$estadoContrato = array(0=>"No creado", 1=>"Borrador", 2=>"Aceptado", 3=>"Rechazado")
+							$estadoContrato = array(0=>"No creado", 1=>"Borrador", 2=>"Aceptado", 3=>"Rechazado", 4=>"Firmado", 5=>"Finalizado");
 						?>
 						<?php foreach ($contracts as $key) { 
 							$array = explode(";", $key->vista);
@@ -480,24 +529,51 @@ class Home extends CI_Controller {
 							<td class="text-center"><?= $key->name_work ?></td>
 							<td class="text-center"><?= (isset($estadoContrato[$key->status_contract]))? $estadoContrato[$key->status_contract] : "" ?></td>
 							<td class="text-center">
-							<?php if($key->user_id_create==$this->session->userdata('user')) {?>
-								<?php if($key->status_contract==1){ ?>
+
+							<?php if($key->revision == 1 || $key->revision == 3) { ?>
+
+								<?php if($key->user_id_create==$this->session->userdata('user')) { ?>
+
+									<?php if($key->status_contract==1){ ?>
+										<div><button class="btn-aprobar btn_eventos" onClick="aprobar(<?= $key->contract_id ?>);">Aprobar</button></div><div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Rechazar</button></div>
+									<?php }else if($key->status_contract==2){ ?>
+										<div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Cancelar</button></div>
+									<?php }else if($key->status_contract==3){ ?>
+										<div><button onClick="editContrato(<?= $key->contract_id ?>)" class="btn-editar btn_eventos">Editar</button></div><div><button class="btn-enviar btn_eventos" onClick="enviar(<?= $key->contract_id ?>);">Enviar</button></div>
+									<?php }else if($key->status_contract==4){ ?>
+										<div><button onClick="finalizar(<?= $key->contract_id ?>)" class="btn-finalizar btn_eventos">Finalizar</button></div>
+									<?php } ?>
+
+								<?php } else { ?>
+
+									<?php if($key->status_contract==1){ ?>
 									<div><button class="btn-aprobar btn_eventos" onClick="aprobar(<?= $key->contract_id ?>);">Aprobar</button></div><div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Rechazar</button></div>
 								<?php }else if($key->status_contract==2){ ?>
 									<div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Cancelar</button></div>
 								<?php }else if($key->status_contract==3){ ?>
-									<div><button onClick="editContrato(<?= $key->contract_id ?>)" class="btn-editar btn_eventos">Editar</button></div><div><button class="btn-enviar btn_eventos" onClick="enviar(<?= $key->contract_id ?>);">Enviar</button></div>
+										<div><button onClick="editContrato(<?= $key->contract_id ?>)" class="btn-editar btn_eventos">Editar</button></div><div><button class="btn-enviar btn_eventos" onClick="enviar(<?= $key->contract_id ?>);">Enviar</button></div>
+									<?php }else if($key->status_contract==4){ ?>
+										<div><button onClick="finalizar(<?= $key->contract_id ?>)" class="btn-finalizar btn_eventos">Finalizar</button></div>
+									<?php } ?>
+
 								<?php } ?>
-							<?php } else if(($key->revision == 1 || $key->revision == 3)) {?>
-								<?php if($key->status_contract==1){ ?>
-									<div><button class="btn-aprobar btn_eventos" onClick="aprobar(<?= $key->contract_id ?>);">Aprobar</button></div><div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Rechazar</button></div>
-								<?php }else if($key->status_contract==2){ ?>
-									<div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Cancelar</button></div>
-								<?php }else if($key->status_contract==3){ ?>
-									
+
+							<?php } else { ?>
+
+								<?php  if($key->status_contract==3){ ?>
+									<div>
+										<button  onClick="editContrato(<?= $key->contract_id ?>)" class="btn-editar btn_eventos">Editar</button>
+									</div>
+									<div>
+										<button class="btn-enviar btn_eventos" onClick="enviar(<?= $key->contract_id ?>);">Enviar</button>
+									</div>
 								<?php } ?>
-							
+
 							<?php } ?>
+
+
+
+
 							</td>
 							
 							<td class="text-center"><a download="contrato.pdf" href="<?= base_url() ?>home/downloadPDFContract?id=<?= $key->contract_id ?>"><i data-id="<?= $key->contract_id ?>" class="downloadWord fa fa-file-pdf-o" aria-hidden="true"></i></a></td>
@@ -546,7 +622,7 @@ class Home extends CI_Controller {
 					<tbody>
 						<?php
 							$tiporemuneracion = array(0=>"no definido" ,1=>"mensual", 2=>"quincenal", 3=>"semanal", 4=>"diario");
-							$estadoContrato = array(0=>"No creado", 1=>"Borrador", 2=>"Aceptado", 3=>"Rechazado")
+							$estadoContrato = array(0=>"No creado", 1=>"Borrador", 2=>"Aceptado", 3=>"Rechazado", 4=>"Firmado", 5=>"Finalizado");
 						?>
 						<?php foreach ($contracts as $key) { 
 							$array = explode(";", $key->vista);
@@ -560,25 +636,48 @@ class Home extends CI_Controller {
 							<td><?= $key->lastname_employee ?></td>
 							<td class="text-center">S/. <?= $key->remuneracion ?> <?= (isset($tiporemuneracion[$key->type_remuneracion]))? $tiporemuneracion[$key->type_remuneracion] :"" ?></td>
 							<td class="text-center"><?= $key->name_work ?></td>
-							<td class="text-center"><?= (isset($estadoContrato[$key->status_contract]))? $estadoContrato[$key->status_contract] : "" ?></td>
+							<?php  $estadoContratoEt = (isset($estadoContrato[$key->status_contract]))? $estadoContrato[$key->status_contract] : "" ?>
+							<td class="text-center"><span class="<?= $estadoContratoEt ?>"><?= $estadoContratoEt ?></span></td>
 							<td class="text-center">
-							<?php if($key->user_id_create==$this->session->userdata('user')) {?>
-								<?php if($key->status_contract==1){ ?>
+							<?php if($key->revision == 2 || $key->revision == 3) { ?>
+
+								<?php if($key->user_id_create==$this->session->userdata('user')) { ?>
+
+									<?php if($key->status_contract==1){ ?>
+										<div><button class="btn-aprobar btn_eventos" onClick="aprobar(<?= $key->contract_id ?>);">Aprobar</button></div><div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Rechazar</button></div>
+									<?php }else if($key->status_contract==2){ ?>
+										<div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Cancelar</button></div>
+									<?php }else if($key->status_contract==3){ ?>
+										<div><button onClick="editContrato(<?= $key->contract_id ?>)" class="btn-editar btn_eventos">Editar</button></div><div><button class="btn-enviar btn_eventos" onClick="enviar(<?= $key->contract_id ?>);">Enviar</button></div>
+									<?php }else if($key->status_contract==4){ ?>
+										<div><button onClick="finalizar(<?= $key->contract_id ?>)" class="btn-finalizar btn_eventos">Finalizar</button></div>
+									<?php } ?>
+
+								<?php } else { ?>
+
+									<?php if($key->status_contract==1){ ?>
 									<div><button class="btn-aprobar btn_eventos" onClick="aprobar(<?= $key->contract_id ?>);">Aprobar</button></div><div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Rechazar</button></div>
 								<?php }else if($key->status_contract==2){ ?>
 									<div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Cancelar</button></div>
 								<?php }else if($key->status_contract==3){ ?>
-									<div><button onClick="editContrato(<?= $key->contract_id ?>)" class="btn-editar btn_eventos">Editar</button></div><div><button class="btn-enviar btn_eventos" onClick="enviar(<?= $key->contract_id ?>);">Enviar</button></div>
+										<div><button onClick="editContrato(<?= $key->contract_id ?>)" class="btn-editar btn_eventos">Editar</button></div><div><button class="btn-enviar btn_eventos" onClick="enviar(<?= $key->contract_id ?>);">Enviar</button></div>
+									<?php }else if($key->status_contract==4){ ?>
+										<div><button onClick="finalizar(<?= $key->contract_id ?>)" class="btn-finalizar btn_eventos">Finalizar</button></div>
+									<?php } ?>
+
 								<?php } ?>
-							<?php } else if(($key->revision == 2 || $key->revision == 3)) {?>
-								<?php if($key->status_contract==1){ ?>
-									<div><button class="btn-aprobar btn_eventos" onClick="aprobar(<?= $key->contract_id ?>);">Aprobar</button></div><div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Rechazar</button></div>
-								<?php }else if($key->status_contract==2){ ?>
-									<div><button class="btn-rechazar btn_eventos" onClick="rechazar(<?= $key->contract_id ?>);">Cancelar</button></div>
-								<?php }else if($key->status_contract==3){ ?>
-									
+
+							<?php } else { ?>
+
+								<?php  if($key->status_contract==3){ ?>
+									<div>
+										<button  onClick="editContrato(<?= $key->contract_id ?>)" class="btn-editar btn_eventos">Editar</button>
+									</div>
+									<div>
+										<button class="btn-enviar btn_eventos" onClick="enviar(<?= $key->contract_id ?>);">Enviar</button>
+									</div>
 								<?php } ?>
-							
+
 							<?php } ?>
 							</td>
 							

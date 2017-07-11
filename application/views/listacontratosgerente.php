@@ -49,7 +49,7 @@
 		</div>
 		<div class="row-fiter">
 			<div class="filterLabel">
-				estado
+				Estado
 			</div>
 			<div class="filterInput">
 				<select class="form-control" id="filter-status">
@@ -57,6 +57,8 @@
 					<option value="Borrador">Borrador</option>
 					<option value="Aceptado">Aceptado</option>
 					<option value="Rechazado">Rechazado</option>
+					<option value="Firmado">Firmado</option>
+					<option value="Finalizado">Finalizado</option>
 				</select>
 			</div>
 		</div>

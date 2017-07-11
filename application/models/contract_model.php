@@ -281,7 +281,7 @@
                 );
             }else{
                 $data = array(
-                   'user_id_create' => $user,
+                   'user_id_approve' => $user,
                    'status_contract' => $estado
                 );
             }

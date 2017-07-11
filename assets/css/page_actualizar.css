@@ -12,10 +12,15 @@
     font-size: 14px;
     color: #fff;
     border: none;
-    background: #9ac53c;
+    background: #2bb919;
     border-radius: 4px;
     padding: 8px 15px;
     margin-top: 5px;
+    -webkit-transition: background 0.75s; /* Safari */
+    transition: background 0.75s;
+}
+.btn_actualizar:hover{
+    background: #129600;
 }
 h3{
     font-family: robotobold;

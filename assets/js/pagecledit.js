@@ -75,7 +75,7 @@ $(document).ready(function () {
 	    }
 	});
 	$("#tipoplazo").trigger("change");
-	$("#form-new-employee").submit(function(e) {
+	/*$("#form-new-employee").submit(function(e) {
 	    e.preventDefault();
 	    $.post( window.base_url+"home/newEmployee", $(this).serialize() ,function( data ) {
 			if(data.status){
@@ -95,6 +95,77 @@ $(document).ready(function () {
 				alert(data.msg);
 			}
 		},'json');
+	});*/
+	$("#form-new-employee").validate({
+	    rules: {
+		      newNombres: {
+		        required: true,
+		        maxlength: 400
+		      },
+		    newApellidos: {
+		        required: true,
+		        maxlength: 400,
+		       
+		      },
+		     newDNI: {
+		        required: true,
+		        maxlength: 8,
+		        minlength: 8
+		      },
+		     newDireccion: {
+		        required: true,
+		        maxlength: 400
+		      },
+		      newCorreo: {
+		        required: true,
+		        maxlength: 400,
+		       	email: true
+		      },
+		      newTelefono: {
+		      	required: true,
+		      	maxlength: 20
+		      }
+	    },
+	    messages: {
+	    	newNombres: '<span data-placement="left" data-toggle="tooltip" title="La nombre no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  newApellidos: '<span data-placement="left" data-toggle="tooltip" title="Este campo no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      newDNI: '<span data-placement="left" data-toggle="tooltip" title="El DNI debe tener 8 digitos"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      newDireccion: '<span data-placement="left" data-toggle="tooltip" title="La dirección no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',	    
+		  newCorreo: '<span data-placement="left" data-toggle="tooltip" title="El formato del email es incorrecto."><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+		  newTelefono: '<span data-placement="left" data-toggle="tooltip" title="El teléfono no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>'
+		 
+	    },
+	   	invalidHandler: function(event, validator) {
+	   		setTimeout(function() {
+	   			$('[data-toggle="tooltip"]').tooltip();
+	   			$('[data-toggle="tooltip"]').unbind("click");
+	   		}, 1000);
+	   	},
+	    submitHandler: function(form) {
+	    	cargando();
+	    	$.post( window.base_url+"home/newEmployee", $("#form-new-employee").serialize() ,function( data ) {
+				if(data.status){
+					$("#cont-data-trabajador #span-nombres").html(data.name);
+					$("#cont-data-trabajador #span-apellidos").html(data.lastname);
+					$("#cont-data-trabajador #span-dni").html(data.dni);
+					$("#cont-data-trabajador #span-telefono").html(data.phone);
+					$("#cont-data-trabajador #span-direccion").html(data.address);
+					$("#cont-data-trabajador #span-email").html(data.email);
+					$("#cont-data-trabajador #id_employee").val(data.id);
+					$("#dni-error").hide();
+	    			$("#searchDNI").removeClass("error");
+					$("#cont-data-trabajador").show();
+					$("#modalNewEmployee").modal("hide");
+					$('#form-new-employee').trigger("reset");
+					quitarDescargando();
+					mensajeSucess("Se registro de forma exitosa");
+				}else{
+					quitarDescargando();
+					mensajeError(data.msg);
+				}
+			},'json');
+	    	return false;
+	    }
 	});
 
 
@@ -119,6 +190,7 @@ $(document).ready(function () {
 	   		}, 1000);
 	   	},
 	    submitHandler: function(form) {
+	    	cargando();
 	    	$.post( window.base_url+"home/add_work", {name: $("#name_new_work").val(), description: $("#new_descripcion_work").val()} ,function( data ) {
 			  	if(data.status){
 			  		$("#cont-data-trabajo span").html(data.name);
@@ -129,8 +201,11 @@ $(document).ready(function () {
 		    		$("#searchWork").removeClass("error");
 					$("#searchWork").val("");
 					$("#modalNewWork").modal("hide");
+					quitarDescargando();
+					mensajeSucess("Se registro de forma exitosa");
 			  	}else{
-			  		alert(data.msg);
+			  		quitarDescargando();
+					mensajeError(data.msg);
 			  	}
 			  	
 			},'json');
@@ -265,19 +340,22 @@ $(document).ready(function () {
 
 
 function viewClauses(id){
+	cargando();
 	$.post( window.base_url+"home/view_description_clauses", {id:id} ,function( data ) {
 		if(data.status){
 			$("#modalViewClauses .modal-title").html(data.data.title);
 			$("#modalViewClauses .modal-body").html("<p>"+data.data.description+"</p>");
 			$("#modalViewClauses").modal('show');
+			quitarDescargando();
 		}else{
-			alert(data.msg);
+			quitarDescargando();
+			mensajeError(data.msg);
 		}
 	},'json');
 }
 
 function popupselectWork(){
-	
+	cargando();
 	$.post( window.base_url+"home/search_work", {q:$("#searchWork").val(), type: 2} ,function( data ) {
 	  	if(data.status){
 	  		var html = "<ul>";
@@ -288,8 +366,10 @@ function popupselectWork(){
 			$("#modalListWork .modal-body").html(html);
 			$("#modalListWork .modal-title span").html($("#searchWork").val());
 			$("#modalListWork").modal("show");
+			quitarDescargando();
 	  	}else{
-	  		alert(data.msg);
+	  		quitarDescargando();
+			mensajeError(data.msg);
 	  	}
 	  	
 	},'json');
@@ -332,6 +412,7 @@ function selectWork(id,event){
 }*/
 
 function searchEmployee(dni){
+	cargando();
 	$.post( window.base_url+"home/dataDni", {dni: dni} ,function( data ) {
 	  	if(data.status){
 	  		$("#cont-data-trabajador #span-nombres").html(data.data.name);
@@ -344,14 +425,25 @@ function searchEmployee(dni){
 			$("#dni-error").hide();
     		$("#searchDNI").removeClass("error");
 			$("#cont-data-trabajador").show();
+			quitarDescargando();
 	  	}else{
-	  		alert(data.msg);
+	  		$("#cont-data-trabajador #span-nombres").html("");
+			$("#cont-data-trabajador #span-apellidos").html("");
+			$("#cont-data-trabajador #span-dni").html("");
+			$("#cont-data-trabajador #span-telefono").html("");
+			$("#cont-data-trabajador #span-direccion").html("");
+			$("#cont-data-trabajador #span-email").html("");
+			$("#cont-data-trabajador #id_employee").val("");
+	  		$("#cont-data-trabajador").hide();
+	  		quitarDescargando();
+			mensajeError(data.msg);
 	  	}
 	  	
 	},'json');
 }
 
 function cargarClausulas(id){
+	cargando();
 	$.post( window.base_url+"contrato_laboral/getClausulas", {id: id} ,function( data ) {
 	  	if(data.status){
 	  		var html = "";
@@ -379,14 +471,17 @@ function cargarClausulas(id){
 			});
 			html = (html == "") ? "No existen clusulas" : html;
 			$("#contenedor-clausulas").html(html);
+			quitarDescargando();
 	  	}else{
-	  		alert(data.msg);
+	  		quitarDescargando();
+			mensajeError(data.msg);
 	  	}
 	  	
 	},'json');
 }
 
 function addContract(){
+	cargando();
 	validacion = true;
 	if(!validatorContract.element( "#type_contract" )){
 		validacion = false;
@@ -464,10 +559,14 @@ function addContract(){
 		  	if(data.status){
 		  		location.href=window.base_url+"home";
 		  	}else{
-		  		alert(data.msg);
+		  		quitarDescargando();
+		  		mensajeError(data.msg);
 		  	}
 		  	
 		},'json');
+  	}else{
+  		quitarDescargando();
+  		mensajeError("Complete todos los campos requeridos para que se pueda editar el contrato.");
   	}
 
     setTimeout(function() {

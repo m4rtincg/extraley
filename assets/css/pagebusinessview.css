@@ -1,6 +1,14 @@
 @charset "utf-8";
 
-
+.help-article{
+    display: block;
+    margin-top: -10px;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+.help-article span{
+    font-family: robotobold;
+}
 .contTipoTitulo{
     margin-top: 20px;
     font-family: robotobold;

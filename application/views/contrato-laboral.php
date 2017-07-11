@@ -89,7 +89,7 @@
                                 <textarea class="form-control form-control-padding" id="commentcontract" name="commentcontract" placeholder="Comentarios"></textarea>
                             </div>
                         </div>
-                        <div class="help-form"><i id="icommentcontract" onClick="asesorar('Comentarios','Puedes escribir algun comentario para el contrato. Esta opción es opcional')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                        <div class="help-form"><i id="icommentcontract" onClick="asesorar('Comentarios','Puedes escribir algun comentario para el contrato. Es opcional completar este campo')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                     </div>
 
                 </form>
@@ -153,7 +153,7 @@
                             <textarea class="form-control form-control-padding" id="detalleworkcontract" name="detalleworkcontract" placeholder="Detalles del puesto del trabajo"></textarea>
                         </div>
                     </div>     
-                    <div class="help-form"><i id="idetalleworkcontract" onClick="asesorar('Detalles del puesto de trabajo','Describir en que consiste el puesto de trabajo.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                    <div class="help-form"><i id="idetalleworkcontract" onClick="asesorar('Detalles del puesto de trabajo','Describir la función y las tareas del trabajador que se contrata.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                 </div>  
 
                 <div id="">
@@ -164,7 +164,7 @@
                         <textarea class="form-control form-control-padding" id="explicaworkcontract" name="explicaworkcontract" placeholder="¿Por qué lo contrata?"></textarea>
                     </div>
                 </div>
-                 <div class="help-form"><i id="iexplicaworkcontract" onClick="asesorar('Razón del contrato','Escribir la razón por la cual contrata al empleado.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
+                 <div class="help-form"><i id="iexplicaworkcontract" onClick="asesorar('Razón del contrato','Describir la actividad que ha iniciado o que va iniciar la empresa. <br><strong>Por ejemplo:</strong> debido a que ha aperturado un nuevo establecimiento. <br><strong>Otro ejemplo:</strong> debido a que ha decidido ofertar nuevos productos en sus establecimientos.')" class="fa fa-info-circle" aria-hidden="true"></i></div>
                </div>
 
                 <div id="">

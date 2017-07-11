@@ -1,12 +1,47 @@
 @charset "utf-8";
 
+.Rechazado{
+	background: #e36159;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 10.2px;
+    color: #fff;
+}
+.Borrador{
+    background: #edbc6c;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 10.2px;
+    color: #fff;
+}
+.Aceptado{
+    background: #5cb85c;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 10.2px;
+    color: #fff;
+}
+.Finalizado{
+    background: #746ced;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 10.2px;
+    color: #fff;
+}
+.Firmado{
+    background: #2baab1;
+    border-radius: 5px;
+    padding: 3px 8px;
+    font-size: 10.2px;
+    color: #fff;
+}
 #listContracts i{
 	font-size: 30px;
     color: #de4747;
     cursor: pointer;
 }
 table.dataTable th,table.dataTable td {
-     white-space: nowrap;
+     white-space: inherit;
  }
 #listContracts{
 	border: 1px solid #dddddd;
@@ -52,7 +87,7 @@ table.dataTable th,table.dataTable td {
 	color: #cf6060;
 }
 .text-firma-pdf{
-	font-size: 10.5px;
+	font-size: 9px;
 }
 #listContracts .upload-pdf-firma-cont i{
 	font-size: 20px;
@@ -61,6 +96,11 @@ table.dataTable th,table.dataTable td {
 #listContracts .upload-pdf-firma-cont-del i {
     font-size: 20px;
     color: #290069;
+}
+#listContracts .upload-pdf-firma-cont-del i.fa-file-pdf-o{
+	font-size: 23px;
+    color: #de4747;
+    margin-bottom: 3px;
 }
 
 td div:first-child .btn_eventos{
@@ -86,7 +126,12 @@ td div:first-child .btn_eventos{
 .btn-editar{
 	background: #65086a;
 }
-
+.btn-finalizar{
+	background: #0072ff;
+}
+#listContracts{
+    	font-size: 11px;
+}
 
 @media (min-width: 420px) {
     #cont-listado-contracts{
@@ -112,6 +157,9 @@ td div:first-child .btn_eventos{
 	#cont-listado-contracts h2{
 		font-size: 21px;
 	}
+	#listContracts{
+    	font-size: 11.5px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -130,12 +178,18 @@ td div:first-child .btn_eventos{
     #cont-listado-contracts h2{
 		font-size: 23px;
 	}
+	#listContracts{
+    	font-size: 11.5px;
+    }
 }
 
 @media (min-width: 1300px) {
     #cont-listado-contracts{
 	    font-size: 12.8px;
 	    padding: 25px 30px 65px 30px;
+    }
+    #listContracts{
+    	font-size: 11.5px;
     }
     #cont-listado-contracts h2{
 		font-size: 24px;

@@ -52,8 +52,8 @@ $(document).ready(function () {
 		      }
 	    },
 	    messages: {
-	  	  nombretipoAdd: '<span data-placement="left" data-toggle="tooltip" title="El nombre del tipo de contrato no puede estar vacío"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
-	      descripciontipoAdd: '<span data-placement="left" data-toggle="tooltip" title="El artículo del contrato no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	  	  nombretipoEdit: '<span data-placement="left" data-toggle="tooltip" title="El nombre del tipo de contrato no puede estar vacío"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
+	      descripciontipoEdit: '<span data-placement="left" data-toggle="tooltip" title="El artículo del contrato no puede estar vacio"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>',
 		},
 	   	invalidHandler: function(event, validator) {
 	   		setTimeout(function() {

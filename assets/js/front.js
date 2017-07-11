@@ -87,4 +87,7 @@ function asesorar(titulo,mensaje){
 	$("#modalAsesoria #tituloAsesoria").html(titulo);
 	$("#modalAsesoria #mensajeAsesoria").html(mensaje);
 	$("#modalAsesoria").modal("show");
+	$("#modalAsesoria").on('shown.bs.modal', function() {
+	    $("#modalAsesoria #asesorAceptar").focus();
+	});
 }

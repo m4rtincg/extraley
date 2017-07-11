@@ -65,6 +65,8 @@
 					<option value="Borrador">Borrador</option>
 					<option value="Aceptado">Aceptado</option>
 					<option value="Rechazado">Rechazado</option>
+					<option value="Firmado">Firmado</option>
+					<option value="Finalizado">Finalizado</option>
 				</select>
 			</div>
 		</div>

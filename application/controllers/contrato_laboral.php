@@ -14,7 +14,7 @@ class Contrato_laboral extends CI_Controller {
 			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
 			$dataHeader['modulo'] = 'pagecl';
 			$dataFooter['modulo'] = 'pagecl';
-			$data['contract_types'] = $this->contract_type_model->selectAll();
+			$data['contract_types'] = $this->contract_type_model->selectAllBybusiness($this->session->userdata('business'));
 			$this->load->view('template/header',$dataHeader);
 			$this->load->view('contrato-laboral',$data);
 			$this->load->view('template/footer',$dataFooter);
@@ -40,7 +40,7 @@ class Contrato_laboral extends CI_Controller {
 			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
 			$dataHeader['modulo'] = 'pagecl';
 			$dataFooter['modulo'] = 'pagecledit';
-			$data['contract_types'] = $this->contract_type_model->selectAll();
+			$data['contract_types'] = $this->contract_type_model->selectAllBybusiness($this->session->userdata('business'));
 			$this->load->view('template/header',$dataHeader);
 			$this->load->view('contrato-laboral-edit',$data);
 			$this->load->view('template/footer',$dataFooter);
