@@ -3,22 +3,26 @@
 class actualizarEmpresa extends CI_Controller {
 
 	public function index(){
-		$this->load->model("business_model");
-		$this->load->model("user_model");
-		$this->load->model("distrito_model");
-		
-		$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
-		$dataHeader['modulo'] = 'page_actualizar_empresa';
-		$dataFooter['modulo'] = 'page_actualizar_empresa';
+		if($this->session->userdata('session')){
+			$this->load->model("business_model");
+			$this->load->model("user_model");
+			$this->load->model("distrito_model");
+			
+			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
+			$dataHeader['modulo'] = 'page_actualizar_empresa';
+			$dataFooter['modulo'] = 'page_actualizar_empresa';
 
-		$data['business'] = $this->business_model->getBusinessById($this->session->userdata('business'));
-		$row= $this->distrito_model->selectdepartamentos();
+			$data['business'] = $this->business_model->getBusinessById($this->session->userdata('business'));
+			$row= $this->distrito_model->selectdepartamentos();
 
-		$data['departamento'] = $row;
-        
-		$this->load->view('template/header',$dataHeader);
-		$this->load->view('actualizarEmpresa',$data);
-		$this->load->view('template/footer',$dataFooter);
+			$data['departamento'] = $row;
+	        
+			$this->load->view('template/header',$dataHeader);
+			$this->load->view('actualizarEmpresa',$data);
+			$this->load->view('template/footer',$dataFooter);
+		}else{
+        	header('Location: '.base_url());
+     	}
 	}
 
 	public function update(){

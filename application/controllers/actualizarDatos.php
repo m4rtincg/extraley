@@ -3,20 +3,24 @@
 class actualizarDatos extends CI_Controller {
 
 	public function index(){
-		$this->load->model("business_model");
-		$this->load->model("user_model");
-		
-		$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
-		$dataHeader['modulo'] = 'page_actualizar';
-		$dataFooter['modulo'] = 'page_actualizar';
+		if($this->session->userdata('session')){
+			$this->load->model("business_model");
+			$this->load->model("user_model");
+			
+			$dataHeader["user"] = $this->business_model->getUserById($this->session->userdata('user'));
+			$dataHeader['modulo'] = 'page_actualizar';
+			$dataFooter['modulo'] = 'page_actualizar';
 
-		$this->load->model("user_model");
-		$data['user'] = $this->user_model->selectById($this->session->userdata('user'));
-		$data['id'] = $this->session->userdata('user');
+			$this->load->model("user_model");
+			$data['user'] = $this->user_model->selectById($this->session->userdata('user'));
+			$data['id'] = $this->session->userdata('user');
 
-		$this->load->view('template/header',$dataHeader);
-		$this->load->view('actualizarDatos',$data);
-		$this->load->view('template/footer',$dataFooter);
+			$this->load->view('template/header',$dataHeader);
+			$this->load->view('actualizarDatos',$data);
+			$this->load->view('template/footer',$dataFooter);
+		}else{
+        	header('Location: '.base_url());
+     	}
 	}
 
 	public function update(){

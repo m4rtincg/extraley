@@ -3,7 +3,7 @@
 class Configuracion extends CI_Controller {
 
 	public function index(){
-			if($this->session->userdata('session')){
+		if($this->session->userdata('session')){
 			$this->load->model("business_model");
 			$this->load->model("config_model");
 		

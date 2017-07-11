@@ -455,6 +455,7 @@ function changeStatus(e){
     $.post( window.base_url+"empresas/changeStatus", {id:$(e).data("id"),status:estado} , function( data ) {
 	  	if(data.status){
 	  		quitarDescargando();
+	  		actualizarTabla();
 	  		mensajeSucess(data.msg);
 	  	}else{
 	  		quitarDescargando();
